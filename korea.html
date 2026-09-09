@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<title>Study in South Korea — GKS Scholarship | ScholarMap</title>
+<meta name="description" content="Discover South Korea's GKS Scholarship — full tuition, ₩1,000,000/month stipend, and return flight. ScholarMap guides Indian students to free Korean universities. 100% Free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style_cloud_journey.css">
+<link rel="stylesheet" href="css/career-bridge.css">
+<style>
+/* ═══════════════════════════════════════════════════════
+   PAGE BASE
+   ═══════════════════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: #03050D; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+
+/* ═══════════════════════════════════════════════════════
+   LOADING SCREEN
+   ═══════════════════════════════════════════════════════ */
+#kr-loader {
+  position: fixed; inset: 0; z-index: 9000;
+  background: #03050D;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 24px;
+  transition: opacity 0.8s ease 0.2s, visibility 0.8s ease 0.2s;
+}
+#kr-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.kr-load-native {
+  font-family: 'Cinzel', serif; font-size: clamp(3rem,8vw,6rem);
+  font-weight: 900; letter-spacing: 8px;
+  background: linear-gradient(135deg, #0047A0, #FFD166, #0047A0);
+  background-size: 200% auto;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: shimmerText 2s linear infinite;
+}
+@keyframes shimmerText { to { background-position: 200% center; } }
+.kr-load-sub {
+  font-size: 0.72rem; letter-spacing: 6px; text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+.kr-load-bar-track {
+  width: 180px; height: 1px;
+  background: rgba(255,255,255,0.1);
+  position: relative; overflow: hidden;
+}
+#kr-load-bar {
+  height: 100%; width: 0%; background: #0047A0;
+  transition: width 0.2s ease;
+  box-shadow: 0 0 10px #0047A0;
+}
+
+/* ═══════════════════════════════════════════════════════
+   PHOTO BACKGROUND SYSTEM
+   ═══════════════════════════════════════════════════════ */
+#kr-photo-bg {
+  position: fixed; inset: 0; z-index: 0;
+  overflow: hidden;
+}
+
+.kr-photo {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center center;
+  opacity: 0;
+  transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Ken-Burns subtle zoom-in while visible */
+  animation: jpKenBurns 18s ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+.kr-photo--active {
+  opacity: 1;
+  animation-play-state: running;
+}
+@keyframes jpKenBurns {
+  from { transform: scale(1.00); }
+  to   { transform: scale(1.07); }
+}
+
+/* Dark cinematic overlay — 3 layers:
+   1. Base dark fill so text is always readable
+   2. Directional gradient (text comes from sides)
+   3. Red-tinted vignette for brand colour grounding */
+#kr-photo-bg::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 2;
+  background:
+    /* deep vignette edges */
+    radial-gradient(ellipse at center, transparent 35%, rgba(0,0,8,0.72) 100%),
+    /* left/right darkening so text panels sit cleanly */
+    linear-gradient(to right, rgba(0,0,8,0.65) 0%, transparent 42%, transparent 58%, rgba(0,0,8,0.65) 100%),
+    /* top/bottom cinematic bars */
+    linear-gradient(to bottom, rgba(0,0,8,0.55) 0%, transparent 20%, transparent 78%, rgba(0,0,8,0.75) 100%),
+    /* brand crimson atmospheric tint */
+    linear-gradient(135deg, rgba(10,30,80,0.28) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+
+/* Individual photo sources — Unsplash 2560px, q=95 */
+#kr-photo-0 {
+  /* Gyeongbokgung Palace — Traditional architecture, clean sky */
+  background-image: url('https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=2560&q=95');
+  background-position: center 55%;
+}
+#kr-photo-1 {
+  background-image: url('https://images.unsplash.com/photo-1546874177-9e664107314e?auto=format&fit=crop&w=2560&q=95');
+  background-position: center 40%;
+}
+#kr-photo-2 {
+  background-image: url('https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=2560&q=95');
+  background-position: center 50%;
+}
+#kr-photo-3 {
+  background-image: url('https://images.unsplash.com/photo-1597552661064-af143a5f3bee?auto=format&fit=crop&w=2560&q=95');
+  background-position: center 60%;
+}
+#kr-photo-4 {
+  background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=2560&q=95');
+  background-position: center 50%;
+}
+
+/* ═══════════════════════════════════════════════════════
+   CANVAS  (blossom overlay — transparent background)
+   ═══════════════════════════════════════════════════════ */
+#kr-canvas {
+  position: fixed; inset: 0; z-index: 3;
+  width: 100% !important; height: 100% !important;
+  display: block;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════
+   JAPANESE DECORATIVE TYPE
+   ═══════════════════════════════════════════════════════ */
+.kr-native-watermark {
+  position: fixed;
+  top: 50%;
+  right: 5vw;
+  transform: translateY(-50%);
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(5rem, 12vw, 11rem);
+  font-weight: 700;
+  writing-mode: vertical-rl;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.06);
+  z-index: 4;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 0.6s;
+  text-shadow: 0 0 80px rgba(0,71,160,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════
+   STORYTELLING CHAPTER LABELS
+   ═══════════════════════════════════════════════════════ */
+.kr-chapter-band {
+  position: fixed;
+  left: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  pointer-events: none;
+}
+.kr-chapter-title {
+  font-size: 0.6rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.0);
+  transition: color 0.5s ease, opacity 0.5s ease;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+.kr-chapter-title.visible {
+  color: rgba(255,255,255,0.35);
+  height: auto;
+  opacity: 1;
+}
+.kr-chapter-line {
+  width: 1px;
+  height: 0;
+  background: rgba(0,71,160,0.5);
+  transition: height 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.kr-chapter-line.visible {
+  height: 48px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════════════════ */
+#kr-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  padding: 28px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: linear-gradient(to bottom, rgba(3,5,13,0.8) 0%, transparent 100%);
+  transition: background 0.4s;
+}
+#kr-nav.scrolled { background: rgba(3,5,13,0.95); backdrop-filter: blur(20px); padding: 18px 48px; }
+.kr-nav-logo {
+  font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700;
+  letter-spacing: 3px; color: #fff;
+}
+.kr-nav-logo span { color: #0047A0; }
+.kr-nav-links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: flex-end; }
+.kr-nav-links a {
+  font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); transition: color 0.3s;
+}
+.kr-nav-links a:hover, .kr-nav-links a.active { color: #fff; }
+@media (max-width: 820px) {
+  #kr-nav { padding: 16px 20px; align-items: center; flex-direction: column; gap: 12px; overflow: hidden; }
+  #kr-nav.scrolled { padding: 14px 20px; }
+  .kr-nav-logo { width: 100%; text-align: center; }
+  .kr-nav-links {
+    width: 100%; max-width: 340px; display: grid;
+    grid-template-columns: repeat(3, max-content);
+    gap: 10px 14px; justify-content: center;
+    overflow: visible; padding-bottom: 4px;
+  }
+  .kr-nav-links a { white-space: nowrap; font-size: 0.62rem; letter-spacing: 1px; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   SCROLL CONTAINER
+   ═══════════════════════════════════════════════════════ */
+#kr-scroll { position: relative; z-index: 10; }
+
+/* ═══════════════════════════════════════════════════════
+   HERO SECTION
+   ═══════════════════════════════════════════════════════ */
+/* ─── Hero ─── */
+.kr-hero {
+  height: 100svh; display: flex; align-items: center; justify-content: center;
+  text-align: center; position: relative;
+  pointer-events: none;
+}
+.kr-hero-inner {
+  padding: 0 24px;
+  max-width: 760px;
+  position: relative;
+  /* Dark radial halo — keeps text readable over any photo */
+  isolation: isolate;
+}
+.kr-hero-inner::before {
+  content: '';
+  position: absolute;
+  inset: -60px -80px;
+  background: radial-gradient(ellipse at center, rgba(0,0,10,0.72) 0%, rgba(0,0,10,0.45) 45%, transparent 75%);
+  border-radius: 50%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Eyebrow — thin rule + Japanese character */
+.kr-hero-eyebrow {
+  font-size: 0.66rem; letter-spacing: 8px; text-transform: uppercase;
+  color: rgba(255, 209, 102, 0.8); margin-bottom: 32px;
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+}
+.kr-hero-eyebrow::before,
+.kr-hero-eyebrow::after {
+  content: ''; flex: 1; max-width: 80px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,209,102,0.4));
+}
+.kr-hero-eyebrow::after { background: linear-gradient(-90deg, transparent, rgba(255,209,102,0.4)); }
+
+/* Main title */
+.kr-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(3.2rem, 9vw, 8rem);
+  font-weight: 900; line-height: 0.92; letter-spacing: -2px;
+  margin-bottom: 32px;
+}
+.kr-title .t1 {
+  display: block;
+  color: #ffffff;
+  text-shadow:
+    0 2px 4px rgba(0,0,0,0.95),
+    0 4px 24px rgba(0,0,0,0.85),
+    0 0 80px rgba(255,60,30,0.2);
+}
+.kr-title .t2 {
+  display: block;
+  background: linear-gradient(135deg, #0047A0 0%, #FFD166 55%, #FF6B35 100%);
+  background-size: 220%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: shimmerText 4s linear infinite;
+}
+.kr-title .t3 {
+  display: block;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 0.28em;
+  font-weight: 400;
+  letter-spacing: 14px;
+  color: rgba(255,255,255,0.25);
+  margin-top: 18px;
+  -webkit-text-fill-color: rgba(255,255,255,0.25);
+}
+
+/* Italic storytelling sub */
+.kr-sub {
+  font-size: clamp(0.88rem, 1.4vw, 1.05rem);
+  font-style: italic;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 1px;
+  line-height: 1.8;
+  margin-bottom: 52px;
+  font-family: 'Inter', sans-serif;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.9);
+}
+
+/* Scroll cue */
+.kr-scroll-cue {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  animation: floatCue 2.4s ease-in-out infinite;
+}
+.kr-scroll-cue span { font-size: 0.6rem; letter-spacing: 5px; text-transform: uppercase; color: rgba(255,255,255,0.28); }
+.kr-cue-line {
+  width: 1px; height: 64px;
+  background: linear-gradient(to bottom, rgba(255,209,102,0.7), transparent);
+}
+@keyframes floatCue { 0%,100%{transform:translateY(0)} 50%{transform:translateY(10px)} }
+
+/* ─── Scene number strip ─── */
+.kr-num-strip {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(5rem, 15vw, 13rem);
+  font-weight: 900;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(0,71,160,0.06);
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -4px;
+  z-index: 0;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SCENE SECTIONS (scroll-driven text panels)
+   ═══════════════════════════════════════════════════════ */
+.kr-scene {
+  min-height: 100svh; display: flex; align-items: center;
+  position: relative; pointer-events: none;
+}
+.kr-scene:nth-child(odd) { justify-content: flex-start; padding-left: 8%; }
+.kr-scene:nth-child(even) { justify-content: flex-end; padding-right: 8%; }
+
+.kr-scene-text {
+  max-width: 480px; pointer-events: auto;
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1);
+  /* Glassmorphism card — helps text over busy photos */
+  background: rgba(3, 5, 18, 0.52);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  padding: 40px 44px;
+  box-shadow:
+    0 8px 48px rgba(0,0,0,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.kr-scene-text.kr-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.jst-tag {
+  font-size: 0.62rem; letter-spacing: 5px; text-transform: uppercase;
+  color: #0047A0; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+}
+.jst-tag::after { content: ''; flex: 1; max-width: 40px; height: 1px; background: rgba(0,71,160,0.4); }
+.jst-h2 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.2rem,4vw,3.5rem);
+  font-weight: 700; line-height: 1.02; letter-spacing: -1px;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+.jst-p {
+  font-size: 0.95rem; color: rgba(255,255,255,0.72); line-height: 1.85;
+  margin-bottom: 24px;
+}
+.jst-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.jst-chip {
+  padding: 7px 16px; border-radius: 99px; font-size: 0.72rem; font-weight: 600;
+  background: rgba(0,71,160,0.1); border: 1px solid rgba(0,71,160,0.3);
+  color: rgba(255,255,255,0.8); letter-spacing: 0.5px;
+}
+.jst-cta {
+  display: inline-block; padding: 14px 32px; border-radius: 60px;
+  background: #0047A0; color: #fff; font-weight: 700; font-size: 0.82rem;
+  letter-spacing: 1px; pointer-events: auto;
+  box-shadow: 0 10px 30px rgba(0,71,160,0.35);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.jst-cta:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,71,160,0.5); }
+
+/* ─ Gold accent for scene 2 ─ */
+.kr-scene.s2 .jst-tag { color: #FFD166; }
+.kr-scene.s2 .jst-tag::after { background: rgba(255,209,102,0.4); }
+.kr-scene.s2 .jst-chip { background: rgba(255,209,102,0.1); border-color: rgba(255,209,102,0.3); }
+
+/* ═══════════════════════════════════════════════════════
+   TRANSITION BRIDGE
+   ═══════════════════════════════════════════════════════ */
+.kr-transition {
+  height: 100svh; display: flex; align-items: center; justify-content: center;
+  text-align: center; position: relative; overflow: hidden;
+}
+.kr-transition-inner { position: relative; z-index: 2; pointer-events: auto; }
+.kr-transition-native {
+  font-family: 'Cinzel', serif; font-size: clamp(4rem,10vw,8rem);
+  font-weight: 900; letter-spacing: 6px; opacity: 0.04;
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  color: #0047A0; white-space: nowrap;
+}
+.kr-transition h2 {
+  font-family: 'Cinzel', serif; font-size: clamp(1.8rem,3vw,3rem);
+  font-weight: 700; margin-bottom: 16px; letter-spacing: 2px;
+}
+.kr-transition p {
+  color: rgba(255,255,255,0.5); font-size: 1rem; margin-bottom: 40px; line-height: 1.7;
+}
+.kr-transition .kr-t-line {
+  width: 80px; height: 1px; background: linear-gradient(90deg,transparent,#0047A0,transparent);
+  margin: 0 auto 40px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   CONTENT SCAFFOLD BASE OVERRIDE
+   ═══════════════════════════════════════════════════════ */
+.content-scaffold {
+  position: relative; z-index: 20;
+  background: linear-gradient(180deg, transparent 0%, #03050D 60px);
+}
+
+/* ═══════════════════════════════════════════════════════
+   SIDE PROGRESS INDICATOR
+   ═══════════════════════════════════════════════════════ */
+#kr-progress {
+  position: fixed; right: 28px; top: 50%; transform: translateY(-50%);
+  z-index: 400; display: flex; flex-direction: column; gap: 10px;
+}
+.kr-prog-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,0.2); transition: all 0.4s;
+  cursor: pointer;
+}
+.kr-prog-dot.active { background: #0047A0; box-shadow: 0 0 8px #0047A0; }
+
+
+</style>
+
+<!-- SCAFFOLD REDESIGN START -->
+<style>
+/* ═══════════════════════════════════════════════════════
+   SCHOLARMAP — CONTENT SCAFFOLD REDESIGN (JAPAN)
+   Editorial, human, non-template look
+   ═══════════════════════════════════════════════════════ */
+
+/* Variables */
+:root { --cs-accent: #C1121F; --cs-gold: #9B7B1A; --cs-ink: #12100e; --cs-cream: #f8f5ef; --cs-cream2: #f0ece4; --cs-muted: #5a5248; --cs-border: #d0c8be; --cs-dark: #0d0d14; }
+
+/* Scaffold base */
+.content-scaffold { background: var(--cs-cream) !important; }
+
+/* All sections */
+.cs-sec { padding: 88px 0 !important; opacity: 1 !important; transform: none !important; transition: none !important; }
+.cs-sec.cs-revealed { opacity: 1 !important; transform: none !important; }
+.cs-container { max-width: 1040px !important; margin: 0 auto !important; padding: 0 48px !important; }
+
+/* Alternating backgrounds */
+.cs-mext-hero { background: var(--cs-cream) !important; }
+.cs-countdown { background: var(--cs-dark) !important; }
+.cs-unis { background: #fff !important; }
+.cs-timeline { background: var(--cs-cream2) !important; }
+.cs-services { background: var(--cs-dark) !important; }
+.cs-testimonials { background: #fff !important; }
+.cs-faq { background: var(--cs-cream2) !important; }
+.cs-final-cta { background: var(--cs-dark) !important; }
+
+/* Section label — replaces emoji badge */
+.cs-badge {
+  font-family: 'Inter', sans-serif !important; font-size: 0.62rem !important;
+  letter-spacing: 5px !important; text-transform: uppercase !important;
+  color: var(--cs-accent) !important; background: none !important;
+  border: none !important; border-radius: 0 !important; padding: 0 0 18px 0 !important;
+  display: block !important; font-weight: 700 !important;
+}
+
+/* Headings */
+.cs-h2 {
+  font-family: 'Cinzel', serif !important; font-size: clamp(1.9rem, 3.2vw, 3rem) !important;
+  font-weight: 700 !important; line-height: 1.08 !important; margin-bottom: 18px !important;
+  color: var(--cs-ink) !important; letter-spacing: -0.5px !important;
+}
+.cs-countdown .cs-h2, .cs-services .cs-h2, .cs-final-cta .cs-h2 { color: var(--cs-cream) !important; }
+.cs-red { color: var(--cs-accent) !important; -webkit-text-fill-color: var(--cs-accent) !important; background: none !important; }
+.cs-gold { color: var(--cs-gold) !important; -webkit-text-fill-color: var(--cs-gold) !important; background: none !important; }
+
+/* Lead text */
+.cs-lead {
+  font-family: 'Inter', sans-serif !important; font-size: 1rem !important;
+  line-height: 1.8 !important; color: var(--cs-muted) !important;
+  max-width: 600px !important; margin-bottom: 48px !important;
+}
+.cs-countdown .cs-lead, .cs-services .cs-lead, .cs-final-cta .cs-lead { color: rgba(240,236,228,0.55) !important; }
+
+/* ─── STATS GRID ─── */
+.mxt-grid {
+  display: grid !important; grid-template-columns: repeat(3, 1fr) !important;
+  gap: 1px !important; background: var(--cs-border) !important;
+  border: 1px solid var(--cs-border) !important; border-radius: 0 !important;
+}
+.mxt-card {
+  background: #fff !important; border: none !important; border-radius: 0 !important;
+  padding: 36px 30px !important; box-shadow: none !important; text-align: left !important;
+}
+.mxt-card.mxt-feat { background: var(--cs-ink) !important; }
+.mxt-ico { display: none !important; }
+.mxt-num {
+  font-family: 'Cinzel', serif !important; font-size: clamp(1.9rem, 3vw, 2.8rem) !important;
+  font-weight: 700 !important; color: var(--cs-ink) !important;
+  line-height: 1 !important; margin-bottom: 8px !important;
+}
+.mxt-card.mxt-feat .mxt-num { color: var(--cs-cream) !important; }
+.mxt-key {
+  font-family: 'Inter', sans-serif !important; font-size: 0.6rem !important;
+  letter-spacing: 3.5px !important; text-transform: uppercase !important;
+  color: var(--cs-accent) !important; font-weight: 700 !important; margin-bottom: 6px !important;
+}
+.mxt-card.mxt-feat .mxt-key { color: rgba(193,18,31,0.75) !important; }
+.mxt-sub { font-size: 0.8rem !important; color: #8a8078 !important; line-height: 1.5 !important; }
+.mxt-card.mxt-feat .mxt-sub { color: rgba(240,236,228,0.45) !important; }
+
+/* ─── COUNTDOWN ─── */
+.cs-countdown { text-align: center !important; }
+.cd-label {
+  font-size: 0.6rem !important; letter-spacing: 4px !important; text-transform: uppercase !important;
+  color: rgba(240,236,228,0.35) !important; margin-bottom: 48px !important; display: block !important;
+}
+.cd-timer { display: flex !important; gap: 0 !important; justify-content: center !important; align-items: center !important; margin-bottom: 36px !important; }
+.cd-blk { padding: 0 32px !important; border-right: 1px solid rgba(255,255,255,0.07) !important; }
+.cd-blk:last-child { border-right: none !important; }
+.cd-blk span {
+  display: block !important; font-family: 'Cinzel', serif !important;
+  font-size: clamp(2.5rem, 5vw, 4.5rem) !important; font-weight: 700 !important;
+  color: var(--cs-cream) !important; line-height: 1 !important; margin-bottom: 10px !important;
+}
+.cd-blk small { font-size: 0.55rem !important; letter-spacing: 3px !important; text-transform: uppercase !important; color: rgba(240,236,228,0.3) !important; }
+.cd-sep { display: none !important; }
+.cd-sub { font-size: 0.85rem !important; color: rgba(240,236,228,0.35) !important; margin-bottom: 40px !important; }
+.cd-cta {
+  display: inline-block !important; padding: 14px 40px !important;
+  border: 1px solid rgba(193,18,31,0.5) !important; color: var(--cs-cream) !important;
+  font-size: 0.72rem !important; letter-spacing: 3px !important; text-transform: uppercase !important;
+  text-decoration: none !important; background: rgba(193,18,31,0.1) !important;
+  transition: background 0.25s, border-color 0.25s !important; border-radius: 0 !important;
+}
+.cd-cta:hover { background: var(--cs-accent) !important; border-color: var(--cs-accent) !important; }
+
+/* ─── UNIVERSITIES ─── */
+.uni-sc-grid { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; }
+.uni-sc-card {
+  background: var(--cs-cream) !important; border: none !important; border-radius: 0 !important;
+  padding: 36px 32px !important; box-shadow: none !important;
+  border-left: 3px solid var(--cs-accent) !important;
+}
+.uni-sc-card .usc-rank {
+  font-family: 'Inter', sans-serif !important; font-size: 0.6rem !important;
+  letter-spacing: 3px !important; text-transform: uppercase !important;
+  color: var(--cs-accent) !important; font-weight: 700 !important; margin-bottom: 14px !important; display: block !important;
+}
+.uni-sc-card .usc-icon { display: none !important; }
+.uni-sc-card h3 {
+  font-family: 'Cinzel', serif !important; font-size: 1.15rem !important;
+  font-weight: 700 !important; color: var(--cs-ink) !important; margin-bottom: 4px !important;
+}
+.uni-sc-card .usc-jp { font-family: 'Inter', sans-serif !important; font-size: 0.78rem !important; color: #9a8f84 !important; margin-bottom: 14px !important; font-style: italic !important; }
+.uni-sc-card p { font-size: 0.88rem !important; color: var(--cs-muted) !important; line-height: 1.65 !important; margin-bottom: 16px !important; }
+.uni-sc-card .usc-tags { display: flex !important; gap: 12px !important; flex-wrap: wrap !important; }
+.uni-sc-card .usc-tags span {
+  font-size: 0.62rem !important; letter-spacing: 2px !important; text-transform: uppercase !important;
+  color: #9a8f84 !important; background: none !important; border: none !important;
+  border-radius: 0 !important; padding: 0 !important;
+}
+
+/* ─── TIMELINE ─── */
+.jp-tl {
+  display: grid !important; grid-template-columns: 1fr 1fr !important;
+  gap: 0 !important; border: 1px solid var(--cs-border) !important;
+}
+.jpt-item {
+  display: flex !important; align-items: flex-start !important; gap: 20px !important;
+  padding: 36px 32px !important; border-bottom: 1px solid var(--cs-border) !important;
+  border-right: 1px solid var(--cs-border) !important; background: #faf8f4 !important;
+  position: relative !important;
+}
+.jpt-item:nth-child(even) { border-right: none !important; }
+.jpt-item:nth-last-child(-n+2) { border-bottom: none !important; }
+.jpt-num {
+  font-family: 'Cinzel', serif !important; font-size: 2.8rem !important; font-weight: 900 !important;
+  color: rgba(193,18,31,0.12) !important; line-height: 1 !important; min-width: 64px !important;
+  background: none !important; border-radius: 0 !important; box-shadow: none !important;
+  width: auto !important; height: auto !important; display: block !important; flex-shrink: 0 !important;
+  align-self: flex-start !important;
+}
+.jpt-body { flex: 1 !important; }
+.jpt-body h4 {
+  font-family: 'Cinzel', serif !important; font-size: 1rem !important; font-weight: 700 !important;
+  color: var(--cs-ink) !important; margin-bottom: 8px !important;
+}
+.jpt-body p { font-size: 0.86rem !important; color: var(--cs-muted) !important; line-height: 1.7 !important; margin-bottom: 12px !important; }
+.jpt-tag {
+  font-size: 0.58rem !important; letter-spacing: 2.5px !important; text-transform: uppercase !important;
+  color: var(--cs-accent) !important; background: none !important; border: none !important;
+  border-radius: 0 !important; padding: 0 !important; font-weight: 700 !important;
+}
+
+/* Germany phase headers */
+.jpt-phase {
+  grid-column: 1 / -1 !important; background: var(--cs-ink) !important;
+  padding: 28px 32px !important; border-bottom: 1px solid var(--cs-border) !important;
+}
+.jpt-phase span {
+  font-size: 0.6rem !important; letter-spacing: 4px !important; text-transform: uppercase !important;
+  color: rgba(240,236,228,0.4) !important; display: block !important; margin-bottom: 6px !important;
+}
+.jpt-phase h3 {
+  font-family: 'Cinzel', serif !important; font-size: 1.3rem !important; font-weight: 700 !important;
+  color: var(--cs-cream) !important; margin-bottom: 8px !important;
+}
+.jpt-phase p { font-size: 0.85rem !important; color: rgba(240,236,228,0.5) !important; line-height: 1.6 !important; }
+
+/* Korea timeline .kr-tl */
+.kr-tl {
+  display: grid !important; grid-template-columns: 1fr 1fr !important;
+  gap: 0 !important; border: 1px solid var(--cs-border) !important;
+}
+.krt-item {
+  display: flex !important; align-items: flex-start !important; gap: 20px !important;
+  padding: 36px 32px !important; border-bottom: 1px solid var(--cs-border) !important;
+  border-right: 1px solid var(--cs-border) !important; background: #faf8f4 !important;
+}
+.krt-item:nth-child(even) { border-right: none !important; }
+.krt-item:nth-last-child(-n+2) { border-bottom: none !important; }
+.krt-num {
+  font-family: 'Cinzel', serif !important; font-size: 2.8rem !important; font-weight: 900 !important;
+  line-height: 1 !important; min-width: 64px !important; background: none !important;
+  border-radius: 0 !important; box-shadow: none !important; width: auto !important; height: auto !important;
+  display: block !important; flex-shrink: 0 !important; align-self: flex-start !important;
+}
+.krt-body h4 {
+  font-family: 'Cinzel', serif !important; font-size: 1rem !important; font-weight: 700 !important;
+  color: var(--cs-ink) !important; margin-bottom: 8px !important;
+}
+.krt-body p { font-size: 0.86rem !important; color: var(--cs-muted) !important; line-height: 1.7 !important; margin-bottom: 12px !important; }
+.krt-tag {
+  font-size: 0.58rem !important; letter-spacing: 2.5px !important; text-transform: uppercase !important;
+  background: none !important; border: none !important; border-radius: 0 !important;
+  padding: 0 !important; font-weight: 700 !important;
+}
+
+/* Germany timeline .de-tl */
+.de-tl {
+  display: grid !important; grid-template-columns: 1fr 1fr !important;
+  gap: 0 !important; border: 1px solid var(--cs-border) !important;
+}
+.det-item {
+  display: flex !important; align-items: flex-start !important; gap: 20px !important;
+  padding: 36px 32px !important; border-bottom: 1px solid var(--cs-border) !important;
+  border-right: 1px solid var(--cs-border) !important; background: #faf8f4 !important;
+}
+.det-item:nth-child(even) { border-right: none !important; }
+.det-num {
+  font-family: 'Cinzel', serif !important; font-size: 2.8rem !important; font-weight: 900 !important;
+  line-height: 1 !important; min-width: 64px !important; background: none !important;
+  border-radius: 0 !important; box-shadow: none !important; width: auto !important; height: auto !important;
+  display: block !important; flex-shrink: 0 !important; align-self: flex-start !important;
+}
+.det-body h4 {
+  font-family: 'Cinzel', serif !important; font-size: 1rem !important;
+  font-weight: 700 !important; color: var(--cs-ink) !important; margin-bottom: 8px !important;
+}
+.det-body p { font-size: 0.86rem !important; color: var(--cs-muted) !important; line-height: 1.7 !important; margin-bottom: 12px !important; }
+.det-tag {
+  font-size: 0.58rem !important; letter-spacing: 2.5px !important; text-transform: uppercase !important;
+  background: none !important; border: none !important; border-radius: 0 !important; padding: 0 !important; font-weight: 700 !important;
+}
+
+/* ─── SERVICES ─── */
+.cs-services { text-align: left !important; }
+.svc-grid {
+  display: grid !important; grid-template-columns: repeat(2, 1fr) !important;
+  gap: 1px !important; background: rgba(255,255,255,0.06) !important;
+}
+.svc-card {
+  background: rgba(255,255,255,0.025) !important; border: none !important;
+  border-radius: 0 !important; padding: 40px 36px !important; box-shadow: none !important;
+}
+.svc-card.svc-feat { background: rgba(193,18,31,0.07) !important; }
+.svc-badge-top {
+  font-size: 0.58rem !important; letter-spacing: 3px !important; text-transform: uppercase !important;
+  color: rgba(193,18,31,0.85) !important; margin-bottom: 14px !important; display: block !important;
+  background: none !important; border: none !important; border-radius: 0 !important; padding: 0 !important;
+}
+.svc-ico { display: none !important; }
+.svc-card h4 {
+  font-family: 'Cinzel', serif !important; font-size: 1.05rem !important; font-weight: 700 !important;
+  color: var(--cs-cream) !important; margin-bottom: 12px !important;
+}
+.svc-card p { font-size: 0.88rem !important; color: rgba(240,236,228,0.5) !important; line-height: 1.65 !important; }
+
+/* ─── TESTIMONIALS ─── */
+.tst-grid { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 20px !important; }
+.tst-card {
+  background: var(--cs-cream) !important; border: 1px solid var(--cs-border) !important;
+  border-radius: 0 !important; padding: 32px !important; box-shadow: none !important;
+}
+.tst-card.tst-feat { background: var(--cs-ink) !important; border-color: var(--cs-ink) !important; }
+.tst-stars { color: var(--cs-gold) !important; font-size: 0.85rem !important; letter-spacing: 2px !important; }
+.tst-text { font-style: italic !important; color: #3a3530 !important; line-height: 1.7 !important; font-size: 0.88rem !important; }
+.tst-card.tst-feat .tst-text { color: rgba(240,236,228,0.72) !important; }
+.tst-author { display: flex !important; align-items: center !important; gap: 12px !important; }
+.tst-av {
+  width: 36px !important; height: 36px !important; border-radius: 50% !important;
+  background: var(--cs-accent) !important; color: #fff !important;
+  display: flex !important; align-items: center !important; justify-content: center !important;
+  font-weight: 700 !important; font-size: 0.88rem !important; flex-shrink: 0 !important;
+}
+.tst-author strong { color: var(--cs-ink) !important; font-size: 0.88rem !important; }
+.tst-card.tst-feat .tst-author strong { color: var(--cs-cream) !important; }
+.tst-author span { font-size: 0.72rem !important; color: #8a7f74 !important; }
+.tst-card.tst-feat .tst-author span { color: rgba(240,236,228,0.4) !important; }
+
+/* ─── FAQ ─── */
+.faq-list { border-top: 1px solid var(--cs-border) !important; }
+.faq-item { border-bottom: 1px solid var(--cs-border) !important; padding: 0 !important; }
+.faq-q {
+  width: 100% !important; background: none !important; border: none !important;
+  padding: 22px 0 !important; text-align: left !important; font-family: 'Inter', sans-serif !important;
+  font-size: 0.92rem !important; color: var(--cs-ink) !important; cursor: pointer !important;
+  display: flex !important; justify-content: space-between !important; align-items: center !important;
+  font-weight: 500 !important;
+}
+.faq-arrow { color: var(--cs-accent) !important; font-size: 0.65rem !important; }
+.faq-a {
+  font-size: 0.88rem !important; color: var(--cs-muted) !important; line-height: 1.75 !important;
+  padding-bottom: 22px !important; max-height: 0 !important; overflow: hidden !important;
+}
+.faq-item.open .faq-a { max-height: 300px !important; }
+
+/* ─── FINAL CTA ─── */
+.cs-final-cta { text-align: center !important; }
+.cs-cta-glow { display: none !important; }
+.cs-cta-title { color: var(--cs-cream) !important; }
+.cs-btn-primary {
+  display: inline-block !important; padding: 16px 40px !important; background: var(--cs-accent) !important;
+  color: #fff !important; font-size: 0.75rem !important; letter-spacing: 3px !important;
+  text-transform: uppercase !important; text-decoration: none !important; font-weight: 700 !important;
+  border-radius: 0 !important; transition: opacity 0.25s !important; border: none !important;
+}
+.cs-btn-primary:hover { opacity: 0.82 !important; transform: none !important; box-shadow: none !important; }
+.cs-btn-secondary {
+  display: inline-block !important; padding: 16px 40px !important; background: transparent !important;
+  color: rgba(240,236,228,0.5) !important; font-size: 0.75rem !important; letter-spacing: 3px !important;
+  text-transform: uppercase !important; text-decoration: none !important; font-weight: 400 !important;
+  border-radius: 0 !important; border: 1px solid rgba(240,236,228,0.18) !important;
+  transition: border-color 0.25s, color 0.25s !important;
+}
+.cs-btn-secondary:hover { border-color: rgba(240,236,228,0.45) !important; color: var(--cs-cream) !important; }
+.cs-cta-actions { display: flex !important; gap: 16px !important; justify-content: center !important; flex-wrap: wrap !important; margin-bottom: 32px !important; }
+.cs-trust {
+  display: flex !important; gap: 32px !important; justify-content: center !important; flex-wrap: wrap !important;
+  font-size: 0.65rem !important; letter-spacing: 2.5px !important; text-transform: uppercase !important;
+  color: rgba(240,236,228,0.25) !important;
+}
+
+/* ─── MOBILE ─── */
+@media (max-width: 768px) {
+  .cs-container { padding: 0 24px !important; }
+  .cs-sec { padding: 64px 0 !important; }
+  .mxt-grid { grid-template-columns: 1fr 1fr !important; }
+  .uni-sc-grid { grid-template-columns: 1fr !important; }
+  .jp-tl, .de-tl, .kr-tl { grid-template-columns: 1fr !important; }
+  .jpt-item:nth-child(even), .det-item:nth-child(even), .krt-item:nth-child(even) { border-right: 1px solid var(--cs-border) !important; }
+  .jpt-item:last-child, .det-item:last-child, .krt-item:last-child { border-bottom: none !important; }
+  .tst-grid { grid-template-columns: 1fr !important; }
+  .svc-grid { grid-template-columns: 1fr !important; }
+  .cd-blk { padding: 0 16px !important; }
+}
+
+/* Prevent white text on light backgrounds */
+.cs-mext-hero, .cs-unis, .cs-timeline, .cs-testimonials, .cs-faq { color: var(--cs-ink) !important; }
+.cs-mext-hero *, .cs-unis *, .cs-timeline *, .cs-testimonials *, .cs-faq * { color: inherit; }
+.cs-mext-hero .mxt-key, .cs-unis .mxt-key, .cs-timeline .mxt-key { color: var(--cs-accent) !important; }
+.cs-mext-hero .mxt-sub, .cs-unis .mxt-sub { color: #8a8078 !important; }
+.cs-mext-hero .mxt-num, .cs-unis .mxt-num { color: var(--cs-ink) !important; }
+.cs-mext-hero .mxt-card.mxt-feat * { color: var(--cs-cream) !important; }
+.cs-mext-hero .mxt-card.mxt-feat .mxt-sub { color: rgba(240,236,228,0.45) !important; }
+.cs-mext-hero .mxt-card.mxt-feat .mxt-key { color: rgba(193,18,31,0.75) !important; }
+.cs-unis .uni-sc-card, .cs-unis .uni-sc-card p { color: var(--cs-muted) !important; }
+.cs-unis .uni-sc-card h3 { color: var(--cs-ink) !important; }
+.cs-timeline .jpt-body h4, .cs-timeline .krt-body h4, .cs-timeline .det-body h4 { color: var(--cs-ink) !important; }
+.cs-timeline .jpt-body p, .cs-timeline .krt-body p, .cs-timeline .det-body p { color: var(--cs-muted) !important; }
+.cs-testimonials .tst-card { color: var(--cs-ink) !important; }
+.cs-testimonials .tst-card.tst-feat { color: var(--cs-cream) !important; }
+.cs-testimonials .tst-text { color: #3a3530 !important; }
+.cs-testimonials .tst-card.tst-feat .tst-text { color: rgba(240,236,228,0.72) !important; }
+.cs-faq .faq-q { color: var(--cs-ink) !important; }
+.cs-faq .faq-a { color: var(--cs-muted) !important; }
+
+</style>
+<style>
+/* Korea colour override */
+:root { --cs-accent: #1565C0 !important; --cs-gold: #1565C0 !important; }
+.mxt-key { color: #1565C0 !important; }
+.mxt-card.mxt-feat .mxt-key, .cs-mext-hero .mxt-card.mxt-feat .mxt-key { color: #5078C8 !important; }
+.cs-badge { color: #1565C0 !important; }
+.jpt-tag, .krt-tag { color: #1565C0 !important; }
+.jpt-num { color: rgba(21,101,192,0.32) !important; }
+.krt-num { color: rgba(21,101,192,0.32) !important; }
+.cd-cta { border-color: rgba(21,101,192,0.5) !important; background: rgba(21,101,192,0.1) !important; }
+.cd-cta:hover { background: #1565C0 !important; border-color: #1565C0 !important; }
+.uni-sc-card { border-left-color: #1565C0 !important; }
+.uni-sc-card .usc-rank { color: #1565C0 !important; }
+.faq-arrow { color: #1565C0 !important; }
+.cs-btn-primary { background: #1565C0 !important; }
+.tst-av { background: #1565C0 !important; }
+.tst-card.tst-feat .tst-stars { color: #5078C8 !important; }
+.svc-card.svc-feat { background: rgba(21,101,192,0.07) !important; }
+.svc-badge-top { color: rgba(21,101,192,0.85) !important; }
+.cs-red { color: #1565C0 !important; -webkit-text-fill-color: #1565C0 !important; }
+</style>
+<!-- SCAFFOLD REDESIGN END -->
+<link rel="stylesheet" href="css/korea-polish.css">
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="kr-loader">
+  <div class="kr-load-native">KR</div>
+  <div class="kr-load-sub">ScholarMap · Korea Experience</div>
+  <div class="kr-load-bar-track"><div id="kr-load-bar"></div></div>
+</div>
+
+<!-- PHOTO BACKGROUND LAYER -->
+<div id="kr-photo-bg" aria-hidden="true">
+  <div class="kr-photo kr-photo--active" id="kr-photo-0"></div>
+  <div class="kr-photo" id="kr-photo-1"></div>
+  <div class="kr-photo" id="kr-photo-2"></div>
+  <div class="kr-photo" id="kr-photo-3"></div>
+  <div class="kr-photo" id="kr-photo-4"></div>
+</div>
+
+<!-- BLOSSOM CANVAS (sits above photos, below UI) -->
+<canvas id="kr-canvas"></canvas>
+
+<!-- VERTICAL DECORATIVE WATERMARK -->
+<div class="kr-native-watermark" aria-hidden="true">장학금&nbsp;한국&nbsp;미래</div>
+
+<!-- NAVIGATION -->
+<nav id="kr-nav">
+  <a href="index.html" class="kr-nav-logo">Scholar<span>Map</span></a>
+  <div class="kr-nav-links">
+    <a href="index.html">Home</a>
+    <a href="germany.html">Germany</a>
+    <a href="japan.html">Japan</a>
+    <a href="korea.html" class="active">South Korea</a>
+    <a href="resources.html">Resources</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<!-- SIDE PROGRESS -->
+<div id="kr-progress">
+  <div class="kr-prog-dot active" data-sec="0"></div>
+  <div class="kr-prog-dot" data-sec="1"></div>
+  <div class="kr-prog-dot" data-sec="2"></div>
+  <div class="kr-prog-dot" data-sec="3"></div>
+  <div class="kr-prog-dot" data-sec="4"></div>
+</div>
+
+<!-- ════════ SCROLL ROOT ════════ -->
+<div id="kr-scroll">
+
+  <!-- SECTION 0 — HERO -->
+  <section class="kr-hero" id="kr-sec-0">
+    <div class="kr-hero-inner">
+      <div class="kr-hero-eyebrow">ScholarMap &nbsp;·&nbsp; 대한민국 &nbsp;·&nbsp; Fully Funded</div>
+      <h1 class="kr-title">
+        <span class="t1">Build your</span>
+        <span class="t2">Korea career</span>
+        <span class="t3">대한민국 · Daehan Minguk · Land of Morning Calm</span>
+      </h1>
+      <p class="kr-sub">The Global Korea Scholarship (GKS) — Korea's main government scholarship for international students.<br>Full tuition &nbsp;·&nbsp; ₩1,000,000 / month &nbsp;·&nbsp; Return flight &nbsp;·&nbsp; message-based guidance.</p>
+      <div class="kr-scroll-cue">
+        <span>Scroll to begin</span>
+        <div class="kr-cue-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 1 — MEXT SCHOLARSHIP -->
+  <section class="kr-scene s1" id="kr-sec-1">
+    <div class="kr-scene-text">
+      <div class="jst-tag">Chapter I &nbsp;— &nbsp;The Scholarship</div>
+      <h2 class="jst-h2">Choose your<br>Korea<br>role.</h2>
+      <p class="jst-p">Start by choosing the kind of work you want to do, then build the projects, tools, and industry understanding that make that goal credible.</p>
+      <div class="jst-chips">
+        <div class="jst-chip">₩1,000,000 / month</div>
+        <div class="jst-chip">🎓 Full Tuition</div>
+        <div class="jst-chip">✈️ Return Flight</div>
+        <div class="jst-chip">📅 Up to 4 Years</div>
+      </div>
+      <a href="contact.html?country=korea" class="jst-cta">Get Your Free Profile Audit →</a>
+    </div>
+  </section>
+
+  <!-- SECTION 2 — ELITE UNIVERSITIES -->
+  <section class="kr-scene s2" id="kr-sec-2">
+    <div class="kr-scene-text">
+      <div class="jst-tag">Chapter II &nbsp;— &nbsp;The Destination</div>
+      <h2 class="jst-h2">Build<br>local-ready<br>evidence.</h2>
+      <p class="jst-p">Make technical work easier to understand with clear project stories, realistic Korean communication goals, and attention to the sectors you want to enter.</p>
+      <div class="jst-chips">
+        <div class="jst-chip">🏛️ SNU #41 World</div>
+        <div class="jst-chip">🏫 KAIST #56 World</div>
+        <div class="jst-chip">🦅 Yonsei #73 World</div>
+        <div class="jst-chip">🐯 Korea Uni #79 World</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 — CTA -->
+  <section class="kr-scene s1" id="kr-sec-3">
+    <div class="kr-scene-text">
+      <div class="jst-tag">Chapter III &nbsp;— &nbsp;Your Moment</div>
+      <h2 class="jst-h2">Plan a<br>study-to-work<br>route.</h2>
+      <p class="jst-p">Use your programme, research lab, career centre, and early experience as connected pieces of a longer-term Korea career plan.</p>
+      <a href="contact.html?country=korea" class="jst-cta">Get Your Free Profile Audit →</a>
+    </div>
+  </section>
+
+  <!-- SECTION 4 — LANGUAGE -->
+  <section class="kr-scene s2" id="kr-sec-4">
+    <div class="kr-scene-text">
+      <div class="jst-tag">Chapter IV &nbsp;— &nbsp;The Language</div>
+      <h2 class="jst-h2">Language for<br>the<br>workplace.</h2>
+      <p class="jst-p">Treat language as part of professional readiness. Build consistent communication habits alongside technical skills rather than leaving them until graduation.</p>
+      <div class="jst-chips">
+        <div class="jst-chip">🇰🇷 1-Year Prep</div>
+        <div class="jst-chip">🎓 TOPIK Support</div>
+        <div class="jst-chip">📅 Early Start</div>
+        <div class="jst-chip">✨ Full Funding</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSITION TO CONTENT -->
+  <div class="kr-transition" id="kr-sec-transition">
+    <div class="kr-transition-native">대학</div>
+    <div class="kr-transition-inner">
+      <div class="kr-t-line"></div>
+      <h2>Your Complete Korea Guide</h2>
+      <p>Scholarships &nbsp;·&nbsp; Universities &nbsp;·&nbsp; Timeline &nbsp;·&nbsp; Resources<br>Shortlists, documents, and next actions for your GKS application.</p>
+      <a href="#kr-content" class="jst-cta" style="font-size:0.78rem">Explore the Guide ↓</a>
+    </div>
+  </div>
+
+  <!-- ════════ CONTENT SCAFFOLD ════════ -->
+  <main class="content-scaffold" id="kr-content">
+
+  <!-- ── MEXT STATS ───────────────────────── -->
+  <section class="cs-sec cs-mext-hero">
+    <div class="cs-container">
+      <div class="cs-badge">🏛️ KOREAN GOVERNMENT SCHOLARSHIP</div>
+      <h2 class="cs-h2">The <span class="cs-gold">GKS</span> Scholarship</h2>
+      <p class="cs-lead">Global Korea Scholarship — entirely funded by Korea. Zero tuition. Monthly stipend. Return flight. 1 Year Korean Language Program.</p>
+      <div class="mxt-grid">
+        <div class="mxt-card"><div class="mxt-ico">💴</div><div class="mxt-num">₩1,000,000</div><div class="mxt-key">Monthly Stipend</div><div class="mxt-sub">≈ ₹60,000 tax-free / month</div></div>
+        <div class="mxt-card mxt-feat"><div class="mxt-ico">🎓</div><div class="mxt-num">100%</div><div class="mxt-key">Tuition Covered</div><div class="mxt-sub">All academic fees exempted</div></div>
+        <div class="mxt-card"><div class="mxt-ico">✈️</div><div class="mxt-num">Free</div><div class="mxt-key">Return Flight</div><div class="mxt-sub">Economy class, both ways</div></div>
+        <div class="mxt-card"><div class="mxt-ico">📅</div><div class="mxt-num">5 Yrs</div><div class="mxt-key">Max Duration</div><div class="mxt-sub">1 Yr Korean + Masters/PhD</div></div>
+        <div class="mxt-card"><div class="mxt-ico">🔬</div><div class="mxt-num">Any</div><div class="mxt-key">Field of Study</div><div class="mxt-sub">STEM · Business · Arts</div></div>
+        <div class="mxt-card"><div class="mxt-ico">🌐</div><div class="mxt-num">English</div><div class="mxt-key">Programs Available</div><div class="mxt-sub">No Korean required initially</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COUNTDOWN ──────────────────────────── -->
+  <section class="cs-sec cs-countdown">
+    <div class="cs-container">
+      <div class="cd-label">⏳ GKS Embassy Track 2027 — Your Window Is Closing</div>
+      <div class="cd-timer" id="kr-cd">
+        <div class="cd-blk"><span id="cd-d">00</span><small>Days</small></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-blk"><span id="cd-h">00</span><small>Hours</small></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-blk"><span id="cd-m">00</span><small>Mins</small></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-blk"><span id="cd-s">00</span><small>Secs</small></div>
+      </div>
+      <p class="cd-sub">Deadline: March 15, 2027 · Embassy Track · Applications through ScholarMap get priority guidance</p>
+      <a href="contact.html?country=korea" class="cd-cta">Build My Application Plan →</a>
+    </div>
+  </section>
+
+  <!-- ── UNIVERSITIES ───────────────────────── -->
+  <section class="cs-sec cs-unis">
+    <div class="cs-container">
+      <div class="cs-badge">🏫 TOP INSTITUTIONS</div>
+      <h2 class="cs-h2">Elite Universities <span class="cs-red">Await You</span></h2>
+      <p class="cs-lead">GKS can fund selected students at leading Korean universities including SNU, KAIST, Yonsei, and Korea University.</p>
+      <div class="uni-sc-grid">
+        <div class="uni-sc-card">
+          <div class="usc-rank">#41 World</div><div class="usc-icon">🏛️</div>
+          <h3>Seoul National University</h3><div class="usc-jp">서울대학교 · SNU</div>
+          <p>Korea's undisputed top university. Unrivaled in research, network, and global prestige.</p>
+          <div class="usc-tags"><span>Research</span><span>GKS Top Pick</span><span>Seoul</span></div>
+        </div>
+        <div class="uni-sc-card">
+          <div class="usc-rank">#56 World</div><div class="usc-icon">🤖</div>
+          <h3>KAIST</h3><div class="usc-jp">한국과학기술원 · KAIST</div>
+          <p>The MIT of South Korea. The absolute best for computer science, robotics, and engineering.</p>
+          <div class="usc-tags"><span>Technology</span><span>Engineering</span><span>Daejeon</span></div>
+        </div>
+        <div class="uni-sc-card">
+          <div class="usc-rank">#73 World</div><div class="usc-icon">🦅</div>
+          <h3>Yonsei University</h3><div class="usc-jp">연세대학교 · Yonsei</div>
+          <p>Korea's premier private university. Famous for its international vibe, business, and humanities.</p>
+          <div class="usc-tags"><span>Business</span><span>International</span><span>Seoul</span></div>
+        </div>
+        <div class="uni-sc-card">
+          <div class="usc-rank">#79 World</div><div class="usc-icon">🐯</div>
+          <h3>Korea University</h3><div class="usc-jp">고려대학교 · KU</div>
+          <p>Elite private institution. Legendary school spirit, law, medicine, and engineering programs.</p>
+          <div class="usc-tags"><span>Law</span><span>Medicine</span><span>Seoul</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── APPLICATION TIMELINE ───────────────── -->
+  <section class="cs-sec cs-timeline">
+    <div class="cs-container">
+      <div class="cs-badge">🗓️ APPLICATION PROCESS</div>
+      <h2 class="cs-h2">Your <span class="cs-gold">6-Step</span> Path to South Korea</h2>
+      <div class="kr-tl">
+        <div class="jpt-item"><div class="jpt-num">01</div><div class="jpt-body"><h4>Profile Review</h4><p>Share your GPA, research experience, target field, and documents so we can identify the strongest GKS route.</p><span class="jpt-tag">Month 1</span></div></div>
+        <div class="jpt-item"><div class="jpt-num">02</div><div class="jpt-body"><h4>Professor Outreach</h4><p>We craft personalised cold-emails to 10+ potential supervisors at target SKY universities and manage responses.</p><span class="jpt-tag">📧 Month 2</span></div></div>
+        <div class="jpt-item"><div class="jpt-num">03</div><div class="jpt-body"><h4>Research Proposal &amp; SOP</h4><p>Expert-reviewed Personal Statement and Study Plan, tailored to each professor's lab and GKS criteria.</p><span class="jpt-tag">✍️ Month 3</span></div></div>
+        <div class="jpt-item"><div class="jpt-num">04</div><div class="jpt-body"><h4>Embassy Application</h4><p>Complete document checklist, apostille guidance, and end-to-end submission support for the Embassy Route.</p><span class="jpt-tag">🏛️ Month 4–5</span></div></div>
+        <div class="jpt-item"><div class="jpt-num">05</div><div class="jpt-body"><h4>Interview Preparation</h4><p>5 mock interview rounds, panel-style Q&amp;A practice, and subject-matter deep-dives to ace the GKS selection board.</p><span class="jpt-tag">🎤 Month 5–6</span></div></div>
+        <div class="jpt-item"><div class="jpt-num">06</div><div class="jpt-body"><h4>Visa &amp; Pre-Departure</h4><p>Student visa support, accommodation guidance, TOPIK prep tips, and a pre-departure briefing so you land confident.</p><span class="jpt-tag">✈️ Month 7–12</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="career-bridge" id="career-after-study" style="--cb-accent:#8ec5ff;--cb-wash:rgba(0,82,161,.18)">
+    <div class="career-bridge-inner">
+      <p class="career-bridge-kicker">Career after study · South Korea</p>
+      <h2>Make your Korea study plan a preparation plan for employment.</h2>
+      <p class="career-bridge-lead">The study route can lead into employment preparation, but it needs active work: Korean-language progress, university career support, practical experience, and careful checking of the right stay and work requirements.</p>
+      <div class="career-bridge-grid">
+        <article class="career-bridge-card"><small>Use student support</small><h3>Find opportunities through official channels</h3><p>Study in Korea provides job-information platforms and employment support for international students. Use these alongside your university career office rather than relying only on social-media listings.</p><a href="https://studyinkorea.go.kr/ko/work/main.do" target="_blank" rel="noopener noreferrer">Explore Study in Korea employment support →</a></article>
+        <article class="career-bridge-card"><small>Build employability</small><h3>Pair technical work with Korean progress</h3><p>Document your coursework, research, internships, and projects. Korean-language proficiency and practical experience can materially shape the options available to you after study.</p><a href="https://studyinkorea.go.kr/ko/work/main.do" target="_blank" rel="noopener noreferrer">See official work-preparation information →</a></article>
+        <article class="career-bridge-card"><small>Before you accept a role</small><h3>Check the relevant employment status</h3><p>Study in Korea explains employment qualifications and the D-2, D-10, and work-status transition framework. Verify your personal eligibility before relying on any job plan.</p><a href="https://studyinkorea.go.kr/ko/work/aboutForeignerEmploymentSystem.do" target="_blank" rel="noopener noreferrer">Check the foreign employment system →</a></article>
+      </div>
+      <p class="career-bridge-note">Work-hour permissions, language requirements, and stay-status rules are personal and changeable. ScholarMap does not offer legal advice or a job guarantee.</p>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ──────────────────────────── -->
+  <section class="cs-sec cs-services">
+    <div class="cs-container">
+      <div class="cs-badge">⚡ OUR SERVICES</div>
+      <h2 class="cs-h2">Why Students <span class="cs-gold">Choose ScholarMap</span></h2>
+      <div class="svc-grid">
+        <div class="svc-card"><div class="svc-ico">🔍</div><h4>Profile Analysis</h4><p>Matched against real GKS acceptance patterns from the last 5 years.</p></div>
+        <div class="svc-card svc-feat"><div class="svc-badge-top">Most Popular</div><div class="svc-ico">📝</div><h4>SOP + Research Plan</h4><p>Our SOPs have a 78% first-choice university acceptance rate.</p></div>
+        <div class="svc-card"><div class="svc-ico">🎤</div><h4>Mock Interviews</h4><p>5 rounds of live practice. We've prepared 500+ successful GKS candidates.</p></div>
+        <div class="svc-card"><div class="svc-ico">🌐</div><h4>Professor Connect</h4><p>We match you with labs actively recruiting Indian students. 6x avg response rate.</p></div>
+      </div>
+      <p style="text-align:center;margin-top:2rem;color:rgba(255,255,255,0.4);font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;">100% Free · No Hidden Fees · Pay Nothing</p>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ───────────────────────── -->
+  <section class="cs-sec cs-testimonials" id="student-outcomes">
+    <div class="cs-container">
+      <div class="cs-badge">💬 STUDENT VOICES</div>
+      <h2 class="cs-h2">Real Stories. <span class="cs-red">Real Results.</span></h2>
+      <div class="tst-grid">
+        <div class="tst-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+              <span class="tst-stars">★★★★★</span>
+              <span style="font-size:0.65rem; font-weight:700; color:var(--cs-accent); border:1px solid rgba(0,71,160,0.3); padding:3px 10px; border-radius:99px; background:rgba(0,71,160,0.06); text-transform:uppercase;">GKS Embassy Track</span>
+            </div>
+            <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:14px;">
+              <span style="font-size:0.68rem; background:rgba(255,255,255,0.08); padding:3px 8px; border-radius:4px; font-weight:500;">📊 CGPA: 8.6</span>
+              <span style="font-size:0.68rem; background:rgba(255,255,255,0.08); padding:3px 8px; border-radius:4px; font-weight:500;">🎓 Field: AI & Data</span>
+            </div>
+            <p class="tst-text" style="font-size:0.88rem; line-height:1.6; margin-bottom:16px;">"GKS requires apostilled documents and a highly detailed Study Plan. ScholarMap's reviews and mock interview sessions were key to my SNU selection."</p>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:14px; margin-top:10px;">
+            <div class="tst-author">
+              <div class="tst-av">V</div>
+              <div><strong>Vikram Singh</strong><br><span>GKS Scholar 2024 · Seoul National Univ</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tst-card tst-feat" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+              <span class="tst-stars">★★★★★</span>
+              <span style="font-size:0.65rem; font-weight:700; color:var(--gold); border:1px solid rgba(255,211,42,0.3); padding:3px 10px; border-radius:99px; background:rgba(255,211,42,0.06); text-transform:uppercase;">GKS University Track</span>
+            </div>
+            <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:14px;">
+              <span style="font-size:0.68rem; background:rgba(255,255,255,0.08); padding:3px 8px; border-radius:4px; font-weight:500;">📊 CGPA: 8.0</span>
+              <span style="font-size:0.68rem; background:rgba(255,255,255,0.08); padding:3px 8px; border-radius:4px; font-weight:500;">🎓 Field: Bio-Tech</span>
+            </div>
+            <p class="tst-text" style="font-size:0.88rem; line-height:1.6; margin-bottom:16px;">"Applying directly to KAIST seemed daunting. ScholarMap helped me select target labs and tailor my statement of purpose to the professor's research."</p>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:14px; margin-top:10px;">
+            <div class="tst-author">
+              <div class="tst-av">P</div>
+              <div><strong>Preeti Rao</strong><br><span>GKS Scholar 2024 · KAIST (M.S. & PhD)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tst-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+              <span class="tst-stars">★★★★★</span>
+              <span style="font-size:0.65rem; font-weight:700; color:var(--cs-accent); border:1px solid rgba(0,71,160,0.3); padding:3px 10px; border-radius:99px; background:rgba(0,71,160,0.06); text-transform:uppercase;">GKS Embassy Track</span>
+            </div>
+            <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:14px;">
+              <span style="font-size:0.68rem; background:rgba(255,255,255,0.08); padding:3px 8px; border-radius:4px; font-weight:500;">📊 CGPA: 7.9</span>
+              <span style="font-size:0.68rem; background:rgba(255,255,255,0.08); padding:3px 8px; border-radius:4px; font-weight:500;">🎓 Field: Intl Relations</span>
+            </div>
+            <p class="tst-text" style="font-size:0.88rem; line-height:1.6; margin-bottom:16px;">"ScholarMap's personal guidance made the GKS process clear. The 1-year free Korean language program is a game-changer for my career in Seoul."</p>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:14px; margin-top:10px;">
+            <div class="tst-author">
+              <div class="tst-av">A</div>
+              <div><strong>Aditya Sen</strong><br><span>GKS Scholar 2023 · Yonsei University</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ───────────────────────────────── -->
+  <section class="cs-sec cs-faq">
+    <div class="cs-container">
+      <div class="cs-badge">❓ COMMON QUESTIONS</div>
+      <h2 class="cs-h2">Everything You <span class="cs-gold">Need to Know</span></h2>
+      <div class="faq-list" id="faqList">
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What is the minimum CGPA for GKS? <span class="faq-arrow">▼</span></button><div class="faq-a">GKS requires a minimum of 80% (or 2.64/4.0 GPA). A strong personal statement can help you stand out if you meet the baseline.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do I need to know Korean? <span class="faq-arrow">▼</span></button><div class="faq-a">No. GKS provides 1 full year of intensive Korean language training before your degree starts. However, having a TOPIK score gives bonus points.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Embassy Track vs University Track — which is better? <span class="faq-arrow">▼</span></button><div class="faq-a">Embassy Track allows you to apply to 3 universities. University Track restricts you to 1 but can be less competitive. We help you choose the best path.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How free is ScholarMap's service really? <span class="faq-arrow">▼</span></button><div class="faq-a">100% free, always. Our revenue comes from university partnerships, not students. Profile evaluation, SOP review, mock interviews — all zero cost to you.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can working professionals apply for GKS? <span class="faq-arrow">▼</span></button><div class="faq-a">Yes! The GKS Graduate program is open to applicants under 40 years of age, making it perfect for working professionals.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FINAL CTA ─────────────────────────── -->
+  <section class="cs-sec cs-final-cta">
+    <div class="cs-container">
+      <div class="cs-cta-glow"></div>
+      <div class="cs-badge">PROFILE REVIEW</div>
+      <h2 class="cs-h2 cs-cta-title">Send Your Profile.<br>Get Clear <span class="cs-gold">Next Steps.</span></h2>
+      <p class="cs-lead">Send your GPA, target field, and current documents. We will reply with concrete steps for GKS route choice, study plan, apostille, university shortlist, and interview preparation.</p>
+      <div class="cs-cta-actions">
+        <a href="contact.html?country=korea" class="cs-btn-primary">Get Your Free Profile Audit →</a>
+        <a href="resources.html" class="cs-btn-secondary">Download Free Guides</a>
+      </div>
+      <div class="cs-trust">
+        <span>✓ 300+ Students Guided</span>
+        <span>✓ 500+ Downloads</span>
+        <span>✓ 100% Free Service</span>
+      </div>
+    </div>
+  </section>
+
+  </main><!-- end content-scaffold -->
+</div><!-- end jp-scroll -->
+
+<!-- ════════ SCRIPTS ════════ -->
+<script>
+/* ── MEXT Countdown ── */
+(function() {
+  var D = new Date('2027-03-15T23:59:00+05:30');
+  function upd() {
+    var diff = D - new Date();
+    if (diff <= 0) { document.getElementById('kr-cd').innerHTML='<div style="color:#0047A0">CLOSED</div>'; return; }
+    document.getElementById('cd-d').textContent = String(Math.floor(diff/86400000)).padStart(2,'0');
+    document.getElementById('cd-h').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+  }
+  upd(); setInterval(upd, 1000);
+})();
+
+/* ── FAQ ── */
+function toggleFaq(btn) {
+  var item = btn.closest('.faq-item'), ans = item.querySelector('.faq-a'), arrow = btn.querySelector('.faq-arrow');
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el){el.classList.remove('open');el.querySelector('.faq-a').style.maxHeight='0';el.querySelector('.faq-arrow').textContent='▼';});
+  if (!isOpen) { item.classList.add('open'); ans.style.maxHeight=ans.scrollHeight+'px'; arrow.textContent='▲'; }
+}
+
+/* ── Content Scroll Reveal ── */
+var csObs = new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('cs-revealed');csObs.unobserve(x.target);}});},{threshold:0.08});
+document.querySelectorAll('.cs-sec').forEach(function(s){csObs.observe(s);});
+
+/* ── Nav scroll ── */
+window.addEventListener('scroll', function(){
+  document.getElementById('kr-nav').classList.toggle('scrolled', window.scrollY > 80);
+  /* progress dots */
+  var secs = ['kr-sec-0','kr-sec-1','kr-sec-2','kr-sec-3','kr-sec-4'];
+  var active = 0;
+  secs.forEach(function(id, i) {
+    var el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top <= window.innerHeight*0.6) active = i;
+  });
+  document.querySelectorAll('.kr-prog-dot').forEach(function(d,i){d.classList.toggle('active',i===active);});
+});
+</script>
+
+<!-- JAPAN STORYTELLING SCENE (pure Canvas 2D — no Three.js needed) -->
+<script src="js/korea_scene.js"></script>
+
+<!-- LOADING SCREEN CONTROLLER -->
+<script>
+(function() {
+  var bar = document.getElementById('kr-load-bar');
+  var loader = document.getElementById('kr-loader');
+  var pct = 0;
+  setTimeout(function(){ if (loader) loader.classList.add('hidden'); }, 3500);
+  function tick() {
+    pct += Math.random() * 18;
+    if (pct > 100) pct = 100;
+    if (bar) bar.style.width = pct + '%';
+    if (pct < 100) setTimeout(tick, 150 + Math.random()*200);
+    else setTimeout(function(){ if (loader) loader.classList.add('hidden'); }, 500);
+  }
+  tick();
+})();
+
+/* Scene text reveals — pure IntersectionObserver, no GSAP conflicts */
+(function() {
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('kr-visible');
+        /* slight delay on chips for stagger feel */
+        var chips = e.target.querySelectorAll('.jst-chip');
+        chips.forEach(function(chip, i) {
+          chip.style.transitionDelay = (0.1 + i * 0.07) + 's';
+          chip.style.opacity = '0';
+          chip.style.transform = 'translateY(10px)';
+          chip.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          setTimeout(function() {
+            if (e.target.classList.contains('kr-visible')) {
+              chip.style.opacity = '1';
+              chip.style.transform = 'translateY(0)';
+            }
+          }, (100 + i * 70));
+        });
+      } else {
+        e.target.classList.remove('kr-visible');
+        var chips = e.target.querySelectorAll('.jst-chip');
+        chips.forEach(function(chip) {
+          chip.style.opacity = '0';
+          chip.style.transform = 'translateY(10px)';
+          chip.style.transitionDelay = '0s';
+        });
+      }
+    });
+  }, { threshold: 0.25 });
+
+  document.querySelectorAll('.kr-scene-text').forEach(function(el) {
+    obs.observe(el);
+  });
+
+  /* transition section */
+  var trans = document.getElementById('kr-sec-transition');
+  if (trans) {
+    var inner = trans.querySelector('.kr-transition-inner');
+    if (inner) {
+      inner.style.opacity = '0';
+      inner.style.transform = 'translateY(24px)';
+      inner.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      var tObs = new IntersectionObserver(function(e) {
+        if (e[0].isIntersecting) { inner.style.opacity='1'; inner.style.transform='translateY(0)'; }
+      }, { threshold: 0.3 });
+      tObs.observe(trans);
+    }
+  }
+})();
+</script>
+<script src="js/transitions.js"></script>
+</body>
+</html>

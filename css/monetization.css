@@ -1,0 +1,325 @@
+/* ─── SCHOLARMAP MONETIZATION & OFFER STYLES ─── */
+
+.monetization-section {
+  padding: 80px 20px;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 209, 102, 0.08) 0%, rgba(10, 10, 18, 0.98) 70%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.monetization-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 50px auto;
+}
+
+.monetization-eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #FFD166;
+  background: rgba(255, 209, 102, 0.1);
+  padding: 6px 16px;
+  border-radius: 99px;
+  border: 1px solid rgba(255, 209, 102, 0.25);
+  margin-bottom: 16px;
+}
+
+.monetization-header h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -1px;
+  margin-bottom: 14px;
+  line-height: 1.15;
+}
+
+.monetization-header p {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.monetization-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  max-width: 1060px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+.offer-card {
+  background: rgba(18, 18, 28, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(12px);
+}
+
+.offer-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 209, 102, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.offer-card.featured {
+  background: linear-gradient(145deg, rgba(28, 26, 42, 0.95), rgba(15, 14, 26, 0.98));
+  border: 2px solid #FFD166;
+  box-shadow: 0 12px 35px rgba(255, 209, 102, 0.15);
+}
+
+.offer-card-badge {
+  position: absolute;
+  top: -14px;
+  right: 24px;
+  background: linear-gradient(135deg, #FFD166, #D4AF37);
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 99px;
+  box-shadow: 0 4px 12px rgba(255, 209, 102, 0.3);
+}
+
+.offer-head {
+  margin-bottom: 24px;
+}
+
+.offer-type {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 8px;
+}
+
+.offer-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.offer-price-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.offer-price {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #FFD166;
+  line-height: 1;
+}
+
+.offer-original-price {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: line-through;
+}
+
+.offer-price-sub {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.offer-desc {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.55;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bonus-box {
+  background: rgba(255, 209, 102, 0.08);
+  border: 1px dashed rgba(255, 209, 102, 0.35);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bonus-box span {
+  font-size: 1.2rem;
+}
+
+.bonus-box strong {
+  font-size: 0.88rem;
+  color: #FFD166;
+  font-weight: 700;
+}
+
+.offer-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.offer-features li {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.88);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.45;
+}
+
+.offer-features li::before {
+  content: "✓";
+  color: #FFD166;
+  font-weight: 900;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.btn-offer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-offer-primary {
+  background: linear-gradient(135deg, #FFD166 0%, #D4AF37 100%);
+  color: #0A0A12;
+  box-shadow: 0 6px 20px rgba(255, 209, 102, 0.3);
+}
+
+.btn-offer-primary:hover {
+  background: linear-gradient(135deg, #FFE08A 0%, #E5C158 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 209, 102, 0.45);
+}
+
+.btn-offer-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-offer-secondary:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.offer-footer-note {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.45);
+  text-align: center;
+  margin-top: 14px;
+}
+
+/* ─── VALUE PERSPECTIVE CALLOUT ─── */
+
+.price-value-callout {
+  max-width: 860px;
+  margin: 40px auto 0 auto;
+  background: linear-gradient(135deg, rgba(255, 209, 102, 0.08) 0%, rgba(20, 20, 32, 0.9) 100%);
+  border: 1px solid rgba(255, 209, 102, 0.3);
+  border-radius: 16px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.pvc-icon {
+  font-size: 2.2rem;
+  flex-shrink: 0;
+  background: rgba(255, 209, 102, 0.15);
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 209, 102, 0.35);
+}
+
+.pvc-text h4 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFD166;
+  margin-bottom: 6px;
+}
+
+.pvc-text p {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ─── LEGAL FOOTER & DISCLAIMER STYLES ─── */
+
+.site-legal-footer {
+  background: #06060A;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.legal-nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.legal-nav a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.legal-nav a:hover {
+  color: #FFD166;
+}
+
+.legal-disclaimer {
+  max-width: 800px;
+  margin: 0 auto 16px auto;
+  line-height: 1.6;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.4);
+}

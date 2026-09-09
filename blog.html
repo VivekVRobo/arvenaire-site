@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<title>ScholarMap Blog | Scholarship Roadmaps & Career Insights</title>
+<meta name="description" content="Read expert guides on MEXT, DAAD, GKS, German Werkstudent placement, CV writing, and portfolio strategies for engineers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;700;900&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ─── VARIABLES & ROOT ─── */
+:root {
+  --cs-accent: #9B7B1A; /* Gold/Amber */
+  --cs-gold: #FFD166; /* Bright Gold for legibility on black */
+  --cs-ink: #12100e; /* Dark off-black */
+  --cs-cream: #f8f5ef; /* Soft off-white */
+  --cs-cream2: #f0ece4; /* Second off-white/beige */
+  --cs-muted: #5a5248; /* Muted brown */
+  --cs-border: #d0c8be; /* Soft border */
+  --cs-dark: #0c0c12; /* Dark section background */
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Inter', sans-serif;
+  --c-primary: var(--cs-accent);
+  --c-secondary: var(--cs-gold);
+  --c-muted: var(--cs-muted);
+}
+
+body {
+  background: var(--cs-cream) !important;
+  color: var(--cs-ink) !important;
+  font-family: var(--font-body), sans-serif;
+  cursor: auto;
+}
+
+/* Film Grain */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.04"/%3E%3C/svg%3E');
+  pointer-events: none;
+}
+
+/* ─── HERO ─── */
+.blog-hero {
+  min-height: 42vh; display: flex; align-items: center;
+  justify-content: center; text-align: center;
+  padding: 140px 24px 70px;
+  position: relative; overflow: hidden;
+  background: 
+    linear-gradient(180deg, rgba(12,12,18,0.32), var(--cs-dark) 96%),
+    url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1800&q=85') center 50% / cover no-repeat;
+  color: #fff !important;
+}
+.blog-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(155,123,26,0.18) 0%, transparent 70%);
+}
+.blog-hero > div { position: relative; z-index: 1; }
+.blog-hero p { text-shadow: 0 4px 14px rgba(0,0,0,0.85); color: rgba(255,255,255,0.7) !important; }
+.blog-hero h1 {
+  text-shadow: 0 10px 36px rgba(0,0,0,0.85);
+  font-family: var(--font-display); font-size: clamp(2.5rem,5vw,4.2rem);
+  font-weight: 900; letter-spacing: -1px; margin-bottom: 16px;
+  line-height: 1.08;
+  color: #fff !important;
+}
+.blog-hero h1 span.hero-highlight {
+  color: var(--cs-gold) !important;
+}
+.blog-hero .section-tag {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--cs-gold) !important;
+  margin-bottom: 12px; display: inline-block;
+}
+
+/* ─── FILTER BAR ─── */
+.filter-bar {
+  display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+  max-width: 900px; margin: 40px auto 20px; padding: 0 24px;
+}
+.filter-tab {
+  padding: 10px 24px; border-radius: 0; border: 1px solid var(--cs-border);
+  background: #ffffff; color: var(--cs-ink);
+  font-size: 0.82rem; font-weight: 600; cursor: pointer;
+  transition: all 0.25s; font-family: var(--font-body);
+}
+.filter-tab:hover, .filter-tab.active {
+  border-color: var(--cs-ink); background: var(--cs-ink);
+  color: var(--cs-cream); box-shadow: 0 8px 24px rgba(18,16,14,0.08);
+}
+
+/* ─── GRID ─── */
+.blog-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px; max-width: 1200px; margin: 0 auto; padding: 0 24px 100px;
+}
+
+/* ─── BLOG CARD ─── */
+.blog-card {
+  background: #ffffff;
+  border: 1px solid var(--cs-border);
+  border-radius: 0; overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s, border-color 0.3s;
+  display: flex; flex-direction: column;
+}
+.blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(18,16,14,0.06);
+  border-color: var(--cs-accent);
+}
+.blog-img-wrap {
+  width: 100%; height: 200px; overflow: hidden; position: relative;
+  background: var(--cs-cream2);
+}
+.blog-img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.blog-card:hover .blog-img {
+  transform: scale(1.05);
+}
+.blog-card-content {
+  padding: 28px; flex: 1; display: flex; flex-direction: column;
+}
+.blog-card-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.72rem; color: var(--cs-muted); margin-bottom: 12px; font-weight: 500;
+}
+.blog-card-tag {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--cs-accent);
+}
+.blog-card h3 {
+  font-family: var(--font-display); font-size: 1.2rem; font-weight: 700;
+  margin-bottom: 12px; line-height: 1.35; color: var(--cs-ink);
+}
+.blog-card p {
+  font-size: 0.88rem; color: var(--cs-muted); line-height: 1.65;
+  margin-bottom: 24px; flex: 1;
+}
+.blog-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 24px; border-radius: 0;
+  font-weight: 700; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+  background: var(--cs-ink); color: var(--cs-cream);
+  border: none; cursor: pointer; font-family: var(--font-body);
+  transition: background 0.25s;
+  align-self: flex-start;
+}
+.blog-btn:hover { background: var(--cs-accent); color: #fff; }
+
+/* ─── FEATURED BLACK CARD (Combined Theme) ─── */
+.blog-card.blog-feat {
+  background: var(--cs-ink) !important;
+  border-color: var(--cs-ink) !important;
+  color: var(--cs-cream) !important;
+}
+.blog-card.blog-feat h3 { color: var(--cs-cream) !important; }
+.blog-card.blog-feat p { color: rgba(240,236,228,0.7) !important; }
+.blog-card.blog-feat .blog-card-tag { color: var(--cs-gold) !important; }
+.blog-card.blog-feat .blog-card-meta { color: rgba(240,236,228,0.5) !important; }
+.blog-card.blog-feat .blog-btn {
+  background: var(--cs-gold) !important; color: var(--cs-ink) !important;
+}
+.blog-card.blog-feat .blog-btn:hover {
+  background: var(--cs-cream) !important; color: var(--cs-ink) !important;
+}
+.blog-card.blog-feat:hover {
+  border-color: var(--cs-gold) !important;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.35) !important;
+}
+
+/* ─── ARTICLE READER OVERLAY ─── */
+#readerOverlay {
+  position: fixed; inset: 0; z-index: 9500;
+  opacity: 0; visibility: hidden; transition: all 0.4s ease;
+  display: flex; justify-content: flex-end;
+}
+#readerOverlay.show { opacity: 1; visibility: visible; }
+
+.ro-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(18,16,14,0.65); backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+.ro-panel {
+  position: relative; z-index: 1;
+  width: 100%; max-width: 720px; height: 100vh;
+  background: var(--cs-cream); border-left: 1px solid var(--cs-border);
+  box-shadow: -15px 0 50px rgba(18,16,14,0.15);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex; flex-direction: column;
+}
+#readerOverlay.show .ro-panel { transform: translateX(0); }
+
+.ro-header {
+  padding: 24px 36px; border-bottom: 1px solid var(--cs-border);
+  display: flex; justify-content: space-between; align-items: center;
+  background: #ffffff;
+}
+.ro-close {
+  background: none; border: none; color: var(--cs-muted);
+  font-size: 1.8rem; cursor: pointer; line-height: 1;
+  transition: color 0.2s;
+}
+.ro-close:hover { color: var(--cs-ink); }
+
+.ro-body {
+  flex: 1; overflow-y: auto; padding: 48px 48px 80px;
+}
+.ro-meta {
+  font-size: 0.8rem; color: var(--cs-accent); font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 14px;
+}
+.ro-title {
+  font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.5rem);
+  line-height: 1.2; font-weight: 900; color: var(--cs-ink); margin-bottom: 24px;
+}
+.ro-info-strip {
+  display: flex; gap: 24px; color: var(--cs-muted); font-size: 0.82rem;
+  border-bottom: 1px solid var(--cs-border); padding-bottom: 18px; margin-bottom: 32px;
+  font-weight: 500;
+}
+.ro-content {
+  font-size: 0.96rem; line-height: 1.8; color: var(--cs-ink);
+}
+.ro-content p { margin-bottom: 20px; }
+.ro-content h3 { font-family: var(--font-display); font-size: 1.35rem; margin: 36px 0 16px; font-weight: 700; }
+.ro-content ul { list-style: disc; padding-left: 20px; margin-bottom: 24px; }
+.ro-content li { margin-bottom: 10px; }
+
+/* ─── BOTTOM CTA STRIP ─── */
+.blog-cta-strip {
+  text-align: center; padding: 80px 24px;
+  background: var(--cs-ink) !important;
+  border-top: 1px solid var(--cs-ink);
+  color: var(--cs-cream) !important;
+}
+.blog-cta-strip h2 {
+  font-family: var(--font-display); font-size: clamp(1.8rem,3vw,2.5rem);
+  font-weight: 700; margin-bottom: 14px; color: var(--cs-cream) !important;
+}
+.blog-cta-strip h2 span.hero-highlight { color: var(--cs-gold) !important; }
+.blog-cta-strip p { color: rgba(240,236,228,0.65) !important; margin-bottom: 32px; font-size: 0.95rem; }
+.blog-cta-strip .btn-primary {
+  display: inline-block !important; padding: 16px 40px !important; background: var(--cs-gold) !important;
+  color: var(--cs-ink) !important; font-size: 0.75rem !important; letter-spacing: 3px !important;
+  text-transform: uppercase !important; text-decoration: none !important; font-weight: 700 !important;
+  border-radius: 0 !important; transition: opacity 0.25s !important; border: none !important;
+}
+.blog-cta-strip .btn-primary:hover { opacity: 0.92; }
+
+/* ─── RESPONSIVENESS ─── */
+@media (max-width: 768px) {
+  html, body {
+    width: 100%; max-width: 100%; overflow-x: hidden;
+  }
+  .blog-hero {
+    min-height: 34vh; padding: 136px 18px 42px;
+  }
+  .blog-hero h1 {
+    font-size: clamp(2rem, 10vw, 2.75rem); letter-spacing: -1px;
+  }
+  .filter-bar {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 30px;
+    padding: 0 18px;
+  }
+  .filter-tab {
+    padding: 9px 14px; text-align: center; border-radius: 0;
+  }
+  .blog-grid {
+    padding: 0 18px 80px; gap: 20px;
+  }
+  .blog-card-content {
+    padding: 22px 18px;
+  }
+  .blog-btn {
+    width: 100%; text-align: center;
+  }
+  .ro-panel {
+    max-width: 100vw;
+  }
+  .ro-body {
+    padding: 30px 24px 60px;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">Scholar<span>Map</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="germany.html">Germany</a>
+      <a href="japan.html">Japan</a>
+      <a href="korea.html">South Korea</a>
+      <a href="resources.html">Resources</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="contact.html" class="nav-cta">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="blog-hero">
+  <div>
+    <p class="section-tag">Pathways & Strategies</p>
+    <h1>ScholarMap <span class="hero-highlight">Blog Hub</span></h1>
+    <p style="color:var(--c-muted);max-width:560px;margin:16px auto 0;line-height:1.7">Practical, message-based articles to navigate fully funded scholarships and global engineering careers.</p>
+  </div>
+</div>
+
+<!-- Filter Bar -->
+<div class="filter-bar">
+  <button class="filter-tab active" onclick="filterBlog('all', this)">All Articles</button>
+  <button class="filter-tab" onclick="filterBlog('mext', this)">MEXT (Japan)</button>
+  <button class="filter-tab" onclick="filterBlog('daad', this)">DAAD (Germany)</button>
+  <button class="filter-tab" onclick="filterBlog('gks', this)">GKS (Korea)</button>
+  <button class="filter-tab" onclick="filterBlog('careers', this)">Careers & SOPs</button>
+</div>
+
+<!-- Blog Grid -->
+<div class="blog-grid" id="blogGrid">
+
+  <!-- Post 1 (Japan - MEXT) -->
+  <div class="blog-card" data-cat="mext">
+    <div class="blog-img-wrap">
+      <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=600&q=80" alt="Tokyo cityscape" class="blog-img">
+    </div>
+    <div class="blog-card-content">
+      <div class="blog-card-meta">
+        <span class="blog-card-tag">MEXT</span>
+        <span>July 08, 2026</span>
+      </div>
+      <h3>How to Secure the MEXT Scholarship (2027)</h3>
+      <p>Japan's premier government scholarship offers free tuition, flight tickets, and a ¥117,000 monthly stipend. Master the professor outreach and exam stages.</p>
+      <button class="blog-btn" onclick="readArticle('mext-guide')">Read Article</button>
+    </div>
+  </div>
+
+  <!-- Post 2 (Germany - DAAD) [FEATURED] -->
+  <div class="blog-card blog-feat" data-cat="daad">
+    <div class="blog-img-wrap">
+      <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=600&q=80" alt="German architecture" class="blog-img">
+    </div>
+    <div class="blog-card-content">
+      <div class="blog-card-meta">
+        <span class="blog-card-tag">DAAD</span>
+        <span>July 06, 2026</span>
+      </div>
+      <h3>APS Certificate: Germany Study Visa Requirement</h3>
+      <p>The Akademische Prüfstelle (APS) certificate is mandatory for all Indian students applying to Germany. Learn how to verify documents fast and avoid delays.</p>
+      <button class="blog-btn" onclick="readArticle('aps-guide')">Read Article</button>
+    </div>
+  </div>
+
+  <!-- Post 3 (Korea - GKS) -->
+  <div class="blog-card" data-cat="gks">
+    <div class="blog-img-wrap">
+      <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80" alt="Seoul at night" class="blog-img">
+    </div>
+    <div class="blog-card-content">
+      <div class="blog-card-meta">
+        <span class="blog-card-tag">GKS</span>
+        <span>July 03, 2026</span>
+      </div>
+      <h3>GKS Graduate Scholarship: The Master Plan</h3>
+      <p>South Korea's Global Korea Scholarship covers full tuition, language training, and living expenses. Discover the difference between Embassy and University tracks.</p>
+      <button class="blog-btn" onclick="readArticle('gks-guide')">Read Article</button>
+    </div>
+  </div>
+
+  <!-- Post 4 (Germany - Careers) -->
+  <div class="blog-card" data-cat="daad">
+    <div class="blog-img-wrap">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Office workspace" class="blog-img">
+    </div>
+    <div class="blog-card-content">
+      <div class="blog-card-meta">
+        <span class="blog-card-tag">Careers</span>
+        <span>June 28, 2026</span>
+      </div>
+      <h3>What is a Werkstudent in Germany?</h3>
+      <p>Working student roles pay €12–20/hr and build massive industry experience in Germany. Learn the rules, taxes, and how to position your portfolio for automation.</p>
+      <button class="blog-btn" onclick="readArticle('werkstudent-guide')">Read Article</button>
+    </div>
+  </div>
+
+  <!-- Post 5 (SOPs - Careers) [FEATURED] -->
+  <div class="blog-card blog-feat" data-cat="careers">
+    <div class="blog-img-wrap">
+      <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=600&q=80" alt="Writing close-up" class="blog-img">
+    </div>
+    <div class="blog-card-content">
+      <div class="blog-card-meta">
+        <span class="blog-card-tag">SOP & CV</span>
+        <span>June 24, 2026</span>
+      </div>
+      <h3>Writing a Winning Statement of Purpose (SOP)</h3>
+      <p>European admissions teams screen SOPs rigorously. Learn the 4-part structure, how to document mechatronics or coding projects, and how to avoid placeholders.</p>
+      <button class="blog-btn" onclick="readArticle('sop-guide')">Read Article</button>
+    </div>
+  </div>
+
+  <!-- Post 6 (Robotics - Careers) -->
+  <div class="blog-card" data-cat="careers">
+    <div class="blog-img-wrap">
+      <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" alt="Industrial robotics" class="blog-img">
+    </div>
+    <div class="blog-card-content">
+      <div class="blog-card-meta">
+        <span class="blog-card-tag">Robotics</span>
+        <span>June 18, 2026</span>
+      </div>
+      <h3>Building a Robotics Portfolio that Recruits</h3>
+      <p>German automation employers screen for proof of skill. Discover how simulator projects, TwinCAT PLC setups, and ROS2 builds prove you can deliver on Day 1.</p>
+      <button class="blog-btn" onclick="readArticle('robotics-guide')">Read Article</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Bottom CTA -->
+<div class="blog-cta-strip">
+  <h2>Want to Evaluate Your Profile? <span class="hero-highlight">Get Free Advice.</span></h2>
+  <p>Share your CV, GPA, and target countries. We reply in writing with a specific roadmap and next steps.</p>
+  <a href="contact.html" class="btn-primary">Audit My Profile →</a>
+</div>
+
+<!-- Article Reader Panel Overlay -->
+<div id="readerOverlay">
+  <div class="ro-backdrop" onclick="closeArticle()"></div>
+  <div class="ro-panel">
+    <div class="ro-header">
+      <div class="ro-logo" style="font-family:'Outfit';font-weight:900;letter-spacing:-0.5px;font-size:1.15rem;color:var(--cs-ink)">Scholar<span>Map</span></div>
+      <button class="ro-close" onclick="closeArticle()">×</button>
+    </div>
+    <div class="ro-body">
+      <div class="ro-meta" id="artMeta">MEXT Scholarship</div>
+      <h2 class="ro-title" id="artTitle">How to Secure the MEXT Scholarship (2027)</h2>
+      <div class="ro-info-strip">
+        <span>📅 Published: July 08, 2026</span>
+        <span>⏱ Read Time: 6 min read</span>
+      </div>
+      <div class="ro-content" id="artContent">
+        <!-- Content will be injected dynamically -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Blog Filter Logic
+function filterBlog(cat, btn) {
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  
+  document.querySelectorAll('.blog-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// Articles Database
+const articles = {
+  'mext-guide': {
+    meta: 'MEXT Scholarship',
+    title: 'How to Secure the MEXT Scholarship (2027) for Indian Engineers',
+    content: `
+      <p>The Monbukagakusho (MEXT) scholarship is Japan's most prestigious government grant. Covering full tuition, return flight tickets, and providing a monthly stipend of ¥117,000–¥145,000, it offers an incredible pathway to study and work in Japan's advanced robotics, automotive, and mechatronics industries.</p>
+      
+      <h3>1. Choose Your Route: Embassy vs. University</h3>
+      <p>Most Indian engineers apply through the <strong>Embassy Track</strong>. Applications typically open in April/May every year. The selection steps involve document screening, a written exam (English & Japanese language), and a personal interview in New Delhi.</p>
+      
+      <h3>2. The Written Exams</h3>
+      <p>Do not panic about the Japanese exam if you do not speak the language yet. For research student tracks, English proficiency is heavily weighted. However, scoring well on the English test is critical because it acts as the initial cutoff filter.</p>
+      
+      <h3>3. Finding a Supervisor</h3>
+      <p>Once you pass the primary screening at the Embassy, you must contact professors in Japan to secure a "Letter of Provisional Acceptance". Having a solid Research Proposal in areas like ROS2, SLAM, PLC Automation, or Computer Vision makes this step much easier.</p>
+    `
+  },
+  'aps-guide': {
+    meta: 'DAAD & Germany',
+    title: 'Akademische Prüfstelle (APS) Certificate: Germany Visa Mastery',
+    content: `
+      <p>Since November 2022, the Akademische Prüfstelle (APS) certificate is a mandatory document for all Indian students applying for a Germany Study Visa. It verifies the authenticity of your academic documents before you submit your visa application.</p>
+      
+      <h3>1. When to Start</h3>
+      <p>Start early. The APS verification process currently takes anywhere from <strong>4 to 8 weeks</strong>. If you are targeting the Winter Semester (which starts in October), you should ideally apply for your APS certificate by December or January of the previous year.</p>
+      
+      <h3>2. Document Checklist</h3>
+      <p>You need to submit printed, notarized copies of your university transcripts, degree certificates, secondary education records, and proof of English/German proficiency. Having clean, consistent transcripts is essential for smooth processing.</p>
+      
+      <h3>3. Verification Process</h3>
+      <p>The APS team contacts your Indian university directly. Ensure your university registrar answers verification emails promptly, as delay in registrar replies is the number one cause of APS backlogs.</p>
+    `
+  },
+  'gks-guide': {
+    meta: 'GKS Scholarship',
+    title: 'GKS Graduate Scholarship: Step-by-Step Selection Master Plan',
+    content: `
+      <p>The Global Korea Scholarship (GKS) is South Korea's flagship government grant, designed to provide international students with full tuition coverage, return airfare, settlement allowances, and a monthly stipend of 1,000,000 KRW.</p>
+      
+      <h3>1. Embassy Track vs. University Track</h3>
+      <p>Under the Embassy Track, you apply to the Korean Embassy in India and can select up to three universities. Under the University Track, you apply to a single Korean university directly. The University Track is generally less competitive but limits your choices.</p>
+      
+      <h3>2. The Mandatory Language Year</h3>
+      <p>All GKS scholars spend their first year learning Korean at a local language institute. Achieving TOPIK Level 3 during this year is mandatory to transition into your Master's or PhD coursework.</p>
+      
+      <h3>3. Structuring Your Personal Statement</h3>
+      <p>The personal statement should detail your academic goals, research interests, and why Korea's tech ecosystem (like Samsung, Hyundai, and LG robotics labs) fits your career aspirations.</p>
+    `
+  },
+  'werkstudent-guide': {
+    meta: 'German Careers',
+    title: 'What is a Werkstudent in Germany? A Guide for Indian Engineers',
+    content: `
+      <p>A <strong>Werkstudent</strong> (working student) role is a unique German employment model that allows university students to work up to 20 hours per week during semesters (and 40 hours during breaks) in roles related to their field of study.</p>
+      
+      <h3>1. The Financial Benefits</h3>
+      <p>Werkstudent positions pay between €12 and €20 per hour. This is more than enough to cover your rent, health insurance, and monthly living expenses, completely removing the need to rely on a blocked account after your first year.</p>
+      
+      <h3>2. The Career Advantage</h3>
+      <p>In Germany, practical proof is valued above university brands. Having 1-2 years of Werkstudent experience in automation (PLC programming, hardware testing, etc.) almost guarantees a full-time job offer upon graduation.</p>
+      
+      <h3>3. How to Apply</h3>
+      <p>Build a German ATS CV and write cover letters that link your university projects to the company's job requirements. Focus on local companies in engineering hubs like Munich, Stuttgart, and Berlin.</p>
+    `
+  },
+  'sop-guide': {
+    meta: 'Admissions Strategy',
+    title: 'How to Write a Winning Statement of Purpose (SOP) for Europe',
+    content: `
+      <p>Your Statement of Purpose (SOP) is the most critical qualitative part of your university application. Admissions committees at top European universities (like TU Munich, RWTH Aachen, or Chalmers) screen hundreds of SOPs daily. Here is how to make yours stand out.</p>
+      
+      <h3>1. The 4-Part Structure</h3>
+      <ul>
+        <li><strong>Part 1: The Hook (15%)</strong> — State your immediate academic goal and what sparked your interest in this specific engineering niche.</li>
+        <li><strong>Part 2: Academic Background & Project Proof (45%)</strong> — Detail your projects, papers, or internships. Focus on technical metrics (e.g., "programmed a ROS2 robot with 92% mapping accuracy").</li>
+        <li><strong>Part 3: Why This University & Program (25%)</strong> — Mention specific research labs, courses, or professors you want to work with. Avoid generic compliments.</li>
+        <li><strong>Part 4: Career Vision (15%)</strong> — Detail your immediate next steps after graduating (e.g. joining an R&D automation team in Germany).</li>
+      </ul>
+      
+      <h3>2. Avoid Placeholders</h3>
+      <p>Never say "Since my childhood, I loved robots." Instead, start with a specific technical challenge you faced in your final year project.</p>
+    `
+  },
+  'robotics-guide': {
+    meta: 'Robotics Portfolio',
+    title: 'Building a Robotics & Automation Portfolio that Recruits',
+    content: `
+      <p>When applying for Werkstudent or entry-level automation roles in Germany, generic resume resume bullet points will not get you interviews. European employers look for proof-of-work. Here is how to structure a robotics portfolio.</p>
+      
+      <h3>1. Document Simulation Projects</h3>
+      <p>If you do not have access to expensive industrial robots, use simulators. Build robot mapping, navigation, or control loops in Gazebo, Webots, or MATLAB, and publish the code on GitHub.</p>
+      
+      <h3>2. TwinCAT & PLC Programming</h3>
+      <p>For automation engineering, knowledge of TwinCAT 3, TIA Portal, or CODESYS is highly valued. Build a simulated packaging line, write structured text code, and create a video showing the factory simulation running.</p>
+      
+      <h3>3. Write Detailed GitHub READMEs</h3>
+      <p>Include system architecture diagrams, GIFs of your simulation, a list of libraries used, and clear installation instructions. A recruiter should be able to understand what you built in less than 30 seconds.</p>
+    `
+  }
+};
+
+function readArticle(id) {
+  const art = articles[id];
+  if (!art) return;
+  
+  document.getElementById('artMeta').textContent = art.meta;
+  document.getElementById('artTitle').textContent = art.title;
+  document.getElementById('artContent').innerHTML = art.content;
+  
+  document.getElementById('readerOverlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeArticle() {
+  document.getElementById('readerOverlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeArticle();
+});
+</script>
+<script src="js/transitions.js"></script>
+</body>
+</html>

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<title>Get Your Profile Reviewed — ScholarMap</title>
+<meta name="description" content="Submit your CV, GPA, and target country. ScholarMap replies in writing within 24–48 hours with a checklist, useful links, and clear next steps — no upsell.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;700;900&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/monetization.css">
+<script src="js/offers.js" defer></script>
+<style>
+/* ─── VARIABLES & ROOT ─── */
+:root {
+  --cs-accent: #9B7B1A; /* Gold/Amber */
+  --cs-gold: #FFD166; /* Bright Gold for legibility on black */
+  --cs-ink: #12100e; /* Dark off-black */
+  --cs-cream: #f8f5ef; /* Soft off-white */
+  --cs-cream2: #f0ece4; /* Second off-white/beige */
+  --cs-muted: #5a5248; /* Muted brown */
+  --cs-border: #d0c8be; /* Soft border */
+  --cs-dark: #0c0c12; /* Dark section background */
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Inter', sans-serif;
+  --c-primary: var(--cs-accent);
+  --c-secondary: var(--cs-gold);
+  --c-muted: var(--cs-muted);
+}
+
+body {
+  background: var(--cs-cream) !important;
+  color: var(--cs-ink) !important;
+  font-family: var(--font-body), sans-serif;
+  cursor: auto;
+}
+
+/* Film Grain */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.04"/%3E%3C/svg%3E');
+  pointer-events: none;
+}
+
+button { cursor: pointer; }
+
+/* ─── HERO ─── */
+.contact-hero {
+  min-height: 42vh; display: flex; align-items: center;
+  justify-content: center; text-align: center;
+  padding: 140px 24px 70px;
+  position: relative; overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(12,12,18,0.32), var(--cs-dark) 96%),
+    url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=85') center 48% / cover no-repeat;
+  color: #fff !important;
+}
+.contact-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(155,123,26,0.18) 0%, transparent 70%);
+}
+.contact-hero > div { position: relative; z-index: 1; }
+.contact-hero p { text-shadow: 0 4px 14px rgba(0,0,0,0.85); color: rgba(255,255,255,0.7) !important; font-size: 0.95rem; }
+.contact-hero h1 {
+  text-shadow: 0 10px 36px rgba(0,0,0,0.85);
+  font-family: var(--font-display); font-size: clamp(2.5rem,5vw,4.2rem);
+  font-weight: 900; letter-spacing: -1px; margin-bottom: 16px;
+  line-height: 1.08;
+  color: #fff !important;
+}
+.contact-hero h1 span.hero-highlight {
+  color: var(--cs-gold) !important;
+}
+.contact-hero .section-tag {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--cs-gold) !important;
+  margin-bottom: 12px; display: inline-block;
+}
+
+/* ─── LAYOUT ─── */
+.contact-layout {
+  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px;
+  max-width: 1100px; margin: 50px auto 0; padding: 0 24px 100px;
+}
+
+/* ─── PREMIUM BLACK FORM BOX ─── */
+.contact-form-box {
+  background: var(--cs-ink) !important;
+  border: 1px solid var(--cs-ink) !important;
+  border-radius: 0 !important; padding: 44px;
+  color: var(--cs-cream) !important;
+  box-shadow: 0 30px 80px rgba(18,16,14,0.18);
+  position: relative; overflow: hidden;
+}
+.contact-form-box::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--cs-gold);
+}
+.contact-form-box h2 {
+  font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; margin-bottom: 8px;
+  color: var(--cs-cream) !important;
+}
+.contact-form-box > p { color: rgba(240,236,228,0.65) !important; margin-bottom: 32px; font-size: 0.9rem; line-height: 1.6; }
+
+/* ─── FLOATING LABEL INPUTS ─── */
+.fl-group {
+  position: relative; margin-bottom: 22px;
+}
+.fl-group label {
+  position: absolute; top: 16px; left: 18px;
+  font-size: 0.9rem; color: rgba(240,236,228,0.4);
+  transition: all 0.25s ease; pointer-events: none;
+  background: transparent;
+}
+.fl-group input,
+.fl-group select,
+.fl-group textarea {
+  width: 100%; padding: 22px 18px 10px;
+  background: #1c1a16 !important;
+  border: 1px solid #3c3832 !important;
+  border-radius: 0 !important; color: var(--cs-cream) !important;
+  font-family: var(--font-body); font-size: 0.95rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none; resize: none;
+}
+.fl-group input::placeholder,
+.fl-group textarea::placeholder { color: transparent; }
+.fl-group input:focus,
+.fl-group select:focus,
+.fl-group textarea:focus {
+  border-color: var(--cs-gold) !important;
+  box-shadow: 0 0 0 3px rgba(255,209,102,0.12) !important;
+}
+/* Float label up when focused or has value */
+.fl-group input:focus + label,
+.fl-group input:not(:placeholder-shown) + label,
+.fl-group textarea:focus + label,
+.fl-group textarea:not(:placeholder-shown) + label,
+.fl-group select:focus + label,
+.fl-group.has-value label {
+  top: 7px; font-size: 0.7rem; color: var(--cs-gold) !important; letter-spacing: 0.5px;
+}
+.fl-group select { padding-top: 22px; padding-bottom: 10px; appearance: none; cursor: pointer; background-image: linear-gradient(45deg, transparent 50%, rgba(240,236,228,0.6) 50%), linear-gradient(135deg, rgba(240,236,228,0.6) 50%, transparent 50%); background-position: calc(100% - 22px) 20px, calc(100% - 16px) 20px; background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; padding-right: 44px; }
+.fl-group select option { background: var(--cs-ink) !important; color: var(--cs-cream) !important; }
+.fl-group select option[disabled] { color: rgba(240,236,228,0.35); }
+
+/* two-column row */
+.fl-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 0; }
+.fl-row .fl-group { margin-bottom: 22px; }
+@media (max-width: 560px) { .fl-row { grid-template-columns: 1fr; gap: 0; } }
+
+/* CV upload */
+.cv-upload { position: relative; }
+.cv-upload input[type="file"] { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; cursor: pointer; z-index: 2; }
+.cv-label {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 18px; border-radius: 0;
+  background: #1c1a16 !important;
+  border: 1.5px dashed rgba(255,209,102,0.4) !important;
+  cursor: pointer; transition: border-color 0.3s, background 0.3s;
+  position: static !important; top: auto !important; font-size: 0.9rem !important; color: var(--cs-cream) !important;
+}
+.cv-upload:hover .cv-label { border-color: var(--cs-gold) !important; background: rgba(255,209,102,0.06) !important; }
+.cv-upload.has-file .cv-label { border-style: solid; border-color: #81C784 !important; background: rgba(76,175,80,0.08) !important; }
+.cv-ico { font-size: 1.4rem; }
+.cv-text { display: flex; flex-direction: column; gap: 2px; line-height: 1.35; }
+.cv-text strong { font-size: 0.9rem; font-weight: 600; color: var(--cs-cream); }
+.cv-text small { font-size: 0.72rem; color: rgba(240,236,228,0.55); }
+
+/* char counter */
+.char-counter {
+  text-align: right; font-size: 0.72rem; color: rgba(240,236,228,0.55);
+  margin-top: 4px;
+}
+.char-counter.warn { color: var(--cs-gold); }
+
+/* radio group */
+.session-label {
+  font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;
+  color: rgba(240,236,228,0.65); margin-bottom: 12px; display: block; font-weight: 600;
+}
+.radio-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.radio-pill {
+  padding: 10px 22px; border-radius: 0;
+  border: 1px solid #3c3832;
+  background: #1c1a16; color: rgba(240,236,228,0.65);
+  font-size: 0.85rem; cursor: pointer; transition: all 0.25s;
+}
+.radio-pill.active {
+  border-color: var(--cs-gold); background: var(--cs-gold);
+  color: var(--cs-ink); font-weight: 600;
+}
+
+/* submit button */
+.submit-btn {
+  width: 100%; padding: 16px; border-radius: 0; border: none;
+  margin-top: 20px;
+  background: var(--cs-gold) !important;
+  color: var(--cs-ink) !important; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px;
+  cursor: pointer; transition: background 0.25s, transform 0.2s;
+  box-shadow: 0 8px 24px rgba(18,16,14,0.3);
+  position: relative; overflow: hidden;
+}
+.submit-btn:hover { background: var(--cs-cream) !important; color: var(--cs-ink) !important; transform: translateY(-2px); }
+.submit-btn:disabled { opacity: 0.7; transform: none; cursor: not-allowed; }
+
+/* success state */
+.form-success {
+  display: none; text-align: center; padding: 32px 24px;
+}
+.form-success .suc-ico { font-size: 3.5rem; margin-bottom: 16px; }
+.form-success h3 {
+  font-family: var(--font-display); font-size: 2rem; margin-bottom: 10px;
+  color: var(--cs-gold) !important;
+}
+.form-success p { color: rgba(240,236,228,0.7) !important; font-size: 0.95rem; line-height: 1.6; }
+
+/* ─── INFO COLUMN ─── */
+.contact-info-box > * { margin-bottom: 28px; }
+.contact-visual {
+  min-height: 240px; border-radius: 0;
+  background:
+    linear-gradient(180deg, rgba(12,12,18,0.15), rgba(12,12,18,0.68)),
+    url('https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1200&q=85') center / cover no-repeat;
+  border: 1px solid var(--cs-border);
+  box-shadow: 0 16px 40px rgba(18,16,14,0.06);
+}
+.info-block {
+  padding: 32px; border-radius: 0;
+  background: #ffffff; border: 1px solid var(--cs-border);
+  transition: border-color 0.3s, transform 0.3s;
+  color: var(--cs-ink) !important;
+}
+.info-block:hover { border-color: var(--cs-accent); transform: translateY(-4px); }
+.info-block h4 { font-family: var(--font-display); font-weight: 700; margin-bottom: 12px; font-size: 1.1rem; color: var(--cs-ink); }
+.info-block p, .info-block a {
+  font-size: 0.88rem; color: var(--cs-muted) !important; line-height: 1.65; text-decoration: none;
+}
+
+/* social links */
+.socials-list { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+.social-link-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 18px; border-radius: 0;
+  border: 1px solid var(--cs-border);
+  transition: all 0.25s; text-decoration: none;
+  background: #ffffff;
+  color: var(--cs-ink) !important;
+}
+.social-link-row:hover { transform: translateX(6px); }
+.social-link-row .s-ico { font-size: 1.1rem; }
+.social-link-row .s-text { font-size: 0.82rem; font-weight: 600; }
+.sl-instagram:hover { border-color: #e4405f; background: #fff5f6; }
+.sl-discord:hover   { border-color: #5861f2; background: #f5f6ff; }
+.sl-github:hover    { border-color: var(--cs-ink); background: var(--cs-cream2); }
+.sl-telegram:hover  { border-color: #0088cc; background: #f2f9fd; }
+
+/* notice banner */
+.setup-notice {
+  background: rgba(255,209,102,0.1); border: 1px solid rgba(255,209,102,0.3);
+  border-radius: 0; padding: 14px 18px; font-size: 0.82rem;
+  color: rgba(240,236,228,0.8); line-height: 1.6; margin-bottom: 24px;
+}
+.setup-notice strong { color: var(--cs-gold); }
+.setup-notice a { color: var(--cs-gold); text-decoration: underline; }
+
+@media(max-width: 768px) {
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  .contact-hero {
+    min-height: 34vh;
+    width: 100%;
+    max-width: 100vw;
+    padding: 136px 18px 42px;
+  }
+  .contact-hero > div {
+    width: 100%;
+    max-width: calc(100vw - 36px);
+    min-width: 0;
+  }
+  .contact-hero h1 {
+    font-size: clamp(2rem, 10vw, 2.75rem);
+    letter-spacing: -1px;
+    overflow-wrap: anywhere;
+  }
+  .contact-hero .hero-highlight {
+    display: block;
+  }
+  .contact-hero p {
+    max-width: 100%;
+    font-size: 0.95rem;
+    overflow-wrap: break-word;
+  }
+  .contact-layout {
+    width: 100%;
+    max-width: 100%;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .contact-form-box,
+  .info-block {
+    min-width: 0;
+    padding: 30px 20px;
+    border-radius: 0;
+  }
+  .contact-form-box h2,
+  .contact-form-box p,
+  .info-block p,
+  .social-link-row {
+    overflow-wrap: break-word;
+  }
+  .radio-row {
+    flex-direction: column;
+  }
+  .radio-pill {
+    width: 100%;
+    text-align: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">Scholar<span>Map</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="germany.html">Germany</a>
+      <a href="japan.html">Japan</a>
+      <a href="korea.html">South Korea</a>
+      <a href="resources.html">Resources</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html" class="nav-cta active">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="contact-hero">
+  <div>
+    <p class="section-tag">Free Profile Audit</p>
+    <h1>Get Your Profile <span class="hero-highlight">Reviewed in 24 Hours</span></h1>
+    <p>Attach your CV, share your GPA and target country — we reply in writing with a checklist, useful links, and clear next steps. No sales calls, no upsell.</p>
+  </div>
+</div>
+
+<div class="contact-layout">
+
+  <!-- ── FORM ─────────────────────────────────────── -->
+  <div class="contact-form-box">
+    <h2>Submit Your Profile</h2>
+    <p>We reply to every message within 24–48 hours. No spam, no upsells — just honest advice.</p>
+
+    <form id="contactForm">
+      <!-- Web3Forms hidden fields -->
+      <input type="hidden" name="access_key" value="5e418a41-4cad-44f0-9b93-eccaeff3f36c">
+      <input type="hidden" name="subject" value="New ScholarMap Inquiry">
+      <input type="hidden" name="from_name" value="ScholarMap Website">
+      <input type="hidden" name="redirect" value="false">
+      <input type="checkbox" name="botcheck" style="display:none">
+
+      <div class="fl-group">
+        <input type="text" id="cf-name" name="name" placeholder=" " required>
+        <label for="cf-name">Your Name</label>
+      </div>
+
+      <div class="fl-group">
+        <input type="email" id="cf-email" name="email" placeholder=" " required>
+        <label for="cf-email">Email Address</label>
+      </div>
+
+      <div class="fl-row">
+        <div class="fl-group">
+          <input type="text" id="cf-gpa" name="gpa_cgpa" placeholder=" " pattern="[0-9.,/ %A-Za-z]{1,20}" maxlength="20">
+          <label for="cf-gpa">GPA / CGPA (e.g. 8.4/10)</label>
+        </div>
+        <div class="fl-group has-value">
+          <select id="cf-country" name="target_country" required>
+            <option value="" disabled selected hidden>Choose target country</option>
+            <option value="japan">🇯🇵 Japan</option>
+            <option value="germany">🇩🇪 Germany</option>
+            <option value="korea">🇰🇷 South Korea</option>
+            <option value="china">🇨🇳 China (waitlist)</option>
+            <option value="australia">🇦🇺 Australia (waitlist)</option>
+            <option value="undecided">Still deciding</option>
+          </select>
+          <label for="cf-country">Target Country</label>
+        </div>
+      </div>
+
+      <div class="fl-group">
+        <input type="url" id="cf-profile-link" name="cv_portfolio_url" placeholder=" ">
+        <label for="cf-profile-link">CV / LinkedIn / Portfolio / GitHub Link (Optional)</label>
+      </div>
+
+      <div class="fl-group has-value">
+        <select id="cf-topic" name="topic" required>
+          <option value="" disabled selected hidden>Select a topic...</option>
+          <option value="strategy_session">1-on-1 Germany Strategy Session (₹2,499)</option>
+          <option value="transition_kit">Germany Automation Transition Kit (₹499)</option>
+          <option value="daad">DAAD Scholarship & Universities (Germany)</option>
+          <option value="mext">MEXT Scholarship (Japan)</option>
+          <option value="gks">GKS Scholarship (South Korea)</option>
+          <option value="profile">Profile & Portfolio Evaluation</option>
+          <option value="werkstudent">Germany Werkstudent / Job Placement Strategy</option>
+          <option value="general">General Inquiry / Guidance</option>
+        </select>
+        <label for="cf-topic">What do you need help with?</label>
+      </div>
+
+      <div class="fl-group">
+        <textarea id="cf-message" name="message" rows="5" placeholder=" " maxlength="1000" required oninput="updateCounter(this)"></textarea>
+        <label for="cf-message">Anything else? (goals, target role, deadlines)</label>
+        <div class="char-counter" id="charCount">0 / 1000</div>
+      </div>
+
+      <span class="session-label">How should we respond?</span>
+      <div class="radio-row" id="sessionGroup">
+        <div class="radio-pill active" onclick="selectSession(this, 'Detailed message reply')" data-val="Detailed">Detailed message reply</div>
+        <div class="radio-pill" onclick="selectSession(this, 'Quick answer only')" data-val="Quick">Quick answer only</div>
+      </div>
+      <input type="hidden" id="sessionInput" name="reply_preference" value="Detailed message reply">
+
+      <button type="submit" class="submit-btn" id="submitBtn">Send Message →</button>
+    </form>
+
+    <div class="form-success" id="formSuccess">
+      <div class="suc-ico">✨</div>
+      <h3>Message Sent!</h3>
+      <p>Thank you! We've received your message and will reply to <strong id="successEmail"></strong> within 24–48 hours. Check your inbox!</p>
+    </div>
+  </div>
+
+  <!-- ── INFO ──────────────────────────────────────── -->
+  <div class="contact-info-box">
+    <div class="contact-visual" aria-hidden="true"></div>
+
+    <div class="info-block">
+      <h4>What Happens Next?</h4>
+      <p>After you send a message, we review your profile and prepare a specific written response with scholarship, career, document, or portfolio next steps.</p>
+    </div>
+
+    <div class="info-block">
+      <h4>Message-Based Guidance</h4>
+      <p>Share your CV, target country, or role goal. We respond in writing so you can save the advice, compare options, and act on the checklist.</p>
+    </div>
+
+    <div class="info-block">
+      <h4>Connect on Social</h4>
+      <p>Follow us for daily scholarship updates, tips, and deadline reminders:</p>
+      <div class="socials-list">
+        <a href="https://www.instagram.com/vivek_robotics/" target="_blank" class="social-link-row sl-instagram">
+          <span class="s-ico">📸</span>
+          <span class="s-text">Instagram — @vivek_robotics</span>
+        </a>
+        <a href="https://discord.gg/3Qt2ZUJhX7" target="_blank" class="social-link-row sl-discord">
+          <span class="s-ico">💬</span>
+          <span class="s-text">Discord Server — GSH Hub</span>
+        </a>
+        <a href="https://github.com/VivekVrobotics" target="_blank" class="social-link-row sl-github">
+          <span class="s-ico">💻</span>
+          <span class="s-text">GitHub — @VivekVrobotics</span>
+        </a>
+        <a href="https://t.me/+Ul3CAQ4PjAc3NDg1" target="_blank" class="social-link-row sl-telegram">
+          <span class="s-ico">✈️</span>
+          <span class="s-text">Telegram Group — GSH Chat</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="info-block" style="border-left: 3px solid var(--c-primary);">
+      <h4>⚡ Response Time</h4>
+      <p>We typically reply within <strong style="color:var(--c-primary)">24–48 hours</strong> on weekdays. For urgent scholarship deadline queries, mention it in your message and we'll prioritise your response.</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+/* floating label for select */
+document.getElementById('cf-topic').addEventListener('change', function() {
+  this.closest('.fl-group').classList.toggle('has-value', this.value !== '');
+});
+
+function hasPlaceholderAccessKey() {
+  const keyInput = document.querySelector('input[name="access_key"]');
+  const key = keyInput ? keyInput.value.trim() : '';
+  return key === 'YOUR_ACCESS_KEY' || key === 'YOUR_ACCESS_KEY_HERE' || !key;
+}
+
+if (hasPlaceholderAccessKey() && document.getElementById('setupNotice')) {
+  document.getElementById('setupNotice').style.display = 'block';
+}
+
+/* prefill waitlist links from index.html */
+(function prefillContactFromQuery() {
+  const params = new URLSearchParams(window.location.search);
+  const topic = params.get('topic');
+  const message = params.get('message');
+  const topicEl = document.getElementById('cf-topic');
+  const messageEl = document.getElementById('cf-message');
+
+  if (topic && Array.from(topicEl.options).some(option => option.value === topic)) {
+    topicEl.value = topic;
+    topicEl.dispatchEvent(new Event('change'));
+  }
+
+  if (message) {
+    messageEl.value = message;
+    updateCounter(messageEl);
+  }
+})();
+
+/* character counter */
+function updateCounter(el) {
+  const count = el.value.length;
+  const counter = document.getElementById('charCount');
+  counter.textContent = count + ' / 1000';
+  counter.classList.toggle('warn', count > 800);
+}
+
+/* session selector */
+function selectSession(el, val) {
+  document.querySelectorAll('.radio-pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('sessionInput').value = val;
+}
+
+/* CV upload */
+function handleCVUpload(input) {
+  const wrapper = input.closest('.cv-upload');
+  const label   = document.getElementById('cv-filename');
+  const file    = input.files && input.files[0];
+  if (!file) {
+    wrapper.classList.remove('has-file');
+    label.textContent = 'Upload your CV (PDF, DOCX)';
+    return;
+  }
+  if (file.size > 5 * 1024 * 1024) {
+    alert('File is larger than 5 MB. Please compress or link a Google Drive URL in the message instead.');
+    input.value = '';
+    return;
+  }
+  wrapper.classList.add('has-file');
+  label.textContent = '✓ ' + file.name;
+}
+
+/* pre-select target country from ?country= query for handoff from country pages */
+(function preselectCountry(){
+  var params = new URLSearchParams(window.location.search);
+  var c = (params.get('country') || '').toLowerCase();
+  var map = { japan:'japan', germany:'germany', korea:'korea', china:'china', australia:'australia' };
+  if (map[c]) {
+    var sel = document.getElementById('cf-country');
+    if (sel) sel.value = map[c];
+  }
+})();
+
+/* form submission with local fallback */
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const email = document.getElementById('cf-email').value;
+
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  // Sync the has-value visual state for the country dropdown before submit
+  var countryGroup = document.getElementById('cf-country') && document.getElementById('cf-country').closest('.fl-group');
+  if (countryGroup) countryGroup.classList.toggle('has-value', !!document.getElementById('cf-country').value);
+
+  if (hasPlaceholderAccessKey()) {
+    if (document.getElementById('setupNotice')) {
+      document.getElementById('setupNotice').style.display = 'block';
+    }
+    btn.textContent = 'Send Message →';
+    btn.disabled = false;
+    alert('The contact form is not connected yet. Add your Web3Forms access key before going live so leads reach your inbox.');
+    return;
+  }
+
+  try {
+    const formData = new FormData(this);
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    });
+    const data = await response.json();
+
+    if (data.success) {
+      this.style.display = 'none';
+      if (document.getElementById('setupNotice')) {
+        document.getElementById('setupNotice').style.display = 'none';
+      }
+      document.getElementById('successEmail').textContent = email;
+      document.getElementById('formSuccess').style.display = 'block';
+    } else {
+      throw new Error(data.message || 'Submission failed');
+    }
+  } catch (err) {
+    btn.textContent = 'Send Message →';
+    btn.disabled = false;
+    alert('Failed to send: ' + err.message + '\n\nPlease check your internet connection or verify your Web3Forms access key.');
+  }
+});
+</script>
+<footer class="site-legal-footer">
+  <div class="legal-nav">
+    <a href="index.html">Home</a>
+    <a href="germany.html">Germany Pipeline</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="refunds.html">Refund Policy</a>
+    <a href="disclaimer.html">Educational Disclaimer</a>
+  </div>
+  <div class="legal-disclaimer">
+    <p>ScholarMap is an independent educational guidance platform. We are not affiliated with DAAD, MEXT, GKS, or university admissions boards. We provide structured execution templates and advisory support. No guaranteed university placement or visa issuance.</p>
+  </div>
+  <p>&copy; 2026 ScholarMap. All rights reserved.</p>
+</footer>
+
+<script src="js/transitions.js"></script>
+</body>
+</html>
