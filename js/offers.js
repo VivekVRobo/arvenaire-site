@@ -7,12 +7,13 @@ const SCHOLARMAP_OFFERS = {
   // Tier 1: DIY Execution Kit
   kit: {
     name: "Germany Automation & Robotics Transition Kit (2026)",
+    version: "1.2 FINAL",
     price: "₹499",
     numericPrice: 499,
     currency: "INR",
     url: "https://topmate.io/vivek_robotics?utm_source=scholarmap&utm_medium=website&utm_campaign=germany_transition&utm_content=kit",
     badge: "2026 Action Kit",
-    note: "Editable ATS CV pack, 30-company tracker, outreach scripts, portfolio blueprints, four GitHub README templates, official-source verification, and a 14-day sprint."
+    note: "Editable ATS CV pack, 30-company tracker, outreach scripts, four portfolio blueprints, four GitHub README templates, official-source verification, CV bullet bank, German search terms, and a 14-day sprint."
   },
 
   // Tier 2: Personalized 1-on-1 Strategy Session + Kit Included
@@ -46,7 +47,7 @@ function trackOfferClick(offerType, locationName) {
   }
 }
 
-// Global initialization helper for CTA buttons and grounded pricing copy.
+// Global initialization helper for CTA buttons and grounded product copy.
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('[data-offer-link]').forEach(btn => {
     const type = btn.getAttribute('data-offer-link');
@@ -60,6 +61,14 @@ document.addEventListener('DOMContentLoaded', function() {
   // supportable prior selling price for the same product.
   document.querySelectorAll('.offer-original-price').forEach(el => el.remove());
 
+  // Keep legacy HTML copy synchronized with the final v1.2 buyer bundle.
+  document.querySelectorAll('.offer-features li').forEach(li => {
+    const text = li.textContent.trim();
+    if (text.startsWith('3 portfolio project blueprints')) {
+      li.textContent = '4 portfolio project blueprints (TwinCAT, ROS2, embedded systems, machine vision)';
+    }
+  });
+
   // Replace speculative value/savings claims with concrete deliverable value.
   const valueBox = document.querySelector('.price-value-callout .pvc-text');
   if (valueBox) {
@@ -67,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const paragraph = valueBox.querySelector('p');
     if (heading) heading.textContent = 'What ₹499 actually buys';
     if (paragraph) {
-      paragraph.innerHTML = 'A reusable engineering-application execution pack: two editable CV files, 30 reviewed employer portals, outreach scripts, portfolio blueprints, four technical README templates, an official-source checklist, a CV bullet bank, German job-search terms, and a 14-day sprint. <strong>No admission, job, salary, scholarship, or visa outcome is guaranteed.</strong>';
+      paragraph.innerHTML = 'A reusable engineering-application execution pack: two editable CV files, 30 reviewed employer portals, outreach scripts, four portfolio blueprints, four technical README templates, an official-source checklist, a CV bullet bank, German job-search terms, and a 14-day sprint. <strong>No admission, job, salary, scholarship, or visa outcome is guaranteed.</strong>';
     }
   }
 });
