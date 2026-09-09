@@ -956,12 +956,12 @@ function playHoverSound() {
 
 function populateScholarships() {
     // Requires data.js to be loaded
-    if (typeof SCHOLARMAP_DATA === 'undefined') return;
+    if (typeof ARVENAIRE_DATA === 'undefined') return;
     const grid = document.getElementById('scholarship-grid');
     if (!grid) return;
     
     grid.innerHTML = '';
-    const scholarships = SCHOLARMAP_DATA.japan.scholarships;
+    const scholarships = ARVENAIRE_DATA.japan.scholarships;
     
     scholarships.forEach(s => {
         const card = document.createElement('div');

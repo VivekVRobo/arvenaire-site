@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   SCHOLARMAP — MAIN JS
+   ARVENAIRE — MAIN JS
    Three.js scenes + GSAP + All Interactivity
 ═══════════════════════════════════════════ */
 'use strict';
@@ -421,7 +421,7 @@ function initCountryCards() {
 }
 
 function selectCountry(key) {
-  const data = SCHOLARMAP_DATA[key];
+  const data = ARVENAIRE_DATA[key];
   if (!data) return;
   currentCountry = key;
 
@@ -593,12 +593,12 @@ function renderBlogPosts(filter) {
 
 // ─── TESTIMONIALS ────────────────────────────
 const TESTIMONIALS = [
-  {text:"ScholarMap helped me prepare my MEXT Research Plan step-by-step. Their supervisor email templates secured me a professor acceptance from Kyoto University on the first attempt!",name:"Priya Sharma",info:"MEXT Scholar, Kyoto University",init:"PS",country:"Japan",gpa:"8.4",field:"Robotics",ielts:"7.5"},
-  {text:"I thought Germany required high tuition or German language fluency. ScholarMap showed me the English-taught paths and helped me frame my Motivation Letter for DAAD.",name:"Rahul Verma",info:"DAAD Scholar, TU Munich",init:"RV",country:"Germany",gpa:"8.1",field:"Mechanical",ielts:"7.0"},
-  {text:"China's CSC is highly underrated. ScholarMap's profile analyzer accurately suggested Tsinghua University. The scholarship covers tuition, lodging, and a stipend!",name:"Anjali Patel",info:"CSC Scholar, Tsinghua Univ",init:"AP",country:"China",gpa:"7.8",field:"Comp. Sci",ielts:"6.5"},
-  {text:"The Global Korea Scholarship (GKS) package is incredible. ScholarMap guided me through the apostille process, Embassy Track selection, and mock interviews.",name:"Vikram Singh",info:"GKS Scholar, Seoul Nat. Uni",init:"VS",country:"S. Korea",gpa:"8.6",field:"AI & Data",ielts:"7.5"},
+  {text:"ARVENAIRE helped me prepare my MEXT Research Plan step-by-step. Their supervisor email templates secured me a professor acceptance from Kyoto University on the first attempt!",name:"Priya Sharma",info:"MEXT Scholar, Kyoto University",init:"PS",country:"Japan",gpa:"8.4",field:"Robotics",ielts:"7.5"},
+  {text:"I thought Germany required high tuition or German language fluency. ARVENAIRE showed me the English-taught paths and helped me frame my Motivation Letter for DAAD.",name:"Rahul Verma",info:"DAAD Scholar, TU Munich",init:"RV",country:"Germany",gpa:"8.1",field:"Mechanical",ielts:"7.0"},
+  {text:"China's CSC is highly underrated. ARVENAIRE's profile analyzer accurately suggested Tsinghua University. The scholarship covers tuition, lodging, and a stipend!",name:"Anjali Patel",info:"CSC Scholar, Tsinghua Univ",init:"AP",country:"China",gpa:"7.8",field:"Comp. Sci",ielts:"6.5"},
+  {text:"The Global Korea Scholarship (GKS) package is incredible. ARVENAIRE guided me through the apostille process, Embassy Track selection, and mock interviews.",name:"Vikram Singh",info:"GKS Scholar, Seoul Nat. Uni",init:"VS",country:"S. Korea",gpa:"8.6",field:"AI & Data",ielts:"7.5"},
   {text:"I used the SOP review service for the Australia Awards. The specific research critique was elite — I secured a full Research Training Program (RTP) scholarship.",name:"Meera Nair",info:"RTP Scholar, ANU Canberra",init:"MN",country:"Australia",gpa:"8.9",field:"Biotech",ielts:"8.0"},
-  {text:"I was about to waste months on general consulting. ScholarMap redirected me to the MEXT University Route. Securing professor support early made all the difference.",name:"Arjun Reddy",info:"MEXT Scholar, Osaka University",init:"AR",country:"Japan",gpa:"7.9",field:"Physics",ielts:"7.0"},
+  {text:"I was about to waste months on general consulting. ARVENAIRE redirected me to the MEXT University Route. Securing professor support early made all the difference.",name:"Arjun Reddy",info:"MEXT Scholar, Osaka University",init:"AR",country:"Japan",gpa:"7.9",field:"Physics",ielts:"7.0"},
   {text:"Best advice for Germany. They helped me get my APS Certificate early and structured my CV according to German standards. Now at LMU Munich with DAAD funding.",name:"Sneha Gupta",info:"DAAD Scholar, LMU Munich",init:"SG",country:"Germany",gpa:"8.2",field:"Electrical",ielts:"7.5"},
   {text:"The profile evaluation tool was spot on. I knew exactly where I stood for Melbourne and Sydney, and the timeline tracker kept my applications on track.",name:"Karan Mehta",info:"RTP Scholar, Uni Melbourne",init:"KM",country:"Australia",gpa:"8.3",field:"Civil Eng",ielts:"7.5"}
 ];
@@ -743,7 +743,7 @@ function initFooterCountryLinks() {
       link.addEventListener('click', e => {
         e.preventDefault();
         const key = link.dataset.country;
-        if (SCHOLARMAP_DATA[key]) selectCountry(key);
+        if (ARVENAIRE_DATA[key]) selectCountry(key);
       });
     }
   });

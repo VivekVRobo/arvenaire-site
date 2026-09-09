@@ -1,5 +1,5 @@
 /**
- * ScholarMap Cinematic Page Transitions
+ * ARVENAIRE Cinematic Page Transitions
  * Prevents sudden jumps when navigating between pages.
  */
 (function() {

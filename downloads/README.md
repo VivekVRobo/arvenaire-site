@@ -1,6 +1,6 @@
 # Public downloads
 
-This folder contains **free public ScholarMap resources only**.
+This folder contains **free public ARVENAIRE resources only**.
 
 The paid **Germany Automation & Robotics Transition Kit (2026)** is intentionally **not stored in this public repository**. Customer delivery should happen through the configured checkout/digital-product platform or other private storage after purchase.
 

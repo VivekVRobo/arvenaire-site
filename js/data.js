@@ -1,4 +1,4 @@
-const SCHOLARMAP_DATA = {
+const ARVENAIRE_DATA = {
   japan:{
     name:"Japan",native:"日本",flag:"🇯🇵",
     tagline:"Land of Innovation & Cultural Heritage",
@@ -127,8 +127,8 @@ const BLOG_POSTS=[
 
 function evaluateProfile(p){
   const results=[];
-  Object.keys(SCHOLARMAP_DATA).forEach(key=>{
-    const c=SCHOLARMAP_DATA[key];
+  Object.keys(ARVENAIRE_DATA).forEach(key=>{
+    const c=ARVENAIRE_DATA[key];
     let score=0,reasons=[],warnings=[];
     const gpa=parseFloat(p.gpa)||0;
     if(gpa>=75){score+=25;reasons.push("Strong GPA — eligible for prestigious scholarships");}

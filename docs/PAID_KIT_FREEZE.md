@@ -1,4 +1,4 @@
-# ScholarMap Paid Kit Freeze
+# ARVENAIRE Paid Kit Freeze
 
 The private Germany Automation & Robotics Transition Kit is frozen at **v1.2 FINAL** for launch.
 

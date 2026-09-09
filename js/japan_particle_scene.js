@@ -1,5 +1,5 @@
 /* ============================================================
-   ScholarMap — Japan Particle Scene
+   ARVENAIRE — Japan Particle Scene
    Inspired by sebastien-lempens.com aesthetic:
    - 12,000-particle galaxy rotating around a glowing crimson orb
    - Cherry blossom drift particles (pink)
