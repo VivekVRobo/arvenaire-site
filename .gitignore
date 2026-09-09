@@ -1,0 +1,8 @@
+# Paid customer deliverables must never be committed to this public repository.
+/downloads/Germany_Automation_Robotics_Transition_Kit_2026.zip
+/downloads/Germany_Automation_Robotics_Transition_Kit_2026_*.zip
+/downloads/*Transition_Kit*.zip
+
+# Local/editor artifacts
+.DS_Store
+Thumbs.db
