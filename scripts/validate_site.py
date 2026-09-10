@@ -2,6 +2,7 @@
 """ARVENAIRE production static-site validation. No third-party dependencies."""
 from __future__ import annotations
 
+import json
 import re
 import sys
 from html.parser import HTMLParser
@@ -152,6 +153,71 @@ def validate_forms() -> None:
             fail(f"contact.html missing supported topic value: {topic}")
 
 
+def validate_vercel_security() -> None:
+    try:
+        config = json.loads(read("vercel.json"))
+    except (json.JSONDecodeError, OSError) as exc:
+        fail(f"vercel.json is not valid JSON: {exc}")
+        return
+
+    if config.get("$schema") != "https://openapi.vercel.sh/vercel.json":
+        fail("vercel.json should declare the official Vercel JSON schema")
+
+    rules = config.get("headers", [])
+    global_rule = next((rule for rule in rules if rule.get("source") == "/(.*)"), None)
+    if not global_rule:
+        fail("vercel.json is missing the global security-header rule")
+        return
+
+    headers = {item.get("key"): item.get("value", "") for item in global_rule.get("headers", [])}
+    required_headers = {
+        "Content-Security-Policy",
+        "Strict-Transport-Security",
+        "Referrer-Policy",
+        "Permissions-Policy",
+        "X-Content-Type-Options",
+        "X-Frame-Options",
+        "Cross-Origin-Opener-Policy",
+    }
+    missing = sorted(required_headers - headers.keys())
+    if missing:
+        fail(f"vercel.json missing security headers: {missing}")
+
+    if "X-XSS-Protection" in headers:
+        fail("vercel.json must not restore the obsolete X-XSS-Protection filter header")
+
+    csp = headers.get("Content-Security-Policy", "")
+    for directive in (
+        "default-src 'self'",
+        "base-uri 'self'",
+        "object-src 'none'",
+        "frame-ancestors 'none'",
+        "https://fonts.googleapis.com",
+        "https://fonts.gstatic.com",
+        "https://*.unsplash.com",
+        "https://api.web3forms.com",
+        "upgrade-insecure-requests",
+    ):
+        if directive not in csp:
+            fail(f"Content-Security-Policy missing required directive/source: {directive}")
+
+    if headers.get("X-Content-Type-Options") != "nosniff":
+        fail("X-Content-Type-Options must remain nosniff")
+    if headers.get("X-Frame-Options") != "DENY":
+        fail("X-Frame-Options must remain DENY")
+    if headers.get("Referrer-Policy") != "strict-origin-when-cross-origin":
+        fail("Referrer-Policy must be strict-origin-when-cross-origin")
+
+    for source in ("/css/(.*)", "/js/(.*)"):
+        rule = next((item for item in rules if item.get("source") == source), None)
+        if not rule:
+            fail(f"vercel.json missing cache rule for {source}")
+            continue
+        cache = {item.get("key"): item.get("value", "") for item in rule.get("headers", [])}.get("Cache-Control")
+        if cache != "public, max-age=0, must-revalidate":
+            fail(f"{source} must revalidate unhashed assets; found Cache-Control={cache!r}")
+
+
 def main() -> int:
     files = text_files()
     validate_local_references()
@@ -159,6 +225,7 @@ def main() -> int:
     validate_commercial_invariants()
     validate_legacy_removal()
     validate_forms()
+    validate_vercel_security()
     if ERRORS:
         print("ARVENAIRE validation FAILED:\n")
         for item in ERRORS:
