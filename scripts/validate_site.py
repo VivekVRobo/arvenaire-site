@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-"""ARVENAIRE production static-site validation.
-
-Runs without third-party dependencies. Intended for local use and CI.
-"""
+"""ARVENAIRE production static-site validation. No third-party dependencies."""
 from __future__ import annotations
 
 import re
@@ -12,8 +9,8 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-TEXT_EXTENSIONS = {".html", ".css", ".js", ".md", ".txt", ".xml", ".json", ".py"}
-
+SELF = Path(__file__).resolve()
+TEXT_EXTENSIONS = {".html", ".css", ".js", ".md", ".txt", ".xml", ".json", ".py", ".yml", ".yaml"}
 ERRORS: list[str] = []
 
 
@@ -26,14 +23,12 @@ def read(path: str | Path) -> str:
 
 
 def text_files() -> list[Path]:
-    files: list[Path] = []
-    for path in ROOT.rglob("*"):
-        if not path.is_file() or path.suffix.lower() not in TEXT_EXTENSIONS:
-            continue
-        if ".git" in path.parts:
-            continue
-        files.append(path)
-    return files
+    return [
+        path for path in ROOT.rglob("*")
+        if path.is_file()
+        and path.suffix.lower() in TEXT_EXTENSIONS
+        and ".git" not in path.parts
+    ]
 
 
 class ReferenceParser(HTMLParser):
@@ -67,7 +62,13 @@ def validate_local_references() -> None:
                 fail(f"Broken local {attr} in {html_path.name}: {raw} -> {target.relative_to(ROOT)}")
 
 
+def content_files(files: list[Path]) -> list[Path]:
+    """Files whose literal content represents the product, excluding this rule file itself."""
+    return [path for path in files if path.resolve() != SELF]
+
+
 def validate_no_regressions(files: list[Path]) -> None:
+    scanned = content_files(files)
     banned = {
         "100% free, always": "obsolete all-free commercial claim",
         "revenue comes from university partnerships": "unsupported revenue claim",
@@ -75,19 +76,19 @@ def validate_no_regressions(files: list[Path]) -> None:
         "60-min strategy session": "obsolete session duration",
         "60 minutes in duration": "obsolete session duration",
     }
-    for path in files:
-        content = path.read_text(encoding="utf-8", errors="strict").lower()
+    for path in scanned:
+        content = path.read_text(encoding="utf-8").lower()
         for phrase, reason in banned.items():
             if phrase in content:
                 fail(f"{reason} found in {path.relative_to(ROOT)}: {phrase!r}")
 
     endpoint = "https://api.web3forms.com/submit"
-    endpoint_files = [p.relative_to(ROOT).as_posix() for p in files if endpoint in p.read_text(encoding="utf-8")]
+    endpoint_files = [p.relative_to(ROOT).as_posix() for p in scanned if endpoint in p.read_text(encoding="utf-8")]
     if endpoint_files != ["js/forms.js"]:
         fail(f"Web3Forms endpoint must exist only in js/forms.js; found in {endpoint_files}")
 
     key = "5e418a41-4cad-44f0-9b93-eccaeff3f36c"
-    key_files = [p.relative_to(ROOT).as_posix() for p in files if key in p.read_text(encoding="utf-8")]
+    key_files = [p.relative_to(ROOT).as_posix() for p in scanned if key in p.read_text(encoding="utf-8")]
     if key_files != ["js/forms.js"]:
         fail(f"Web3Forms access key must exist only in js/forms.js; found in {key_files}")
 
@@ -120,45 +121,28 @@ def validate_commercial_invariants() -> None:
 
 def validate_legacy_removal() -> None:
     obsolete = [
-        "js/data.js",
-        "js/main.js",
-        "js/japan_particle_scene.js",
-        "js/webgl_journey.js",
-        "js/japan_scene.js",
-        "js/germany_scene.js",
-        "js/korea_scene.js",
-        "css/style_cloud_journey.css",
-        "css/career-bridge.css",
-        "css/germany-career-priority.css",
-        "css/germany-polish.css",
-        "css/japan-polish.css",
-        "css/korea-polish.css",
-        "img/japan/campus.png",
-        "img/japan/fuji.png",
-        "img/japan/kyoto-university.webp",
-        "img/japan/sakura.png",
-        "img/japan/street.png",
-        "img/japan/tohoku-university.webp",
-        "img/japan/torii.png",
-        "img/japan/university-of-tokyo.webp",
-        "img/shared/admission-workspace.webp",
-        "img/shared/consulting-desk.webp",
+        "js/data.js", "js/main.js", "js/japan_particle_scene.js", "js/webgl_journey.js",
+        "js/japan_scene.js", "js/germany_scene.js", "js/korea_scene.js",
+        "css/style_cloud_journey.css", "css/career-bridge.css", "css/germany-career-priority.css",
+        "css/germany-polish.css", "css/japan-polish.css", "css/korea-polish.css",
+        "img/japan/campus.png", "img/japan/fuji.png", "img/japan/kyoto-university.webp",
+        "img/japan/sakura.png", "img/japan/street.png", "img/japan/tohoku-university.webp",
+        "img/japan/torii.png", "img/japan/university-of-tokyo.webp",
+        "img/shared/admission-workspace.webp", "img/shared/consulting-desk.webp",
     ]
     for path in obsolete:
         if (ROOT / path).exists():
             fail(f"Obsolete file still present: {path}")
-
     if not (ROOT / "opengraph.jpg").exists():
-        fail("opengraph.jpg must remain; production pages use it for social previews")
+        fail("opengraph.jpg must remain because production pages use it for social previews")
 
 
 def validate_forms() -> None:
-    form_pages = {"index.html": 1, "contact.html": 1, "resources.html": 1}
-    for path, minimum in form_pages.items():
+    for path in ("index.html", "contact.html", "resources.html"):
         content = read(path)
         count = len(re.findall(r"<form\b[^>]*\bdata-arvenaire-form\b", content, flags=re.I))
-        if count < minimum:
-            fail(f"{path} should contain at least {minimum} centrally-bound ARVENAIRE form(s); found {count}")
+        if count < 1:
+            fail(f"{path} must contain a centrally-bound ARVENAIRE form")
         if "api.web3forms.com/submit" in content:
             fail(f"{path} contains inline Web3Forms network code")
 
@@ -175,13 +159,11 @@ def main() -> int:
     validate_commercial_invariants()
     validate_legacy_removal()
     validate_forms()
-
     if ERRORS:
         print("ARVENAIRE validation FAILED:\n")
         for item in ERRORS:
             print(f" - {item}")
         return 1
-
     print(f"ARVENAIRE validation passed: {len(files)} text files checked.")
     return 0
 
