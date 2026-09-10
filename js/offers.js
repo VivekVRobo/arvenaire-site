@@ -11,22 +11,22 @@ const ARVENAIRE_OFFERS = {
     price: "₹499",
     numericPrice: 499,
     currency: "INR",
-    url: "https://topmate.io/vivek_robotics?utm_source=arvenaire&utm_medium=website&utm_campaign=germany_transition&utm_content=kit",
+    url: "https://topmate.io/vivekvrobo/2291780?utm_source=arvenaire&utm_medium=website&utm_campaign=germany_transition&utm_content=kit",
     badge: "2026 Action Kit",
     note: "Editable ATS CV pack, 30-company tracker, outreach scripts, four portfolio blueprints, four GitHub README templates, official-source verification, CV bullet bank, German search terms, and a 14-day sprint."
   },
 
   // Tier 2: Personalized 1-on-1 Strategy Session + Kit Included
   session: {
-    name: "Germany Engineering Strategy Session (60 Min)",
+    name: "Germany Engineering Strategy Session (120 Min)",
     price: "₹2,499",
     numericPrice: 2499,
     currency: "INR",
-    duration: "60 minutes",
-    url: "https://topmate.io/vivek_robotics?utm_source=arvenaire&utm_medium=website&utm_campaign=germany_transition&utm_content=strategy_session",
+    duration: "120 minutes",
+    url: "https://topmate.io/vivekvrobo/2291828?utm_source=arvenaire&utm_medium=website&utm_campaign=germany_transition&utm_content=strategy_session",
     badge: "1-on-1 Personalized Advisory",
     bonus: "Includes complete ₹499 Transition Kit automatically",
-    note: "60-minute 1-on-1 consultation covering profile review, university strategy, CV positioning, and Werkstudent roadmap."
+    note: "120-minute 1-on-1 consultation covering profile review, university strategy, CV positioning, and Werkstudent roadmap."
   }
 };
 
