@@ -4,1394 +4,170 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<title>Arvenaire | Global Engineering Careers & Scholarships</title>
-<meta name="description" content="Message-based guidance for engineers heading abroad: MEXT (Japan), DAAD (Germany), GKS (Korea), plus ATS CV templates, Werkstudent strategy, and portfolio roadmaps.">
+<title>ARVENAIRE | Engineering Careers, Study Routes & Practical Resources</title>
+<meta name="description" content="ARVENAIRE helps students and early-career engineers build practical international career and study plans for Germany, Japan and South Korea, with source-checked guidance and execution resources.">
 <link rel="canonical" href="https://arvenaire.com/">
-
-<!-- JSON-LD: EducationalOrganization + WebSite -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="ARVENAIRE | Engineering Careers, Study Routes & Practical Resources">
+<meta property="og:description" content="Career-first international engineering planning with practical resources, source-checked scholarship guidance and structured execution support.">
+<meta property="og:url" content="https://arvenaire.com/">
+<meta property="og:image" content="https://arvenaire.com/opengraph.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/monetization.css">
+<link rel="stylesheet" href="css/site-pages.css">
+<script src="js/offers.js" defer></script>
+<script src="js/forms.js" defer></script>
+<script src="js/site.js" defer></script>
+<script src="js/transitions.js" defer></script>
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "EducationalOrganization",
-      "@id": "https://arvenaire.com/#organization",
-      "name": "Arvenaire",
-      "url": "https://arvenaire.com",
-      "logo": "https://arvenaire.com/opengraph.jpg",
-      "description": "Message-based guidance and action roadmaps for engineers heading to Germany, Japan, and South Korea.",
-      "sameAs": [
-        "https://www.instagram.com/vivek_robotics/"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://arvenaire.com/#website",
-      "url": "https://arvenaire.com",
-      "name": "Arvenaire",
-      "publisher": {
-        "@id": "https://arvenaire.com/#organization"
-      }
-    }
+  "@context":"https://schema.org",
+  "@graph":[
+    {"@type":"WebSite","name":"ARVENAIRE","url":"https://arvenaire.com/","description":"International engineering career and study planning resources."},
+    {"@type":"Organization","name":"ARVENAIRE","url":"https://arvenaire.com/","logo":"https://arvenaire.com/favicon.svg"}
   ]
 }
 </script>
-
-<!-- Open Graph / LinkedIn / WhatsApp -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://arvenaire.com/">
-<meta property="og:title" content="Arvenaire | Global Engineering Careers & Scholarships">
-<meta property="og:description" content="Roadmaps to Japan (MEXT), Germany (DAAD, Werkstudent), and South Korea (GKS) — plus ATS CV templates, transition kits, and 1-on-1 strategy sessions.">
-<meta property="og:image" content="https://arvenaire.com/opengraph.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:title" content="Arvenaire | Global Engineering Careers & Scholarships">
-<meta property="twitter:description" content="Roadmaps to Japan (MEXT), Germany (DAAD, Werkstudent), and South Korea (GKS) — plus ATS CV templates, transition kits, and 1-on-1 strategy sessions.">
-<meta property="twitter:image" content="https://arvenaire.com/opengraph.jpg">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;700;900&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/monetization.css">
-<script src="js/offers.js" defer></script>
-<style>
-/* ─── RESET ─── */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html,body{
-  width:100%;min-height:100vh;
-  overflow-x:hidden;overflow-y:auto;
-  background: #000;
-  font-family:'Inter',sans-serif;color:#fff;
-}
-
-/* Film Grain */
-body::after {
-  content: ""; position: fixed; inset: 0; z-index: 9999; pointer-events: none;
-  background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.06"/%3E%3C/svg%3E');
-  animation: grainShift 8s steps(10) infinite;
-}
-@keyframes pulseGlow {
-  0%, 100% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.4); opacity: 1; filter: drop-shadow(0 0 8px currentColor); }
-}
-@keyframes grainShift {
-  0%, 100% { transform: translate(0, 0); }
-  10% { transform: translate(-5%, -10%); }
-  30% { transform: translate(3%, -15%); }
-  50% { transform: translate(12%, 9%); }
-  70% { transform: translate(9%, 4%); }
-  90% { transform: translate(-1%, 7%); }
-}
-
-/* ─── CANVAS ─── */
-#c{position:fixed;inset:0;z-index:0;display:block;}
-
-/* ─── PRELOADER ─── */
-#preloader{
-  position:fixed;inset:0;z-index:9999;background:#0a0a12;
-  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;
-  transition:opacity .8s ease,visibility .8s ease;
-}
-#preloader.out{opacity:0;visibility:hidden;pointer-events:none;}
-.pl-logo{font-family:'Outfit',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;letter-spacing:-1px;}
-.pl-logo span{background:linear-gradient(135deg,#9B7B1A,#FFD166);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.pl-bar{width:220px;height:2px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden;}
-.pl-fill{height:100%;width:0;background:linear-gradient(90deg,#9B7B1A,#FFD166);border-radius:99px;transition:width .08s linear;}
-.pl-tip{font-size:.78rem;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase;}
-
-/* ─── INTRO OVERLAY (country select) ─── */
-#intro{
-  position:fixed;inset:0;z-index:100;
-  display:flex;align-items:center;justify-content:center;flex-direction:column;
-  background:linear-gradient(to bottom,rgba(10,10,18,.95) 0%,rgba(10,10,18,.7) 60%,rgba(10,10,18,.95) 100%);
-  transition:opacity 1s ease,visibility 1s ease;
-  padding: 60px 20px 80px 20px;
-}
-#intro.hidden{opacity:0;visibility:hidden;pointer-events:none;}
-.intro-badge{
-  display:inline-flex; align-items:center; gap:8px;
-  font-size:.7rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;
-  color:#FFD166;margin-bottom:24px; padding:6px 16px; border-radius:99px;
-  background: rgba(255,209,102,0.1); border: 1px solid rgba(255,209,102,0.3);
-}
-.intro-title{
-  font-family:'Outfit',sans-serif;font-size:clamp(2.8rem,7vw,5.5rem);
-  font-weight:900;letter-spacing:-3px;text-align:center;line-height:1;margin-bottom:14px;
-  text-shadow: 0 10px 40px rgba(0,0,0,0.8);
-  color:#fff;
-}
-.intro-grad{color:#FFD166;}
-.intro-sub{color:rgba(255,255,255,.88);font-size:1.05rem;text-align:center;max-width:680px;line-height:1.55;font-weight:400;margin-bottom:20px;text-shadow: 0 4px 20px rgba(0,0,0,0.85);}
-.track-btns{
-  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
-  max-width:760px;margin:0 auto 26px;
-}
-.track-btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  min-height:48px;padding:13px 22px;border-radius:999px;
-  color:#fff;text-decoration:none;font-size:.86rem;font-weight:800;
-  letter-spacing:.2px;background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.14);
-  box-shadow:0 12px 34px rgba(0,0,0,.28), inset 0 1px 1px rgba(255,255,255,.12);
-  backdrop-filter:blur(14px);transition:transform .25s,border-color .25s,background .25s,box-shadow .25s;
-}
-.track-btn:hover{
-  transform:translateY(-3px);background:rgba(255,255,255,.11);
-  border-color:rgba(255,255,255,.28);box-shadow:0 18px 44px rgba(0,0,0,.4);
-}
-.track-btn.academic{border-color:rgba(255,209,102,.36);}
-.track-btn.career{border-color:rgba(255,179,71,.36);}
-.intro-label{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:16px;}
-.country-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;max-width:800px;}
-.country-btn{
-  padding:16px 24px;border-radius:18px;
-  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.1);
-  backdrop-filter:blur(12px) saturate(1.2);
-  color:#fff; font-family:'Inter',sans-serif; text-align:left;
-  cursor:pointer;transition:all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-  display:flex;align-items:center;gap:14px; min-width:215px;
-  position: relative; overflow: hidden;
-}
-.country-btn::after {
-  content: ''; position: absolute; inset: 0; z-index: -1;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.08) 0%, transparent 60%);
-  opacity: 0; transition: opacity 0.4s;
-}
-.country-btn:hover::after { opacity: 1; }
-.country-btn:hover{
-  transform:translateY(-6px) scale(1.02);
-  background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.3);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.3);
-}
-.country-btn .flag{
-  display:flex;align-items:center;justify-content:center;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.country-btn:hover .flag{ transform: scale(1.12) rotate(-4deg); }
-.flag-svg{
-  display:block;width:38px;height:26px;border-radius:4px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.4);flex-shrink:0;
-}
-.country-btn-text { display:flex; flex-direction:column; gap:3px; }
-.country-btn .cn-name{font-size:1.05rem;font-weight:800;letter-spacing:-0.5px;}
-.country-btn .cname{display:inline-flex; align-items:center; gap:6px; font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.45);}
-
-/* Status Dot */
-.country-btn .cname::before { content:''; display:block; width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.3); }
-
-/* Live country specific glow */
-.country-btn[data-c="japan"]:hover::after { background: radial-gradient(circle at center, rgba(255,107,157,0.15) 0%, transparent 70%); }
-.country-btn[data-c="japan"] .cname { color: #ff6b9d; }
-.country-btn[data-c="japan"] .cname::before { background: #ff6b9d; box-shadow: 0 0 10px #ff6b9d, 0 0 20px #ff6b9d; animation: pulseGlow 2s infinite; }
-.country-btn[data-c="japan"]:hover{border-color:#ff6b9d;box-shadow:0 15px 40px rgba(255,107,157,.25), inset 0 1px 1px rgba(255,107,157,0.5);}
-
-.country-btn[data-c="korea"]:hover::after { background: radial-gradient(circle at center, rgba(80,120,200,0.15) 0%, transparent 70%); }
-.country-btn[data-c="korea"] .cname { color: #5078C8; }
-.country-btn[data-c="korea"] .cname::before { background: #5078C8; box-shadow: 0 0 10px #5078C8, 0 0 20px #5078C8; animation: pulseGlow 2s infinite; }
-.country-btn[data-c="korea"]:hover{border-color:#5078C8;box-shadow:0 15px 40px rgba(80,120,200,.25), inset 0 1px 1px rgba(80,120,200,0.5);}
-
-.country-btn[data-c="germany"]:hover::after { background: radial-gradient(circle at center, rgba(255,204,0,0.12) 0%, transparent 70%); }
-.country-btn[data-c="germany"]:hover{border-color:#FFCC00;box-shadow:0 15px 40px rgba(255,204,0,.2), inset 0 1px 1px rgba(255,204,0,0.3);}
-.country-btn[data-c="germany"] .cname{color:#FFCC00;}
-.country-btn[data-c="china"]:hover{border-color:#CC0000;box-shadow:0 15px 40px rgba(204,0,0,.2), inset 0 1px 1px rgba(204,0,0,0.3);}
-.country-btn[data-c="china"] .cname{color:rgba(204,80,80,0.9);}
-.country-btn[data-c="australia"]:hover{border-color:#006DAE;box-shadow:0 15px 40px rgba(0,109,174,.2), inset 0 1px 1px rgba(0,109,174,0.3);}
-.country-btn[data-c="australia"] .cname{color:rgba(0,150,200,0.9);}
-
-/* Shimmer loading animation for coming soon buttons */
-@keyframes shimmerSlide {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-.country-btn:not([data-c="japan"]):not([data-c="korea"]):not([data-c="germany"]) {
-  background-size: 200% auto;
-}
-.country-btn:not([data-c="japan"]):not([data-c="korea"]):not([data-c="germany"]):hover .cname::before {
-  animation: pulseGlow 1.5s infinite;
-  opacity: 0.8;
-}
-.country-btn[data-c="germany"] .cname::before { background: #FFCC00; box-shadow: 0 0 10px #FFCC00, 0 0 20px #FFCC00; animation: pulseGlow 2s infinite; }
-
-/* Trust Row */
-.trust-row {
-  display:flex;gap:20px;justify-content:center;margin-top:40px;
-  flex-wrap:wrap;max-width:800px;
-}
-.trust-item {
-  display:flex;align-items:center;gap:10px;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
-  padding:10px 20px;border-radius:99px;backdrop-filter:blur(10px);
-}
-.trust-item .icon { font-size:1.2rem; }
-.trust-item .text { font-size:.75rem;font-weight:600;color:rgba(255,255,255,.75);letter-spacing:0.5px; }
-
-/* ─── NAV ─── */
-#nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  padding:0 32px;height:80px;display:flex;align-items:center;justify-content:space-between;
-  background:transparent;transition:background .4s, opacity .6s;
-}
-#nav.scrolled{background:rgba(10,10,18,.8);backdrop-filter:blur(20px);}
-.nav-logo{font-family:'Outfit',sans-serif;font-size:1.6rem;font-weight:900;letter-spacing:-0.5px;cursor:pointer;}
-.nav-logo span{background:linear-gradient(135deg,var(--pc,#7c5cff),var(--sc,#ff6b9d));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.nav-right{display:flex;align-items:center;gap:20px;}
-.nav-link {
-  color: rgba(255,255,255,.62); font-size: .78rem; font-weight: 700;
-  letter-spacing: 1px; text-transform: uppercase; text-decoration: none;
-  transition: color .25s;
-}
-.nav-link:hover, .nav-link.active { color: #fff; }
-
-.nav-cta {
-  display:inline-block;padding:12px 28px;border-radius:99px;
-  background:linear-gradient(135deg,#7c5cff,#ff6b9d);color:#fff;
-  font-size:.85rem;font-weight:700;text-decoration:none;
-  box-shadow:0 8px 24px rgba(124,92,255,0.3);
-  transition:all .3s ease;
-  animation: navPulse 3s infinite;
-}
-@keyframes navPulse {
-  0%, 100% { box-shadow: 0 8px 24px rgba(124,92,255,0.3); }
-  50% { box-shadow: 0 12px 36px rgba(124,92,255,0.6), 0 0 15px rgba(255,107,157,0.4); }
-}
-.nav-cta:hover { transform:translateY(-2px) scale(1.02); box-shadow:0 12px 32px rgba(124,92,255,0.5); animation:none; }
-
-/* ─── SCROLL HINT ─── */
-#scroll-hint{
-  position:fixed;bottom:14px;left:50%;transform:translateX(-50%);
-  z-index:200;display:flex;flex-direction:column;align-items:center;gap:6px;
-  opacity:0;transition:opacity .6s;
-  pointer-events:none;
-}
-#scroll-hint.show{opacity:1;}
-.sh-text{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.65);}
-.sh-wheel{
-  width:20px;height:30px;border:2px solid rgba(255,255,255,.25);border-radius:99px;
-  position:relative;
-}
-.sh-dot{
-  width:4px;height:7px;background:rgba(255,255,255,.6);border-radius:99px;
-  position:absolute;top:4px;left:50%;transform:translateX(-50%);
-  animation:wheelAnim 1.6s ease-in-out infinite;
-}
-@keyframes wheelAnim{0%{top:4px;opacity:1;}100%{top:16px;opacity:0;}}
-
-/* ─── CINEMATIC PAGE TRANSITION OVERLAY ─── */
-.page-transition-overlay {
-  position: fixed;
-  inset: 0;
-  background: #0a0a12;
-  z-index: 10000;
-  pointer-events: none;
-  opacity: 1;
-  transition: opacity 0.45s cubic-bezier(0.25, 1, 0.5, 1);
-}
-.page-transition-overlay.fade-out { opacity: 0; }
-.page-transition-overlay.fade-in { opacity: 1; pointer-events: all; }
-
-/* ─── INFO PANEL (appears at waypoints) ─── */
-#info-panel{
-  position:fixed;top:50%;left:5%;transform:translateY(-50%);
-  z-index:200;max-width:380px;width:90%;
-  opacity:0;pointer-events:none;
-  transition:opacity .5s ease,transform .5s ease;
-}
-#info-panel.show{opacity:1;pointer-events:all;transform:translateY(-50%) translateX(0);}
-#info-panel.hidden{opacity:0;transform:translateY(-50%) translateX(-30px);}
-.panel-inner{
-  background:rgba(10,10,18,.6);backdrop-filter:blur(32px) saturate(1.5);
-  border:1px solid rgba(255,255,255,.1);border-radius:24px;
-  padding:32px;border-left:4px solid var(--pc,#7c5cff);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.2), inset 0 0 40px rgba(124,92,255,0.05);
-}
-#info-panel .panel-inner > * {
-  transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-#info-panel.panel-transitioning .panel-inner > * {
-  opacity: 0; transform: translateY(15px); filter: blur(8px);
-}
-/* Staggering Delays */
-#info-panel .panel-tag { transition-delay: 0s; }
-#info-panel .panel-title { transition-delay: 0.05s; }
-#info-panel .panel-body { transition-delay: 0.1s; }
-#info-panel .panel-chips { transition-delay: 0.15s; }
-.panel-tag{font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pc,#7c5cff);margin-bottom:12px;}
-.panel-title{font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:800;line-height:1.2;margin-bottom:10px;}
-.panel-body{font-size:.875rem;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:20px;}
-.panel-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;}
-.chip{
-  padding:5px 12px;border-radius:99px;font-size:.72rem;font-weight:600;
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
-}
-.chip.accent{background:rgba(124,92,255,.15);border-color:var(--pc,#7c5cff);color:var(--pc,#7c5cff);}
-.panel-btn{
-  display:inline-flex;align-items:center;gap:8px;padding:11px 22px;
-  background:var(--pc,#7c5cff);color:#fff;border-radius:99px;
-  font-weight:700;font-size:.82rem;cursor:pointer;border:none;
-  transition:opacity .2s,transform .2s;
-}
-.panel-btn:hover{opacity:.85;transform:translateX(3px);}
-
-/* ─── PROGRESS DOTS ─── */
-#progress{
-  position:fixed;right:24px;top:50%;transform:translateY(-50%);
-  z-index:200;display:flex;flex-direction:column;gap:10px;
-  opacity:0;transition:opacity .6s;
-}
-#progress.show{opacity:1;}
-.pd{
-  width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);
-  transition:background .4s,transform .4s;cursor:pointer;
-}
-.pd.active{background:var(--pc,#7c5cff);transform:scale(1.5);}
-
-/* ─── BOTTOM INFO BAR ─── */
-#bottom-bar{
-  position:fixed;bottom:0;left:0;right:0;z-index:200;
-  padding:14px 32px;display:flex;align-items:center;justify-content:space-between;
-  background:linear-gradient(to top,rgba(10,10,18,.9),transparent);
-  opacity:0;transition:opacity .6s;pointer-events:none;
-}
-#bottom-bar.show{opacity:1;pointer-events:all;}
-.bb-left{font-size:.75rem;color:rgba(255,255,255,.35);letter-spacing:1px;}
-.bb-country{font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:800;color:var(--pc,#fff);}
-.bb-right{display:flex;gap:12px;}
-.bb-btn{
-  padding:8px 18px;border-radius:99px;border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.05);font-size:.75rem;font-weight:600;
-  cursor:pointer;transition:.3s;
-}
-.bb-btn:hover{background:rgba(255,255,255,.12);}
-.bb-btn.primary{background:var(--pc,#9B7B1A);border-color:var(--pc,#9B7B1A);color:#fff;}
-
-/* ─── FINAL CTA (end of journey) ─── */
-#final-cta{
-  position:fixed;inset:0;z-index:300;
-  display:flex;align-items:center;justify-content:center;flex-direction:column;
-  background:rgba(10,10,18,.9);backdrop-filter:blur(20px);
-  opacity:0;visibility:hidden;transition:opacity .8s,visibility .8s;
-}
-#final-cta.show{opacity:1;visibility:visible;}
-.cta-box{text-align:center;max-width:600px;padding:0 24px;}
-.cta-flag{font-size:5rem;margin-bottom:20px;display:block;}
-.cta-title{font-family:'Cinzel',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;letter-spacing:-1px;margin-bottom:16px;line-height:1.1;}
-.cta-grad{background:linear-gradient(135deg,var(--pc,#9B7B1A),var(--sc,#FFD166));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.cta-sub{color:rgba(255,255,255,.55);margin-bottom:36px;font-size:1rem;line-height:1.6;}
-.cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-.cta-primary,.cta-secondary{padding:15px 32px;border-radius:99px;font-weight:700;font-size:.95rem;cursor:pointer;border:none;transition:.3s;}
-.cta-primary{background:var(--pc,#9B7B1A);color:#fff;}
-.cta-primary:hover{opacity:.85;transform:translateY(-2px);}
-.cta-secondary{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;}
-.cta-secondary:hover{background:rgba(255,255,255,.12);}
-.cta-back{margin-top:24px;font-size:.8rem;color:rgba(255,255,255,.3);cursor:pointer;text-decoration:underline;}
-.cta-back:hover{color:rgba(255,255,255,.7);}
-
-/* ─── SCROLLABLE GHOST (drives scroll detection) ─── */
-#scroll-ghost{position:fixed;inset:0;z-index:50;overflow-y:scroll;pointer-events:none;}
-#scroll-ghost-inner{height:600vh;width:1px;}
-
-/* ─── MOBILE ─── */
-@media(max-width:600px){
-  #intro{justify-content:flex-start;width:100vw;max-width:100vw;padding:76px 16px 24px;overflow-x:hidden;overflow-y:auto;}
-  .intro-title{width:100%;font-size:clamp(2.05rem,10vw,2.75rem);letter-spacing:0;}
-  .intro-sub{width:100%;max-width:calc(100vw - 32px);font-size:.9rem;line-height:1.55;margin-bottom:18px;}
-  .track-btns{width:100%;max-width:calc(100vw - 40px);flex-direction:column;gap:10px;margin-bottom:26px;}
-  .track-btn{width:100%;min-height:46px;padding:12px 14px;font-size:.76rem;white-space:normal;text-align:center;}
-  .country-btns{gap:10px;width:100%;max-width:calc(100vw - 40px);flex-direction:column;align-items:stretch;}
-  .country-btn{width:100%;min-width:0;padding:14px 18px;}
-  .country-btn .flag{font-size:2rem;}
-  .country-btn .cname{font-size:.68rem;}
-  .trust-row{width:100%;max-width:calc(100vw - 40px);margin-top:24px;gap:8px;transform:none;}
-  .trust-item{width:100%;justify-content:center;}
-  #info-panel{left:50%;transform:translate(-50%,-50%);top:30%;max-width:calc(100vw - 32px);}
-  #info-panel.show{transform:translate(-50%,-50%);}
-}
-
-/* ─── DIVE TRANSITION ─── */
-#dive-overlay {
-  position:fixed;inset:0;z-index:9000;
-  opacity:0;pointer-events:none;
-  background-color:#050002;display:flex;align-items:center;justify-content:center;
-  overflow:hidden;transition:opacity 0.3s ease;
-}
-#dive-overlay.active{opacity:1;pointer-events:all;}
-
-.dive-bg {
-  position:absolute;inset:-20%;
-  background:url('https://images.unsplash.com/photo-1542051812899-60a8b9dd68c7?q=100&w=3840&auto=format&fit=crop') center center/cover no-repeat;
-  filter:brightness(0) blur(20px);
-  transform:scale(1.2);
-  will-change:transform,filter;
-}
-.dive-bg.animating {
-  animation:diveZoomIn 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes diveZoomIn {
-  0%   { transform:scale(1); filter:brightness(2) contrast(1.1) blur(8px); }
-  15%  { filter:brightness(1.1) contrast(1.2) blur(0px); opacity:1; }
-  100% { transform:scale(3.5) translateY(10%); filter:brightness(1.5) contrast(1.3) blur(10px); opacity:0; }
-}
-
-#dive-white-flash {
-  position:fixed;inset:0;z-index:9001;
-  background:#fff;pointer-events:none;opacity:0;
-  transition:opacity 0.2s ease;
-}
-#dive-black-fade {
-  position:fixed;inset:0;z-index:9002;
-  background:#0a0006;pointer-events:none;opacity:0;
-  transition:opacity 0.6s ease;
-}
-/* ─── WAITLIST MODAL ─── */
-#waitlist-modal {
-  position:fixed;inset:0;z-index:9000;
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;visibility:hidden;transition:all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-#waitlist-modal:not(.hidden) { opacity:1;visibility:visible; }
-.wm-backdrop {
-  position:absolute;inset:0;background:rgba(5,5,10,0.85);backdrop-filter:blur(12px);
-}
-.wm-content {
-  position:relative;z-index:1;width:90%;max-width:440px;
-  background:rgba(20,20,30,0.6);backdrop-filter:blur(24px);
-  border:1px solid rgba(255,255,255,0.1);border-radius:24px;
-  padding:40px 32px;text-align:center;
-  box-shadow:0 24px 64px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1);
-  transform:translateY(20px) scale(0.95);transition:all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-#waitlist-modal:not(.hidden) .wm-content { transform:translateY(0) scale(1); }
-.wm-close {
-  position:absolute;top:20px;right:20px;background:none;border:none;color:rgba(255,255,255,0.5);
-  font-size:1.8rem;cursor:pointer;transition:color 0.2s;line-height:1;
-}
-.wm-close:hover { color:#fff; }
-.wm-icon { font-size:3rem;margin-bottom:16px; }
-.wm-title { font-family:'Outfit',sans-serif;font-size:1.8rem;font-weight:900;line-height:1.2;margin-bottom:12px; }
-.wm-grad { background:linear-gradient(135deg,var(--pc,#9B7B1A),var(--sc,#FFD166));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
-.wm-desc { font-size:.9rem;color:rgba(255,255,255,0.6);line-height:1.6;margin-bottom:32px; }
-
-.wm-form { display:flex;flex-direction:column;gap:12px; }
-.wm-form input, .wm-form select {
-  width:100%;padding:14px 18px;border-radius:12px;border:1px solid rgba(255,255,255,0.15);
-  background:rgba(0,0,0,0.4);color:#fff;font-family:'Inter',sans-serif;font-size:.95rem;
-  transition:border-color 0.3s, background 0.3s;
-}
-.wm-form input::placeholder { color:rgba(255,255,255,0.3); }
-.wm-form input:focus, .wm-form select:focus {
-  outline:none;border-color:var(--pc,#9B7B1A);background:rgba(0,0,0,0.6);
-}
-.wm-form select { appearance:none;cursor:pointer; }
-.wm-submit {
-  width:100%;padding:14px;border-radius:12px;border:none;margin-top:8px;
-  background:linear-gradient(135deg,#9B7B1A,#FFD166);color:#fff;
-  font-weight:700;font-size:1rem;cursor:pointer;transition:transform 0.3s, box-shadow 0.3s;
-  box-shadow:0 8px 20px rgba(155,123,26,0.25);
-}
-.wm-submit:hover {
-  transform:translateY(-2px);box-shadow:0 12px 28px rgba(124,92,255,0.4);
-}
-
-.wm-success { position:absolute;inset:0;background:rgba(20,20,30,0.98);border-radius:24px;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:32px;opacity:1;transition:opacity 0.4s; }
-.wm-success.hidden { opacity:0;pointer-events:none; }
-.wm-success-icon { font-size:3.5rem;margin-bottom:16px; }
-.wm-success h4 { font-family:'Outfit',sans-serif;font-size:1.8rem;margin-bottom:10px;color:#fff; }
-.wm-success p { color:rgba(255,255,255,0.6);font-size:.95rem;line-height:1.5; }
-
-/* ─── RESPONSIVE RULES ─── */
-@media(max-height:800px) {
-  .intro-title { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 12px; }
-  .intro-sub { margin-bottom: 14px; font-size: 0.95rem; max-width: 560px; }
-  .track-btns { margin-bottom: 22px; }
-  .trust-row { margin-top: 24px; gap: 12px; }
-  .trust-item { padding: 8px 14px; }
-  .intro-badge { margin-bottom: 8px; font-size: 0.65rem; }
-  .country-btn { padding: 10px 18px; min-width: 100px; }
-  .country-btn .flag { font-size: 1.8rem; }
-  .country-btn .cname { font-size: 0.7rem; }
-}
-@media(max-height:650px) {
-  .intro-title { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 8px; }
-  .intro-sub { margin-bottom: 12px; font-size: 0.85rem; line-height: 1.4; }
-  .track-btns { margin-bottom: 14px; gap: 8px; }
-  .track-btn { min-height: 38px; padding: 9px 14px; font-size: .72rem; }
-  .trust-row { margin-top: 16px; transform: scale(0.9); }
-  .country-btns { gap: 10px; }
-  .country-btn { padding: 8px 14px; }
-  #intro { padding-top: 60px; }
-}
-@media(max-width:768px) {
-  .intro-title { font-size: clamp(2.2rem, 5vw, 3rem); }
-  #nav { padding: 10px 16px; height: auto; align-items: flex-start; flex-direction: column; gap: 10px; }
-  .nav-right { width: 100%; gap: 10px 14px; overflow-x: visible; padding-bottom: 4px; flex-wrap: wrap; }
-  .nav-link { white-space: nowrap; font-size: .7rem; }
-  .nav-cta { padding: 8px 16px; font-size: 0.8rem; }
-  .wm-content { padding: 32px 20px; }
-}
-@media(max-width:600px) {
-  #intro { padding-top: 132px; }
-  #scroll-hint,
-  #progress { display: none; }
-}
-@media(max-width:600px) and (max-height:700px) {
-  #intro { padding-top: 116px; }
-}
-</style>
 </head>
-<body>
-
-<!-- CANVAS -->
-<canvas id="c"></canvas>
-
-<!-- SCROLL SPACER (Creates the scrollable depth) -->
-<div style="width:1px;height:500vh;pointer-events:none;"></div>
-
-<!-- PRELOADER -->
-<div id="preloader">
-  <div class="pl-logo">Arven<span>aire</span></div>
-  <div class="pl-bar"><div class="pl-fill" id="pl-fill"></div></div>
-  <p class="pl-tip">Mapping your journey...</p>
-</div>
-
-<!-- INTRO: COUNTRY SELECT -->
-<div id="intro">
-  <h1 class="intro-title">Choose Your<br><span class="intro-grad">Next Route</span></h1>
-  <p class="intro-tagline" style="text-align:center;color:rgba(255,255,255,.72);font-size:.78rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">MEXT · DAAD · GKS · Werkstudent · ATS CV</p>
-  <p class="intro-sub">Begin with the route that fits you: study abroad and build toward industry, or start a direct engineering career plan for working abroad.</p>
-  <div class="track-btns" aria-label="Choose your ARVENAIRE track">
-    <a href="#market-choice" class="track-btn academic">🎓 Study abroad + career pathway</a>
-    <a href="germany.html" class="track-btn career">⚙️ Germany career & job route</a>
+<body class="app-page">
+<header class="app-nav">
+  <div class="app-container app-nav-inner">
+    <a class="app-brand" href="index.html" aria-label="ARVENAIRE home">ARVEN<span>AIRE</span></a>
+    <button class="app-menu" type="button" aria-expanded="false" aria-controls="app-nav-links">Menu</button>
+    <nav class="app-nav-links" id="app-nav-links" aria-label="Primary navigation">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="germany.html">Germany</a>
+      <a href="japan.html">Japan</a>
+      <a href="korea.html">Korea</a>
+      <a href="resources.html">Resources</a>
+      <a href="blog.html">Blog</a>
+      <a class="app-nav-cta" href="contact.html">Build my plan</a>
+    </nav>
   </div>
-  <p class="intro-label" id="market-choice">Choose a country to explore</p>
-  <div class="country-btns">
-    <button class="country-btn" data-c="japan" onclick="startJapanDive()" aria-label="Explore Japan scholarship route">
-      <span class="flag">
-        <svg class="flag-svg" viewBox="0 0 36 26" width="36" height="26" aria-hidden="true">
-          <rect width="36" height="26" rx="4" fill="#ffffff"/>
-          <circle cx="18" cy="13" r="7.5" fill="#bc002d"/>
-        </svg>
-      </span>
-      <div class="country-btn-text">
-        <span class="cn-name">Japan</span>
-        <span class="cname">Available Now</span>
-      </div>
-    </button>
-    <button class="country-btn" data-c="germany" onclick="startCountryDive('germany', 'germany.html')" aria-label="Explore Germany engineering route">
-      <span class="flag">
-        <svg class="flag-svg" viewBox="0 0 36 26" width="36" height="26" aria-hidden="true">
-          <clipPath id="de-clip"><rect width="36" height="26" rx="4"/></clipPath>
-          <g clip-path="url(#de-clip)">
-            <rect width="36" height="8.67" y="0" fill="#121212"/>
-            <rect width="36" height="8.67" y="8.67" fill="#dd0000"/>
-            <rect width="36" height="8.67" y="17.33" fill="#ffce00"/>
-          </g>
-        </svg>
-      </span>
-      <div class="country-btn-text">
-        <span class="cn-name">Germany</span>
-        <span class="cname">Available Now</span>
-      </div>
-    </button>
-    <button class="country-btn" data-c="china" onclick="showSoon('China', 'China')" aria-label="Join China scholarship waitlist">
-      <span class="flag">
-        <svg class="flag-svg" viewBox="0 0 36 26" width="36" height="26" aria-hidden="true">
-          <clipPath id="cn-clip"><rect width="36" height="26" rx="4"/></clipPath>
-          <g clip-path="url(#cn-clip)">
-            <rect width="36" height="26" fill="#de2910"/>
-            <polygon points="7,4 8.5,8.5 13,8.5 9.5,11.2 10.8,15.5 7,12.8 3.2,15.5 4.5,11.2 1,8.5 5.5,8.5" fill="#ffde00"/>
-            <polygon points="15,3 15.5,4.5 17,4.5 15.8,5.4 16.2,6.8 15,5.9 13.8,6.8 14.2,5.4 13,4.5 14.5,4.5" fill="#ffde00" transform="rotate(20 15 5)"/>
-            <polygon points="18,6 18.5,7.5 20,7.5 18.8,8.4 19.2,9.8 18,8.9 16.8,9.8 17.2,8.4 16,7.5 17.5,7.5" fill="#ffde00" transform="rotate(45 18 8)"/>
-            <polygon points="18,11 18.5,12.5 20,12.5 18.8,13.4 19.2,14.8 18,13.9 16.8,14.8 17.2,13.4 16,12.5 17.5,12.5" fill="#ffde00"/>
-            <polygon points="15,14 15.5,15.5 17,15.5 15.8,16.4 16.2,17.8 15,16.9 13.8,17.8 14.2,16.4 13,15.5 14.5,15.5" fill="#ffde00" transform="rotate(-20 15 16)"/>
-          </g>
-        </svg>
-      </span>
-      <div class="country-btn-text">
-        <span class="cn-name">China</span>
-        <span class="cname">Waitlist · ~4–6 wks</span>
-      </div>
-    </button>
-    <button class="country-btn" data-c="korea" onclick="startCountryDive('korea', 'korea.html')" aria-label="Explore South Korea GKS route">
-      <span class="flag">
-        <svg class="flag-svg" viewBox="0 0 36 26" width="36" height="26" aria-hidden="true">
-          <clipPath id="kr-clip"><rect width="36" height="26" rx="4"/></clipPath>
-          <g clip-path="url(#kr-clip)">
-            <rect width="36" height="26" fill="#ffffff"/>
-            <g transform="translate(18, 13)">
-              <path d="M -6,0 A 6,6 0 0,1 6,0 A 3,3 0 0,1 0,0 A 3,3 0 0,0 -6,0" fill="#cd2e3a"/>
-              <path d="M 6,0 A 6,6 0 0,1 -6,0 A 3,3 0 0,1 0,0 A 3,3 0 0,0 6,0" fill="#0047a0"/>
-              <g transform="rotate(-34) translate(-11, 0)" stroke="#111" stroke-width="0.9" stroke-linecap="round">
-                <line x1="0" y1="-2.2" x2="0" y2="2.2"/><line x1="-1.5" y1="-2.2" x2="-1.5" y2="2.2"/><line x1="1.5" y1="-2.2" x2="1.5" y2="2.2"/>
-              </g>
-              <g transform="rotate(34) translate(11, 0)" stroke="#111" stroke-width="0.9" stroke-linecap="round">
-                <line x1="0" y1="-2.2" x2="0" y2="-0.4"/><line x1="0" y1="0.4" x2="0" y2="2.2"/>
-                <line x1="-1.5" y1="-2.2" x2="-1.5" y2="-0.4"/><line x1="-1.5" y1="0.4" x2="-1.5" y2="2.2"/>
-                <line x1="1.5" y1="-2.2" x2="1.5" y2="-0.4"/><line x1="1.5" y1="0.4" x2="1.5" y2="2.2"/>
-              </g>
-              <g transform="rotate(146) translate(-11, 0)" stroke="#111" stroke-width="0.9" stroke-linecap="round">
-                <line x1="0" y1="-2.2" x2="0" y2="2.2"/>
-                <line x1="-1.5" y1="-2.2" x2="-1.5" y2="-0.4"/><line x1="-1.5" y1="0.4" x2="-1.5" y2="2.2"/>
-                <line x1="1.5" y1="-2.2" x2="1.5" y2="2.2"/>
-              </g>
-              <g transform="rotate(-146) translate(11, 0)" stroke="#111" stroke-width="0.9" stroke-linecap="round">
-                <line x1="0" y1="-2.2" x2="0" y2="-0.4"/><line x1="0" y1="0.4" x2="0" y2="2.2"/>
-                <line x1="-1.5" y1="-2.2" x2="-1.5" y2="2.2"/>
-                <line x1="1.5" y1="-2.2" x2="1.5" y2="-0.4"/><line x1="1.5" y1="0.4" x2="1.5" y2="2.2"/>
-              </g>
-            </g>
-          </g>
-        </svg>
-      </span>
-      <div class="country-btn-text">
-        <span class="cn-name">South Korea</span>
-        <span class="cname">Available Now</span>
-      </div>
-    </button>
-    <button class="country-btn" data-c="australia" onclick="showSoon('Australia', 'Australia')" aria-label="Join Australia scholarship waitlist">
-      <span class="flag">
-        <svg class="flag-svg" viewBox="0 0 36 26" width="36" height="26" aria-hidden="true">
-          <clipPath id="au-clip"><rect width="36" height="26" rx="4"/></clipPath>
-          <g clip-path="url(#au-clip)">
-            <rect width="36" height="26" fill="#001859"/>
-            <g transform="scale(0.5)">
-              <rect width="36" height="26" fill="#00247d"/>
-              <line x1="0" y1="0" x2="36" y2="26" stroke="#ffffff" stroke-width="4.5"/>
-              <line x1="36" y1="0" x2="0" y2="26" stroke="#ffffff" stroke-width="4.5"/>
-              <line x1="0" y1="0" x2="36" y2="26" stroke="#cc142b" stroke-width="2.2"/>
-              <line x1="36" y1="0" x2="0" y2="26" stroke="#cc142b" stroke-width="2.2"/>
-              <line x1="18" y1="0" x2="18" y2="26" stroke="#ffffff" stroke-width="6.5"/>
-              <line x1="0" y1="13" x2="36" y2="13" stroke="#ffffff" stroke-width="6.5"/>
-              <line x1="18" y1="0" x2="18" y2="26" stroke="#cc142b" stroke-width="4"/>
-              <line x1="0" y1="13" x2="36" y2="13" stroke="#cc142b" stroke-width="4"/>
-            </g>
-            <circle cx="9" cy="19" r="2.2" fill="#ffffff"/>
-            <circle cx="27" cy="4.5" r="1" fill="#ffffff"/>
-            <circle cx="31" cy="9.5" r="1" fill="#ffffff"/>
-            <circle cx="27" cy="18" r="1.2" fill="#ffffff"/>
-            <circle cx="23" cy="11.5" r="1" fill="#ffffff"/>
-            <circle cx="28.5" cy="13" r="0.7" fill="#ffffff"/>
-          </g>
-        </svg>
-      </span>
-      <div class="country-btn-text">
-        <span class="cn-name">Australia</span>
-        <span class="cname">Waitlist · ~4–6 wks</span>
-      </div>
-    </button>
-  </div>
-  
-  <div class="trust-row">
-    <a href="germany.html#student-outcomes" class="trust-item" style="text-decoration:none;color:inherit;" aria-label="See student outcomes and testimonials"><span class="icon">🎓</span><span class="text"><span class="count-up" data-target="300" data-suffix="+">0</span> Students Guided</span></a>
-    <div class="trust-item"><span class="icon">💸</span><span class="text">₹<span class="count-up" data-target="5" data-suffix=" Cr+">0</span> Scholarships & Career Value</span></div>
-    <div class="trust-item"><span class="icon">✦</span><span class="text"><span class="count-up" data-target="100" data-suffix="%">0</span> Message-Based Guidance</span></div>
-  </div>
+</header>
 
-  <p class="intro-footnote" style="margin-top:14px;font-size:.78rem;color:rgba(255,255,255,.65);letter-spacing:0.8px;text-align:center;max-width:680px;line-height:1.5;margin-bottom:12px;">Japan, Germany &amp; South Korea are live now. China and Australia waitlists open — next cohort roadmap ships in ~4–6 weeks.</p>
-</div>
-
-<!-- WAITLIST MODAL -->
-<div id="waitlist-modal" class="hidden">
-  <div class="wm-backdrop" onclick="closeWaitlist()"></div>
-  <div class="wm-content">
-    <button class="wm-close" onclick="closeWaitlist()">×</button>
-    <div class="wm-icon" id="wm-icon">🚀</div>
-    <h3 class="wm-title">Join the <span id="wm-country" class="wm-grad">Germany</span> Waitlist</h3>
-    <p class="wm-desc">Be the first to access the interactive map and get a message-based roadmap note when we launch.</p>
-    
-    <form class="wm-form" onsubmit="submitWaitlist(event)">
-      <input type="email" id="wm-email" placeholder="Enter your email address..." required>
-      <select id="wm-degree" required>
-        <option value="" disabled selected>Target Degree Level</option>
-        <option value="bachelors">Bachelors / Undergrad</option>
-        <option value="masters">Masters / Post-grad</option>
-        <option value="phd">PhD / Research</option>
-      </select>
-      <button type="submit" class="wm-submit">Get Early Access →</button>
-    </form>
-    
-    <div class="wm-success hidden" id="wm-success">
-      <div class="wm-success-icon">✨</div>
-      <h4>You're on the list!</h4>
-      <p>We've saved your spot. We will email you the moment the map is ready for you to explore.</p>
-      <button class="wm-submit" style="margin-top:24px" onclick="closeWaitlist()">Back to World Map</button>
+<main>
+  <section class="app-hero app-hero-home">
+    <div class="app-container app-hero-content">
+      <p class="app-kicker">International engineering, made executable</p>
+      <h1>Build a career abroad with a plan you can <span>actually execute.</span></h1>
+      <p class="app-lead">ARVENAIRE turns a vague country goal into concrete decisions: target roles, skills to close, technical proof to build, study routes to evaluate, official sources to verify, and an application system you can run consistently.</p>
+      <div class="app-actions">
+        <a class="app-btn app-btn-primary" href="#destinations">Choose a destination</a>
+        <a class="app-btn app-btn-secondary" href="resources.html">Start with free resources</a>
+      </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<!-- NAV -->
-<nav id="nav">
-  <div class="nav-logo" id="navLogo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Arven<span>aire</span></div>
-  <div class="nav-right">
-    <a href="index.html" class="nav-link active">Home</a>
-    <a href="germany.html" class="nav-link">Germany</a>
-    <a href="japan.html" class="nav-link">Japan</a>
-    <a href="korea.html" class="nav-link">South Korea</a>
-    <a href="resources.html" class="nav-link">Resources</a>
-    <a href="blog.html" class="nav-link">Blog</a>
-    <a href="contact.html" class="nav-cta">Contact</a>
-  </div>
-</nav>
-
-<!-- SCROLL HINT -->
-<div id="scroll-hint">
-  <span class="sh-text">Explore Pathways</span>
-  <div class="sh-wheel"><div class="sh-dot"></div></div>
-</div>
-
-<!-- INFO PANEL -->
-<div id="info-panel">
-  <div class="panel-inner">
-    <p class="panel-tag" id="pTag"></p>
-    <h2 class="panel-title" id="pTitle"></h2>
-    <p class="panel-body" id="pBody"></p>
-    <div class="panel-chips" id="pChips"></div>
-  </div>
-</div>
-
-<!-- PROGRESS DOTS -->
-<div id="progress"></div>
-
-<!-- BOTTOM BAR -->
-<div id="bottom-bar">
-  <div>
-    <div class="bb-left">Currently exploring</div>
-    <div class="bb-country" id="bbCountry"></div>
-  </div>
-  <div class="bb-right">
-    <button class="bb-btn" onclick="returnToMenu()">← Countries</button>
-    <button class="bb-btn primary" onclick="showFinalCTA()">Get Full Guide</button>
-  </div>
-</div>
-
-<!-- FINAL CTA -->
-<div id="final-cta">
-  <div class="cta-box">
-    <span class="cta-flag" id="cta-flag"></span>
-    <h2 class="cta-title"><span class="cta-grad" id="cta-country-name"></span><br>Next Step Ready</h2>
-    <p class="cta-sub" id="cta-sub"></p>
-    <div class="cta-actions">
-      <button class="cta-primary" onclick="window.open('contact.html','_blank')">Message ARVENAIRE</button>
-      <button class="cta-secondary" onclick="returnToMenu()">Explore Another Country</button>
+  <section class="app-section" id="destinations">
+    <div class="app-container">
+      <div class="app-head app-reveal">
+        <div><p class="app-kicker">Country routes</p><h2>Start from the engineering market, not the brochure.</h2></div>
+        <p>Each route is career-first and separates stable planning principles from time-sensitive scholarship or visa information. Where a date matters, ARVENAIRE links you back to the current official source.</p>
+      </div>
+      <div class="app-grid-3">
+        <article class="app-country-card app-reveal">
+          <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1200&q=82" alt="Historic German city architecture" loading="lazy">
+          <div class="app-country-content"><h3>Germany</h3><p>Automation, robotics, embedded systems, manufacturing, Master's routes and Werkstudent preparation.</p><a href="germany.html">Explore Germany →</a></div>
+        </article>
+        <article class="app-country-card app-reveal">
+          <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&q=82" alt="Mount Fuji and Japanese landscape" loading="lazy">
+          <div class="app-country-content"><h3>Japan</h3><p>Engineering role direction, technical evidence, workplace readiness, graduate study and MEXT source checks.</p><a href="japan.html">Explore Japan →</a></div>
+        </article>
+        <article class="app-country-card app-reveal">
+          <img src="https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=1200&q=82" alt="Traditional Korean palace architecture" loading="lazy">
+          <div class="app-country-content"><h3>South Korea</h3><p>Technology-industry roles, portfolio proof, Korean readiness, graduate study and current GKS source checks.</p><a href="korea.html">Explore Korea →</a></div>
+        </article>
+      </div>
     </div>
-    <p class="cta-back" onclick="closeAndRestart()">↺ Ride again</p>
+  </section>
+
+  <section class="app-section app-section-alt">
+    <div class="app-container">
+      <div class="app-head app-reveal">
+        <div><p class="app-kicker">How ARVENAIRE works</p><h2>Clarity first. Evidence second. Applications third.</h2></div>
+        <p>That order prevents expensive decisions from being driven by hype, rankings or a single scholarship headline.</p>
+      </div>
+      <div class="app-grid-3">
+        <article class="app-card app-reveal"><span class="app-card-tag">01 · Direction</span><h3>Define the role and route</h3><p>Identify the engineering work you want, compare realistic entry routes, and make study decisions against that career target.</p></article>
+        <article class="app-card app-reveal"><span class="app-card-tag">02 · Proof</span><h3>Build a profile people can evaluate</h3><p>Strengthen the CV, GitHub, projects, research or industrial evidence that supports your claims in a technical review.</p></article>
+        <article class="app-card app-reveal"><span class="app-card-tag">03 · Execution</span><h3>Run a repeatable application system</h3><p>Track targets, requirements, versions, outreach, deadlines, follow-ups and feedback instead of applying randomly.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="app-section">
+    <div class="app-container">
+      <div class="app-head app-reveal">
+        <div><p class="app-kicker">Free public library</p><h2>Use the free material before deciding whether you need paid help.</h2></div>
+        <p>ARVENAIRE publishes practical guides and templates at no charge. These are separate from the paid Germany execution kit and 1-on-1 strategy session.</p>
+      </div>
+      <div class="app-grid-3">
+        <article class="app-card app-reveal"><span class="app-card-tag">Applications</span><h3>SOP & research templates</h3><p>Frameworks for statements of purpose, research proposals and professor outreach that you can adapt to your own evidence.</p></article>
+        <article class="app-card app-reveal"><span class="app-card-tag">Germany</span><h3>Engineering & Werkstudent guides</h3><p>CV, skills, manufacturing automation and Werkstudent resources designed around practical preparation.</p></article>
+        <article class="app-card app-reveal"><span class="app-card-tag">Career</span><h3>Europe & remote-engineering roadmaps</h3><p>Structured resources for job hunting, portfolio positioning and longer-term international engineering preparation.</p></article>
+      </div>
+      <div class="app-actions app-reveal"><a class="app-btn app-btn-primary" href="resources.html">Open the resource library</a></div>
+    </div>
+  </section>
+
+  <section class="app-section app-section-alt" id="paid-options">
+    <div class="app-container">
+      <div class="app-head app-reveal">
+        <div><p class="app-kicker">Optional paid support · Germany</p><h2>Two clearly labelled products. No “everything is free” contradiction.</h2></div>
+        <p>Paid support is optional. Product pages do not promise admission, scholarship, employment, salary or visa outcomes.</p>
+      </div>
+      <div class="app-grid-2">
+        <article class="app-offer app-reveal">
+          <p class="app-kicker">DIY execution pack</p>
+          <h3>Germany Automation & Robotics Transition Kit (2026)</h3>
+          <p>Editable application assets, employer targeting, outreach scripts, portfolio blueprints, README templates and a 14-day execution sprint.</p>
+          <div class="app-price" data-offer-price="kit">₹499</div>
+          <ul class="app-list"><li>Editable ATS CV pack</li><li>30-company application tracker</li><li>Four engineering portfolio blueprints</li><li>Four technical README templates</li><li>Official-source verification checklist</li></ul>
+          <a class="app-btn app-btn-primary" data-offer-link="kit" data-offer-location="home" href="https://topmate.io/vivekvrobo/2291780" target="_blank" rel="noopener">Get the ₹499 kit</a>
+        </article>
+        <article class="app-offer app-reveal">
+          <p class="app-kicker">1-on-1 working session</p>
+          <h3>Germany Engineering Strategy Session</h3>
+          <p>A <strong data-offer-duration="session">120 minutes</strong> working session for profile review, role direction, CV positioning and practical next actions. The complete ₹499 kit is included.</p>
+          <div class="app-price" data-offer-price="session">₹2,499</div>
+          <ul class="app-list"><li>Profile and role-fit review</li><li>Application and CV positioning</li><li>Study-vs-career route discussion</li><li>Immediate action plan</li><li>Complete Transition Kit included</li></ul>
+          <a class="app-btn app-btn-primary" data-offer-link="session" data-offer-location="home" href="https://topmate.io/vivekvrobo/2291828" target="_blank" rel="noopener">Book the 120-minute session</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="app-section">
+    <div class="app-container app-form-shell">
+      <div class="app-form-aside app-reveal">
+        <p class="app-kicker">Future country routes</p>
+        <h2>China and Australia are not live guides yet.</h2>
+        <p>Join the country-interest list if one of these routes matters to you. This is a waitlist only; it is not an application, scholarship registration or promise of service.</p>
+      </div>
+      <form class="app-form app-reveal" data-arvenaire-form data-subject="New ARVENAIRE Country Waitlist" data-from-name="ARVENAIRE Waitlist" data-success-message="Thanks. Your country interest was recorded." aria-label="Country interest form">
+        <div class="app-field"><label for="wl-name">Name</label><input id="wl-name" name="name" autocomplete="name" required></div>
+        <div class="app-field"><label for="wl-email">Email</label><input id="wl-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="app-field"><label for="wl-country">Country interest</label><select id="wl-country" name="country" required><option value="">Choose one</option><option value="China">China</option><option value="Australia">Australia</option></select></div>
+        <input type="hidden" name="topic" value="country_waitlist">
+        <input class="app-check" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="app-btn app-btn-primary" type="submit">Join country interest list</button>
+        <p class="app-status" data-form-status></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="app-footer">
+  <div class="app-container">
+    <div class="app-footer-row"><a class="app-brand" href="index.html">ARVEN<span>AIRE</span></a><nav class="app-footer-links" aria-label="Footer navigation"><a href="resources.html">Resources</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refunds.html">Refunds</a><a href="disclaimer.html">Disclaimer</a></nav></div>
+    <p class="app-legal">ARVENAIRE is an independent educational and career-planning resource. It is not a university, scholarship body, employer, embassy, immigration authority or government representative. Always confirm time-sensitive requirements with the relevant official source.</p>
+    <p class="app-legal">© <span data-current-year>2026</span> ARVENAIRE.</p>
   </div>
-</div>
-
-<!-- SCRIPTS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
-/* Globe idle scene on index */
-(function(){
-  const cv=document.getElementById('c');
-  const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:false});
-  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-  renderer.setSize(innerWidth,innerHeight);
-  renderer.setClearColor(0x000000, 1); // Pure deep space black
-  const scene=new THREE.Scene();
-  // Optional faint ambient glow
-  scene.fog = new THREE.FogExp2(0x000000, 0.005);
-  
-  const camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,0.1,500);
-  camera.position.set(0,0,24);
-  
-  // Realistic Universe Starfield (Bramhand Milky Way & Suns)
-  const bgGeo = new THREE.BufferGeometry();
-  const bgPos = [], bgCol = [];
-  
-  const sunGeo = new THREE.BufferGeometry();
-  const sunPos = [], sunCol = [];
-  const colorObj = new THREE.Color();
-  
-  for(let i=0; i<12000; i++){
-    // 65% of stars are clustered in the Milky Way band
-    const isMilkyWay = Math.random() < 0.65;
-    let r = 200 + Math.random() * 600;
-    let theta, phi;
-    
-    if (isMilkyWay) {
-      theta = Math.random() * Math.PI * 2;
-      // Normal distribution around the equator
-      let dev = (Math.random() + Math.random() + Math.random() - 1.5) * 0.4;
-      phi = Math.PI/2 + dev; 
-    } else {
-      theta = Math.random() * Math.PI * 2;
-      phi = Math.acos((Math.random() * 2) - 1);
-    }
-    
-    let x = r * Math.sin(phi) * Math.cos(theta);
-    let y = r * Math.sin(phi) * Math.sin(theta);
-    let z = r * Math.cos(phi);
-    
-    const isSun = Math.random() < 0.015; // 1.5% are giant glowing suns
-    
-    if (isSun) {
-      sunPos.push(x,y,z);
-      if(Math.random() > 0.5) colorObj.setHex(0xffaa44); else colorObj.setHex(0xaaaafe); // Orange or Blue Giants
-      sunCol.push(colorObj.r, colorObj.g, colorObj.b);
-    } else {
-      bgPos.push(x,y,z);
-      let rand = Math.random();
-      if(rand > 0.90) colorObj.setHex(0xaaccff);
-      else if(rand > 0.75) colorObj.setHex(0xffddaa);
-      else if (isMilkyWay) colorObj.setHex(0xddddff); // Dense bright white/blue in band
-      else colorObj.setHex(0xffffff);
-      bgCol.push(colorObj.r, colorObj.g, colorObj.b);
-    }
-  }
-  
-  bgGeo.setAttribute('position', new THREE.Float32BufferAttribute(bgPos, 3));
-  bgGeo.setAttribute('color', new THREE.Float32BufferAttribute(bgCol, 3));
-  const starsBg = new THREE.Points(bgGeo, new THREE.PointsMaterial({ size: 0.4, vertexColors: true, transparent: true, opacity: 0.8, sizeAttenuation: true }));
-  // Tilt the Milky way diagonally across the sky
-  starsBg.rotation.z = Math.PI / 4;
-  starsBg.rotation.x = Math.PI / 8;
-  scene.add(starsBg);
-  
-  sunGeo.setAttribute('position', new THREE.Float32BufferAttribute(sunPos, 3));
-  sunGeo.setAttribute('color', new THREE.Float32BufferAttribute(sunCol, 3));
-  const starsSuns = new THREE.Points(sunGeo, new THREE.PointsMaterial({ size: 2.2, vertexColors: true, transparent: true, opacity: 1.0, sizeAttenuation: true, blending: THREE.AdditiveBlending }));
-  starsSuns.rotation.z = Math.PI / 4;
-  starsSuns.rotation.x = Math.PI / 8;
-  scene.add(starsSuns);
-
-  // Meteors (Ulkapind)
-  const meteors = [];
-  const meteorMat = new THREE.LineBasicMaterial({color: 0xffffff, transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending});
-  for(let i=0; i<7; i++){
-    const geo = new THREE.BufferGeometry();
-    const pos = new Float32Array(6);
-    geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-    const line = new THREE.Line(geo, meteorMat);
-    scene.add(line);
-    meteors.push({ line: line, active: false, x:0, y:0, z:0, vx:0, vy:0, vz:0, life:0, maxLife:0 });
-  }
-  
-  // Lights
-  scene.add(new THREE.AmbientLight(0xffffff,0.6));
-  const sun=new THREE.DirectionalLight(0xffffff,1.2);
-  sun.position.set(20,10,10);scene.add(sun);
-  
-  // Real Earth
-  const R = 7; // Globe radius
-  const globeGroup = new THREE.Group();
-  scene.add(globeGroup);
-  
-  const tl = new THREE.TextureLoader();
-  const earthMat = new THREE.MeshPhongMaterial({
-    map: tl.load('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg'),
-    bumpMap: tl.load('https://unpkg.com/three-globe/example/img/earth-topology.png'),
-    bumpScale: 0.1,
-    specularMap: tl.load('https://unpkg.com/three-globe/example/img/earth-water.png'),
-    specular: new THREE.Color('grey')
-  });
-  const globe=new THREE.Mesh(new THREE.SphereGeometry(R,64,64), earthMat);
-  globeGroup.add(globe);
-  
-  // Atmosphere halo
-  const halo = new THREE.Mesh(new THREE.SphereGeometry(R*1.04, 32, 32), new THREE.MeshBasicMaterial({color:0x4466ff,transparent:true,opacity:0.1, side: THREE.BackSide}));
-  scene.add(halo);
-
-  // Country Coordinates [Lat, Lon]
-  const countries = [
-    { name: 'japan', lat: 36.2048, lon: 138.2529, color: 0xff3355 },
-    { name: 'germany', lat: 51.1657, lon: 10.4515, color: 0xffd700 },
-    { name: 'china', lat: 35.8617, lon: 104.1954, color: 0xcc2200 },
-    { name: 'korea', lat: 35.9078, lon: 127.7669, color: 0x1155dd },
-    { name: 'australia', lat: -25.2744, lon: 133.7751, color: 0x0099dd }
-  ];
-  
-  const calcPosFromLatLon = (lat, lon, radius) => {
-    const phi = (90 - lat) * (Math.PI / 180);
-    const theta = (lon + 180) * (Math.PI / 180);
-    return new THREE.Vector3(
-      -(radius * Math.sin(phi) * Math.cos(theta)),
-      radius * Math.cos(phi),
-      radius * Math.sin(phi) * Math.sin(theta)
-    );
-  };
-
-  window.countryDots = {};
-  countries.forEach(c => {
-    const pos = calcPosFromLatLon(c.lat, c.lon, R * 1.01);
-    const g = new THREE.Group();
-    g.position.copy(pos);
-    
-    const m = new THREE.Mesh(new THREE.SphereGeometry(0.08,16,16), new THREE.MeshBasicMaterial({color:c.color}));
-    g.add(m);
-    
-    // Glow ring placed correctly
-    const r = new THREE.Mesh(new THREE.RingGeometry(0.12,0.20,32), new THREE.MeshBasicMaterial({color:c.color,side:THREE.DoubleSide,transparent:true,opacity:0.6}));
-    r.lookAt(new THREE.Vector3().copy(pos).multiplyScalar(2)); // orient ring strictly outward
-    g.add(r);
-    
-    globeGroup.add(g);
-    window.countryDots[c.name] = { mesh: g, pos: pos.clone() };
-  });
-
-  // ─── GEOMETRIC TRAVEL ARCS FROM INDIA ───
-  const indiaLat = 28.6139, indiaLon = 77.2090; // New Delhi
-  const indiaPos = calcPosFromLatLon(indiaLat, indiaLon, R * 1.015);
-  
-  const indiaMarker = new THREE.Group();
-  indiaMarker.position.copy(indiaPos);
-  indiaMarker.add(new THREE.Mesh(new THREE.SphereGeometry(0.1, 16, 16), new THREE.MeshBasicMaterial({color: 0x6C3BFF})));
-  const indiaRing = new THREE.Mesh(new THREE.RingGeometry(0.14, 0.22, 32), new THREE.MeshBasicMaterial({color: 0x6C3BFF, side: THREE.DoubleSide, transparent: true, opacity: 0.8}));
-  indiaRing.lookAt(new THREE.Vector3().copy(indiaPos).multiplyScalar(2));
-  indiaMarker.add(indiaRing);
-  globeGroup.add(indiaMarker);
-
-  function createTravelArc(p1, p2, color) {
-    const points = [];
-    const numPoints = 40;
-    const mid = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
-    const dist = p1.distanceTo(p2);
-    const height = R * (1.0 + dist * 0.16);
-    mid.normalize().multiplyScalar(height);
-    
-    const curve = new THREE.QuadraticBezierCurve3(p1, mid, p2);
-    const curvePoints = curve.getPoints(numPoints);
-    
-    const geo = new THREE.BufferGeometry().setFromPoints(curvePoints);
-    const mat = new THREE.LineBasicMaterial({
-      color: color,
-      transparent: true,
-      opacity: 0.38,
-      blending: THREE.AdditiveBlending
-    });
-    
-    const line = new THREE.Line(geo, mat);
-    globeGroup.add(line);
-    
-    const dotGeo = new THREE.SphereGeometry(0.045, 8, 8);
-    const dotMat = new THREE.MeshBasicMaterial({
-      color: color,
-      transparent: true,
-      opacity: 0.9,
-      blending: THREE.AdditiveBlending
-    });
-    const dot = new THREE.Mesh(dotGeo, dotMat);
-    globeGroup.add(dot);
-    
-    return {
-      curve: curve,
-      dot: dot,
-      progress: Math.random(),
-      speed: 0.0035 + Math.random() * 0.003
-    };
-  }
-
-  const travelArcs = [];
-  countries.forEach(c => {
-    const targetPos = calcPosFromLatLon(c.lat, c.lon, R * 1.01);
-    travelArcs.push(createTravelArc(indiaPos, targetPos, c.color));
-  });
-
-  // Rotate globe initially so Japan is roughly facing the camera
-  globeGroup.rotation.y = -1.2;
-  globeGroup.rotation.x = 0.2;
-
-  let t=0;
-  window.isDiving = false;
-  window.diveStartTime = 0;
-  window.diveTargetCountry = 'japan';
-  window.diveRedirectUrl = 'japan.html';
-  window.diveTargetWorld = new THREE.Vector3();
-
-  // Scroll Story Configuration
-  const story = [
-    { p: 0, rot: -1.2,  camZ: 28, showIntro: true, tag: '', title: '', body: '' },
-    { p: 0.25, rot: -2.3, camZ: 17, showIntro: false, tag: 'Step 1', title: 'Profile Evaluation', body: 'We rigorously analyze your academic background, research experience, and long-term career goals to find the absolute best-fit scholarship programs globally.', chips: ['📊 Complete Analysis', '🎯 Goal Alignment'] },
-    { p: 0.50, rot: -3.8, camZ: 16, showIntro: false, tag: 'Step 2', title: 'Smart Shortlisting', body: 'Stop guessing. We use historical data to precisely shortlist universities and professors where your profile has the highest statistical probability of acceptance.', chips: ['🏫 AI Matching', '📈 Highest ROI'] },
-    { p: 0.75, rot: -5.2, camZ: 17, showIntro: false, tag: 'Step 3', title: 'Application & Interview', body: 'Our experts guide you through drafting compelling Statements of Purpose, developing research proposals, and conducting high-pressure mock interviews.', chips: ['📝 Elite SOP Reviews', '🎤 Mock Interviews'] },
-    { p: 1.0, rot: -7.48, camZ: 24, showIntro: true, tag: '', title: '', body: '' } // -7.48 = -1.2 - 2PI (A perfect 360 degree spin back to Japan!)
-  ];
-
-  let targetRotY = -1.2;
-  let targetCamZ = 28;
-
-  // Render Progress Dots
-  const progressContainer = document.getElementById('progress');
-  story.forEach((s, idx) => {
-    const dot = document.createElement('div');
-    dot.className = 'pd' + (idx === 0 ? ' active' : '');
-    dot.onclick = () => window.scrollTo({ top: s.p * (document.body.scrollHeight - window.innerHeight), behavior: 'smooth' });
-    progressContainer.appendChild(dot);
-  });
-  progressContainer.classList.add('show');
-
-  // Hover Interaction Logic
-  let hoverRotY = null;
-  let hoverRotX = null;
-  
-  document.querySelectorAll('.country-btn').forEach(btn => {
-    btn.addEventListener('mouseenter', () => {
-       const cName = btn.getAttribute('data-c');
-       const country = countries.find(x => x.name === cName);
-       if(country) {
-         hoverRotY = - (country.lon + 90) * (Math.PI / 180);
-         hoverRotX = (country.lat) * (Math.PI / 180);
-       }
-    });
-    btn.addEventListener('mouseleave', () => {
-       hoverRotY = null;
-       hoverRotX = null;
-    });
-  });
-
-  // Handle Scroll Progress
-  window.addEventListener('scroll', () => {
-    let p = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-    p = Math.max(0, Math.min(1, p));
-
-    // Update Dots
-    const dots = document.querySelectorAll('.pd');
-    let activeIdx = 0;
-    if(p > 0.1) activeIdx = 1;
-    if(p > 0.4) activeIdx = 2;
-    if(p > 0.65) activeIdx = 3;
-    if(p > 0.9) activeIdx = 4;
-    dots.forEach((d,i) => {
-      d.classList.toggle('active', i === activeIdx);
-    });
-
-    // Find current Segment
-    let s0 = story[0], s1 = story[story.length-1];
-    for(let i=0; i<story.length-1; i++){
-      if(p >= story[i].p && p <= story[i+1].p){
-        s0=story[i]; s1=story[i+1]; break;
-      }
-    }
-    
-    // Lerp values
-    let dp = (p - s0.p) / ((s1.p - s0.p) || 1);
-    let ease = dp < 0.5 ? 2 * dp * dp : 1 - Math.pow(-2 * dp + 2, 2) / 2; // Ease in-out
-
-    targetRotY = s0.rot + (s1.rot - s0.rot) * ease;
-    targetCamZ = s0.camZ + (s1.camZ - s0.camZ) * ease;
-
-    // UI Visibility
-    const intro = document.getElementById('intro');
-    const scrollHint = document.getElementById('scroll-hint');
-    if(p > 0.05 && p < 0.95) {
-      intro.classList.add('hidden');
-      scrollHint.classList.remove('show');
-    } else {
-      intro.classList.remove('hidden');
-      if (p <= 0.05) scrollHint.classList.add('show');
-    }
-
-    // Update Info Panel content halfway through the segment
-    let currentActive = dp < 0.5 ? s0 : s1;
-    const panel = document.getElementById('info-panel');
-    if(currentActive.title !== '') {
-      panel.classList.add('show');
-      panel.classList.remove('hidden');
-      
-      const pTitle = document.getElementById('pTitle');
-      if(pTitle.textContent !== currentActive.title && !panel.classList.contains('panel-transitioning')) {
-        // Trigger exit animation
-        panel.classList.add('panel-transitioning');
-        
-        // Wait for CSS exit transition, then swap text and animate in
-        setTimeout(() => {
-          document.getElementById('pTag').textContent = currentActive.tag;
-          pTitle.textContent = currentActive.title;
-          document.getElementById('pBody').textContent = currentActive.body;
-          document.getElementById('pChips').innerHTML = currentActive.chips.map(c => '<div class="chip accent">'+c+'</div>').join('');
-          
-          // Small nested delay ensures browser registers DOM update before removing transition class
-          requestAnimationFrame(() => {
-            panel.classList.remove('panel-transitioning');
-          });
-        }, 400); // 400ms matches CSS transition duration
-      }
-    } else {
-      panel.classList.remove('show');
-      panel.classList.add('hidden');
-    }
-  });
-  // Show scroll hint initially
-  setTimeout(() => document.getElementById('scroll-hint').classList.add('show'), 1500);
-
-  (function loop(){
-    requestAnimationFrame(loop);
-    
-    // Very slow, majestic rotation of the universe backdrop
-    starsBg.rotation.y += 0.0001;
-    starsSuns.rotation.y += 0.0001;
-
-    // Animate travel flow particles along Bezier curves
-    travelArcs.forEach(arc => {
-      arc.progress += arc.speed;
-      if (arc.progress > 1.0) arc.progress = 0.0;
-      const pos = arc.curve.getPointAt(arc.progress);
-      arc.dot.position.copy(pos);
-    });
-
-    // Meteor (Ulkapind) Animation Logic
-    meteors.forEach(m => {
-      if(!m.active) {
-        if(Math.random() < 0.003) { // 0.3% chance per frame to spawn
-          m.active = true;
-          m.life = 0;
-          m.maxLife = 30 + Math.random() * 40;
-          // Spawn high and far away
-          m.x = (Math.random()-0.5)*400;
-          m.y = 100 + Math.random()*150;
-          m.z = -100 - Math.random()*200;
-          // Shoot diagonally downwards
-          m.vx = -1 - Math.random()*3;
-          m.vy = -1 - Math.random()*3;
-          m.vz = (Math.random()-0.5)*2;
-        }
-      } else {
-        m.life++;
-        m.x += m.vx; m.y += m.vy; m.z += m.vz;
-        const posArr = m.line.geometry.attributes.position.array;
-        posArr[0] = m.x; posArr[1] = m.y; posArr[2] = m.z;
-        // The tail trails behind based on velocity
-        posArr[3] = m.x - m.vx*15; posArr[4] = m.y - m.vy*15; posArr[5] = m.z - m.vz*15;
-        m.line.geometry.attributes.position.needsUpdate = true;
-        // Fade out as it dies
-        m.line.material.opacity = (1.0 - (m.life/m.maxLife)) * 0.8;
-        
-        if(m.life >= m.maxLife) m.active = false;
-      }
-    });
-
-    if (!window.isDiving) {
-      t+=.002;
-      
-      let finalRotY = targetRotY;
-      let finalRotX = 0.2; // default idle x
-      
-      if (window.scrollY < 100 && hoverRotY !== null) {
-        finalRotY = hoverRotY;
-        finalRotX = hoverRotX;
-      }
-      
-      // Smoothly interpolate globe rotation and camera zoom based on scroll or hover target
-      globeGroup.rotation.y = THREE.MathUtils.lerp(globeGroup.rotation.y, finalRotY, 0.05);
-      globeGroup.rotation.x = THREE.MathUtils.lerp(globeGroup.rotation.x, finalRotX, 0.05);
-      camera.position.z = THREE.MathUtils.lerp(camera.position.z, targetCamZ, 0.05);
-      
-      // Gentle camera sway added on top of the fixed Z position
-      camera.position.x = Math.sin(t*1)*0.3;
-      camera.position.y = Math.sin(t*0.8)*0.3;
-      camera.lookAt(0,0,0);
-    } else {
-      // -- PRO VIDEO LEVEL CINEMATIC ORBITAL SWOOP --
-      let elapsed = performance.now() - window.diveStartTime;
-      let duration = 4000; // 4.0 seconds total tracking shot (faster, more responsive start)
-      let p = Math.min(elapsed / duration, 1.0);
-      
-      // Pure fluid Smoothstep Easing (removes the "heavy/stuck" feeling at the start)
-      let ease = p * p * (3.0 - 2.0 * p);
-      
-      // Slowly rotate the globe during the dive so it doesn't just freeze
-      globeGroup.rotation.y = THREE.MathUtils.lerp(window.diveStartRotY, window.diveStartRotY - 0.2, ease);
-      globeGroup.rotation.x = THREE.MathUtils.lerp(window.diveStartRotX, 0.05, ease);
-      
-      // Get the selected country's exact world position
-      const targetData = window.countryDots[window.diveTargetCountry] || window.countryDots['japan'];
-      window.diveTargetWorld.copy(targetData.pos);
-      window.diveTargetWorld.applyMatrix4(globeGroup.matrixWorld);
-      
-      // Calculate final camera resting spot above the selected marker
-      let finalCamPos = window.diveTargetWorld.clone().normalize().multiplyScalar(R + 2.0);
-      
-      // Start vector
-      let startCam = new THREE.Vector3(window.diveStartCamX, window.diveStartCamY, window.diveStartCamZ);
-      
-      // Interpolate straight line
-      camera.position.lerpVectors(startCam, finalCamPos, ease);
-      
-      // Add the Cinematic "Orbital Arcing Swoop" offset (smoother arc)
-      let arc = Math.sin(p * Math.PI) * 6.0; 
-      camera.position.x += arc * 0.5;
-      camera.position.z += arc * 0.2;
-      
-      // Dynamic focal length pull
-      camera.fov = THREE.MathUtils.lerp(55, 40, ease);
-      camera.updateProjectionMatrix();
-      
-      // Slowly pan the camera from looking at Earth's center to looking directly at the selected marker
-      let currentLookAt = new THREE.Vector3(0,0,0).lerp(window.diveTargetWorld, ease);
-      camera.lookAt(currentLookAt);
-    }
-    renderer.render(scene,camera);
-  })();
-
-  window.addEventListener('resize',()=>{
-    renderer.setSize(innerWidth,innerHeight);
-    camera.aspect=innerWidth/innerHeight;
-    camera.updateProjectionMatrix();
-  });
-  
-  // Preloader
-  const fill=document.getElementById('pl-fill');
-  const preloader=document.getElementById('preloader');
-  let w=0;
-  setTimeout(()=>preloader?.classList.add('out'),3500);
-  const iv=setInterval(()=>{
-    w+=6+Math.random()*8;
-    if(w>=100){w=100;clearInterval(iv);
-      setTimeout(()=>preloader?.classList.add('out'),300);
-    }
-    if(fill) fill.style.width=w+'%';
-  },70);
-
-  // Hook up dive functions to the global window object from INSIDE the closure
-  window.startCountryDive = function(countryName, targetUrl) {
-    if (window.isDiving) return;
-    const targetData = window.countryDots ? window.countryDots[countryName] : null;
-    if (!targetData) {
-      window.location.href = targetUrl;
-      return;
-    }
-
-    // 1. Hide UI smoothly
-    document.getElementById('intro').style.transition = 'opacity 0.8s ease';
-    document.getElementById('intro').style.opacity = '0';
-    document.getElementById('intro').style.pointerEvents = 'none';
-    document.getElementById('nav').style.transition = 'opacity 0.8s ease';
-    document.getElementById('nav').style.opacity = '0';
-
-    // 2. Hide selected marker immediately for realistic texture zoom seamlessness
-    window.diveTargetCountry = countryName;
-    window.diveRedirectUrl = targetUrl;
-    targetData.mesh.visible = false;
-
-    // 3. Initiate the continuous orbital math in the render loop
-    window.isDiving = true;
-    window.diveStartTime = performance.now();
-    window.diveStartCamX = camera.position.x;
-    window.diveStartCamY = camera.position.y;
-    window.diveStartCamZ = camera.position.z;
-    window.diveStartRotY = globeGroup.rotation.y;
-    window.diveStartRotX = globeGroup.rotation.x;
-
-    // 4. Trigger the cinematic fade-to-black at 2.8 seconds. 
-    setTimeout(() => {
-      const fade = document.createElement('div');
-      fade.style.position = 'fixed';
-      fade.style.inset = '0';
-      fade.style.background = '#000';
-      fade.style.zIndex = '9999';
-      fade.style.opacity = '0';
-      fade.style.transition = 'opacity 1.5s ease-in-out'; // 1.5 second grand fade
-      document.body.appendChild(fade);
-      
-      // Force reflow
-      fade.offsetHeight;
-      fade.style.opacity = '1';
-
-      // 5. Redirect precisely at 4.5 seconds when the screen is completely pitch black
-      setTimeout(() => {
-        window.location = window.diveRedirectUrl;
-      }, 1500); 
-    }, 2800); 
-  };
-
-  window.startJapanDive = function() {
-    window.startCountryDive('japan', 'japan.html');
-  };
-})();
-
-function showSoon(flag, name){
-  const topic = name === 'Australia' ? 'australia_waitlist' : 'china_waitlist';
-  const message = encodeURIComponent(name + ' Waitlist: Please notify me when this roadmap is ready.');
-  window.location.href = 'contact.html?topic=' + topic + '&message=' + message;
-}
-
-function closeWaitlist(){
-  document.getElementById('waitlist-modal').classList.add('hidden');
-}
-
-async function submitWaitlist(e){
-  e.preventDefault();
-  const btn = e.target.querySelector('.wm-submit');
-  const ogText = btn.textContent;
-  const email = document.getElementById('wm-email').value;
-  const degree = document.getElementById('wm-degree').value;
-  const countryEl = document.getElementById('wm-country');
-  const country = countryEl ? countryEl.textContent.trim() : 'Waitlist';
-
-  btn.textContent = 'Saving Spot...';
-  btn.disabled = true;
-
-  try {
-    const formData = new FormData();
-    formData.append('access_key', '5e418a41-4cad-44f0-9b93-eccaeff3f36c');
-    formData.append('subject', 'New ARVENAIRE Waitlist: ' + country);
-    formData.append('from_name', 'ARVENAIRE Waitlist');
-    formData.append('email', email);
-    formData.append('degree_level', degree);
-    formData.append('country', country);
-
-    await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formData
-    });
-  } catch(err) {
-    console.warn('Waitlist post error:', err);
-  }
-
-  btn.textContent = ogText;
-  btn.disabled = false;
-  document.getElementById('wm-success').classList.remove('hidden');
-}
-
-/* ─── Animated Count-Up ─── */
-(function(){
-  function animateCount(el) {
-    const target = parseInt(el.dataset.target);
-    const suffix = el.dataset.suffix || '';
-    const duration = 1800;
-    const step = target > 200 ? Math.ceil(target / 60) : 1;
-    let current = 0;
-    const interval = setInterval(() => {
-      current += step;
-      if (current >= target) {
-        current = target;
-        clearInterval(interval);
-      }
-      el.textContent = current.toLocaleString() + suffix;
-    }, duration / (target / step));
-  }
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        animateCount(e.target);
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.count-up').forEach(el => obs.observe(el));
-})();
-</script>
-<footer class="site-legal-footer">
-  <div class="legal-nav">
-    <a href="index.html">Home</a>
-    <a href="germany.html">Germany Pipeline</a>
-    <a href="resources.html">Resources</a>
-    <a href="contact.html">Contact</a>
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="terms.html">Terms of Service</a>
-    <a href="refunds.html">Refund Policy</a>
-    <a href="disclaimer.html">Educational Disclaimer</a>
-  </div>
-  <div class="legal-disclaimer">
-    <p>ARVENAIRE is an independent educational guidance platform. We are not affiliated with DAAD, MEXT, GKS, or university admissions boards. We provide structured execution templates and advisory support. No guaranteed university placement or visa issuance.</p>
-  </div>
-  <p>&copy; 2026 ARVENAIRE. All rights reserved.</p>
 </footer>
-
-<script src="js/transitions.js"></script>
 </body>
 </html>

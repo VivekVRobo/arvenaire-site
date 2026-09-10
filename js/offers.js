@@ -1,82 +1,74 @@
 /**
- * ARVENAIRE Commercial Offer Configuration & Tracking
- * Single Source of Truth for Pricing, URLs, and Analytics
+ * ARVENAIRE commercial configuration.
+ * Single source of truth for public offer names, prices, durations and checkout URLs.
  */
+(function () {
+  'use strict';
 
-const ARVENAIRE_OFFERS = {
-  // Tier 1: DIY Execution Kit
-  kit: {
-    name: "Germany Automation & Robotics Transition Kit (2026)",
-    version: "1.2 FINAL",
-    price: "₹499",
-    numericPrice: 499,
-    currency: "INR",
-    url: "https://topmate.io/vivekvrobo/2291780?utm_source=arvenaire&utm_medium=website&utm_campaign=germany_transition&utm_content=kit",
-    badge: "2026 Action Kit",
-    note: "Editable ATS CV pack, 30-company tracker, outreach scripts, four portfolio blueprints, four GitHub README templates, official-source verification, CV bullet bank, German search terms, and a 14-day sprint."
-  },
+  const OFFERS = Object.freeze({
+    kit: Object.freeze({
+      name: 'Germany Automation & Robotics Transition Kit (2026)',
+      version: '1.2 FINAL',
+      price: '₹499',
+      numericPrice: 499,
+      currency: 'INR',
+      url: 'https://topmate.io/vivekvrobo/2291780?utm_source=arvenaire&utm_medium=website&utm_campaign=germany_transition&utm_content=kit',
+      badge: '2026 Action Kit',
+      note: 'Editable ATS CV pack, 30-company tracker, outreach scripts, four portfolio blueprints, four GitHub README templates, official-source verification checklist, CV bullet bank, German search terms, and a 14-day sprint.'
+    }),
+    session: Object.freeze({
+      name: 'Germany Engineering Strategy Session (120 Min)',
+      price: '₹2,499',
+      numericPrice: 2499,
+      currency: 'INR',
+      duration: '120 minutes',
+      url: 'https://topmate.io/vivekvrobo/2291828?utm_source=arvenaire&utm_medium=website&utm_campaign=germany_transition&utm_content=strategy_session',
+      badge: '1-on-1 Personalized Advisory',
+      bonus: 'Includes the complete ₹499 Transition Kit',
+      note: 'A 120-minute 1-on-1 working session for profile review, role direction, CV positioning, application strategy and practical next steps.'
+    })
+  });
 
-  // Tier 2: Personalized 1-on-1 Strategy Session + Kit Included
-  session: {
-    name: "Germany Engineering Strategy Session (120 Min)",
-    price: "₹2,499",
-    numericPrice: 2499,
-    currency: "INR",
-    duration: "120 minutes",
-    url: "https://topmate.io/vivekvrobo/2291828?utm_source=arvenaire&utm_medium=website&utm_campaign=germany_transition&utm_content=strategy_session",
-    badge: "1-on-1 Personalized Advisory",
-    bonus: "Includes complete ₹499 Transition Kit automatically",
-    note: "120-minute 1-on-1 consultation covering profile review, university strategy, CV positioning, and Werkstudent roadmap."
+  function track(type, locationName) {
+    const offer = OFFERS[type];
+    if (!offer) return;
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'select_promotion', {
+        promotion_name: offer.name,
+        creative_slot: locationName || 'page_body',
+        value: offer.numericPrice,
+        currency: offer.currency
+      });
+    }
   }
-};
 
-// Analytics Event Tracking Helper
-function trackOfferClick(offerType, locationName) {
-  const offer = ARVENAIRE_OFFERS[offerType];
-  if (!offer) return;
+  function bind(root) {
+    (root || document).querySelectorAll('[data-offer-link]').forEach(link => {
+      const type = link.dataset.offerLink;
+      const offer = OFFERS[type];
+      if (!offer) return;
+      link.href = offer.url;
+      if (link.dataset.offerBound === 'true') return;
+      link.dataset.offerBound = 'true';
+      link.addEventListener('click', () => track(type, link.dataset.offerLocation));
+    });
 
-  console.log(`[ARVENAIRE Analytics] Clicked ${offerType} (${offer.price}) from ${locationName}`);
-  
-  if (typeof window.gtag === 'function') {
-    window.gtag('event', 'select_promotion', {
-      promotion_name: offer.name,
-      creative_slot: locationName,
-      value: offer.numericPrice,
-      currency: offer.currency || 'INR'
+    (root || document).querySelectorAll('[data-offer-price]').forEach(el => {
+      const offer = OFFERS[el.dataset.offerPrice];
+      if (offer) el.textContent = offer.price;
+    });
+
+    (root || document).querySelectorAll('[data-offer-duration]').forEach(el => {
+      const offer = OFFERS[el.dataset.offerDuration];
+      if (offer && offer.duration) el.textContent = offer.duration;
     });
   }
-}
 
-// Global initialization helper for CTA buttons and grounded product copy.
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('[data-offer-link]').forEach(btn => {
-    const type = btn.getAttribute('data-offer-link');
-    if (ARVENAIRE_OFFERS[type]) {
-      btn.href = ARVENAIRE_OFFERS[type].url;
-      btn.addEventListener('click', () => trackOfferClick(type, btn.getAttribute('data-offer-location') || 'page_body'));
-    }
-  });
+  window.ARVENAIRE = window.ARVENAIRE || {};
+  window.ARVENAIRE.offers = OFFERS;
+  window.ARVENAIRE.trackOffer = track;
+  window.ARVENAIRE.bindOffers = bind;
 
-  // Do not show a crossed-out reference price unless ARVENAIRE has a real,
-  // supportable prior selling price for the same product.
-  document.querySelectorAll('.offer-original-price').forEach(el => el.remove());
-
-  // Keep legacy HTML copy synchronized with the final v1.2 buyer bundle.
-  document.querySelectorAll('.offer-features li').forEach(li => {
-    const text = li.textContent.trim();
-    if (text.startsWith('3 portfolio project blueprints')) {
-      li.textContent = '4 portfolio project blueprints (TwinCAT, ROS2, embedded systems, machine vision)';
-    }
-  });
-
-  // Replace speculative value/savings claims with concrete deliverable value.
-  const valueBox = document.querySelector('.price-value-callout .pvc-text');
-  if (valueBox) {
-    const heading = valueBox.querySelector('h4');
-    const paragraph = valueBox.querySelector('p');
-    if (heading) heading.textContent = 'What ₹499 actually buys';
-    if (paragraph) {
-      paragraph.innerHTML = 'A reusable engineering-application execution pack: two editable CV files, 30 reviewed employer portals, outreach scripts, four portfolio blueprints, four technical README templates, an official-source checklist, a CV bullet bank, German job-search terms, and a 14-day sprint. <strong>No admission, job, salary, scholarship, or visa outcome is guaranteed.</strong>';
-    }
-  }
-});
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => bind(document));
+  else bind(document);
+})();
