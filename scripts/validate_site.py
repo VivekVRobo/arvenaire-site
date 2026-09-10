@@ -120,6 +120,43 @@ def validate_commercial_invariants() -> None:
             fail(f"{path} must continue loading css/style.css")
 
 
+def validate_blog() -> None:
+    article_pages = (
+        "blog-mext-2027.html",
+        "blog-aps-germany.html",
+        "blog-gks-graduate.html",
+        "blog-werkstudent-germany.html",
+        "blog-motivation-letter-europe.html",
+        "blog-robotics-portfolio.html",
+    )
+    blog = read("blog.html")
+    for required in ("css/site-pages.css", "css/blog.css", "js/site.js", "js/blog.js", "js/transitions.js"):
+        if required not in blog:
+            fail(f"blog.html must load {required}")
+    for obsolete in ("<style>", "onclick=", "const articles", "readerOverlay", "readArticle(", "innerHTML"):
+        if obsolete.lower() in blog.lower():
+            fail(f"blog.html still contains legacy inline-reader architecture: {obsolete}")
+    if "Reviewed Sep 11, 2026" not in blog:
+        fail("blog.html must display reviewed dates for source-sensitive articles")
+
+    sitemap = read("sitemap.xml")
+    for path in article_pages:
+        if not (ROOT / path).exists():
+            fail(f"Missing production blog article: {path}")
+            continue
+        content = read(path)
+        for required in ("css/style.css", "css/site-pages.css", "css/blog.css", "js/site.js", "js/transitions.js", "article-sourcebox", "Reviewed: 11 September 2026"):
+            if required not in content:
+                fail(f"{path} missing blog production invariant: {required}")
+        if "onclick=" in content.lower() or "<style>" in content.lower():
+            fail(f"{path} must not restore inline behavior/style architecture")
+        canonical = path.removesuffix(".html")
+        if f"https://arvenaire.com/{canonical}" not in content:
+            fail(f"{path} missing expected canonical URL")
+        if f"https://arvenaire.com/{canonical}" not in sitemap:
+            fail(f"sitemap.xml missing blog article route: {canonical}")
+
+
 def validate_legacy_removal() -> None:
     obsolete = [
         "js/data.js", "js/main.js", "js/japan_particle_scene.js", "js/webgl_journey.js",
@@ -223,6 +260,7 @@ def main() -> int:
     validate_local_references()
     validate_no_regressions(files)
     validate_commercial_invariants()
+    validate_blog()
     validate_legacy_removal()
     validate_forms()
     validate_vercel_security()
