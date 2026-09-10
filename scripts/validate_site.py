@@ -136,8 +136,9 @@ def validate_blog() -> None:
     for obsolete in ("<style>", "onclick=", "const articles", "readerOverlay", "readArticle(", "innerHTML"):
         if obsolete.lower() in blog.lower():
             fail(f"blog.html still contains legacy inline-reader architecture: {obsolete}")
-    if "Reviewed Sep 11, 2026" not in blog:
-        fail("blog.html must display reviewed dates for source-sensitive articles")
+    for required in ("Reviewed Sep 11, 2026", '"@type":"Blog"', "Editorial standard:"):
+        if required not in blog:
+            fail(f"blog.html missing production editorial/SEO invariant: {required}")
 
     sitemap = read("sitemap.xml")
     for path in article_pages:
